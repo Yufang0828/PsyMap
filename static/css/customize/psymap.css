@@ -29,7 +29,7 @@ body {
 }
 .navbar ul.nav > li .dropdown-menu {
   margin-top: 5px;
-  border-radius: 5px;
+  border-radius: 4px;
 }
 .navbar ul.nav > li .dropdown-menu .nav-header {
   display: block;
