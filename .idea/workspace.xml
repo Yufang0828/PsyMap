@@ -2,257 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="691ade6c-256e-4919-b4ef-6455440bc15a" name="Default" comment="">
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\bootstrap-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\bootstrap-theme.css.map" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\bootstrap-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\bootstrap.css" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\bootstrap.css.map" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\Gruntfile.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\LICENSE-MIT" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\README.md" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\.bin\lessc" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\.bin\lessc.cmd" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\async\.travis.yml" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\async\LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\async\README.md" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\async\component.json" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\async\lib\async.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\async\package.json" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\chalk\index.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\chalk\node_modules\.bin\has-ansi" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\chalk\node_modules\.bin\has-ansi.cmd" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\chalk\node_modules\.bin\strip-ansi" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\chalk\node_modules\.bin\strip-ansi.cmd" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\chalk\node_modules\.bin\supports-color" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\chalk\node_modules\.bin\supports-color.cmd" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\chalk\node_modules\ansi-styles\index.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\chalk\node_modules\ansi-styles\package.json" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\chalk\node_modules\ansi-styles\readme.md" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\chalk\node_modules\escape-string-regexp\index.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\chalk\node_modules\escape-string-regexp\package.json" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\chalk\node_modules\escape-string-regexp\readme.md" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\chalk\node_modules\has-ansi\cli.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\chalk\node_modules\has-ansi\index.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\chalk\node_modules\has-ansi\node_modules\ansi-regex\index.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\chalk\node_modules\has-ansi\node_modules\ansi-regex\package.json" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\chalk\node_modules\has-ansi\node_modules\ansi-regex\readme.md" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\chalk\node_modules\has-ansi\package.json" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\chalk\node_modules\has-ansi\readme.md" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\chalk\node_modules\strip-ansi\cli.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\chalk\node_modules\strip-ansi\index.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\chalk\node_modules\strip-ansi\node_modules\ansi-regex\index.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\chalk\node_modules\strip-ansi\node_modules\ansi-regex\package.json" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\chalk\node_modules\strip-ansi\node_modules\ansi-regex\readme.md" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\chalk\node_modules\strip-ansi\package.json" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\chalk\node_modules\strip-ansi\readme.md" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\chalk\node_modules\supports-color\cli.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\chalk\node_modules\supports-color\index.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\chalk\node_modules\supports-color\package.json" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\chalk\node_modules\supports-color\readme.md" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\chalk\package.json" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\chalk\readme.md" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\.idea\.name" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\.idea\codeStyleSettings.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\.idea\encodings.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\.idea\inspectionProfiles\Project_Default.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\.idea\inspectionProfiles\profiles_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\.idea\jsLibraryMappings.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\.idea\jsLinters\jshint.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\.idea\less.js.iml" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\.idea\libraries\sass_stdlib.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\.idea\misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\.idea\modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\.idea\scopes\scope_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\.idea\vcs.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\.idea\workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\.jshintrc" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\.npmignore" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\.travis.yml" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\CHANGELOG.md" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\CONTRIBUTING.md" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\Gruntfile.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\README.md" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\appveyor.yml" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\bin\lessc" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\bower.json" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\browser.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\build.gradle" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\dist\less.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\dist\less.min.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\gradlew" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\gradlew.bat" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\index.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less-browser\add-default-options.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less-browser\bootstrap.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less-browser\browser.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less-browser\cache.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less-browser\error-reporting.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less-browser\file-manager.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less-browser\index.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less-browser\log-listener.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less-browser\utils.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less-node\environment.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less-node\file-manager.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less-node\fs.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less-node\image-size.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less-node\index.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less-node\lessc-helper.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less-node\plugin-loader.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less-node\url-file-manager.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less-rhino\index.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\contexts.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\data\colors.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\data\index.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\data\unit-conversions.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\environment\abstract-file-manager.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\environment\environment-api.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\environment\environment.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\environment\file-manager-api.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\functions\color-blending.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\functions\color.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\functions\data-uri.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\functions\default.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\functions\function-caller.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\functions\function-registry.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\functions\index.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\functions\math.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\functions\number.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\functions\string.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\functions\svg.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\functions\types.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\import-manager.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\index.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\less-error.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\logger.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\parse-tree.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\parse.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\parser\chunker.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\parser\parser-input.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\parser\parser.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\plugin-manager.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\render.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\source-map-builder.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\source-map-output.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\transform-tree.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\alpha.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\anonymous.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\assignment.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\attribute.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\call.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\color.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\combinator.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\comment.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\condition.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\debug-info.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\detached-ruleset.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\dimension.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\directive.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\element.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\expression.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\extend.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\import.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\index.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\javascript.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\js-eval-node.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\keyword.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\media.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\mixin-call.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\mixin-definition.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\negative.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\node.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\operation.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\paren.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\quoted.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\rule.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\ruleset-call.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\ruleset.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\selector.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\unicode-descriptor.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\unit.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\url.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\value.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\tree\variable.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\utils.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\visitors\extend-visitor.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\visitors\import-sequencer.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\visitors\import-visitor.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\visitors\index.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\visitors\join-selector-visitor.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\visitors\to-css-visitor.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\less\visitors\visitor.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\source-map\source-map-0.1.31.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\source-map\source-map-footer.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\lib\source-map\source-map-header.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\.bin\image-size" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\.bin\image-size.cmd" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\.bin\mkdirp" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\.bin\mkdirp.cmd" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\graceful-fs\.npmignore" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\graceful-fs\LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\graceful-fs\README.md" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\graceful-fs\fs.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\graceful-fs\graceful-fs.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\graceful-fs\package.json" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\graceful-fs\polyfills.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\graceful-fs\test\max-open.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\graceful-fs\test\open.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\graceful-fs\test\readdir-sort.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\graceful-fs\test\write-then-read.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\image-size\.npmignore" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\image-size\Contributors.md" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\image-size\LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\image-size\Readme.md" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\image-size\bin\image-size" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\image-size\lib\detector.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\image-size\lib\index.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\image-size\lib\readUInt.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\image-size\lib\types.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\image-size\lib\types\bmp.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\image-size\lib\types\gif.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\image-size\lib\types\jpg.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\image-size\lib\types\png.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\image-size\lib\types\psd.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\image-size\lib\types\svg.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\image-size\lib\types\tiff.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\image-size\lib\types\webp.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\image-size\package.json" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mime\LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mime\README.md" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mime\mime.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mime\package.json" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mime\test.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mime\types\mime.types" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mime\types\node.types" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mkdirp\.npmignore" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mkdirp\.travis.yml" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mkdirp\LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mkdirp\bin\cmd.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mkdirp\bin\usage.txt" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mkdirp\examples\pow.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mkdirp\index.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mkdirp\node_modules\minimist\.travis.yml" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mkdirp\node_modules\minimist\LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mkdirp\node_modules\minimist\example\parse.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mkdirp\node_modules\minimist\index.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mkdirp\node_modules\minimist\package.json" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mkdirp\node_modules\minimist\readme.markdown" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mkdirp\node_modules\minimist\test\dash.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mkdirp\node_modules\minimist\test\default_bool.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mkdirp\node_modules\minimist\test\dotted.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mkdirp\node_modules\minimist\test\long.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mkdirp\node_modules\minimist\test\parse.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mkdirp\node_modules\minimist\test\parse_modified.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mkdirp\node_modules\minimist\test\short.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mkdirp\node_modules\minimist\test\whitespace.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mkdirp\package.json" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mkdirp\readme.markdown" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mkdirp\test\chmod.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mkdirp\test\clobber.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mkdirp\test\mkdirp.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mkdirp\test\opts_fs.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mkdirp\test\opts_fs_sync.js" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pages/PsyMap/home/about.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pages/PsyMap/base_generic.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pages/PsyMap/home/home.html" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\pages\PsyMap\base\_footer.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\pages\PsyMap\base\_head.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\pages\PsyMap\base\_navbar.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\pages\PsyMap\index.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\pages\PsyMap\index0.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\pages\PsyMap\index1.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\pages\PsyMap\index2.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\pages\PsyMap\main\home.html" afterPath="" />
       <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mkdirp\test\perm.js" afterPath="" />
       <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mkdirp\test\perm_sync.js" afterPath="" />
       <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\css\customize-less\node_modules\grunt-contrib-less\node_modules\less\node_modules\mkdirp\test\race.js" afterPath="" />
@@ -1535,10 +1295,6 @@
       <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\js\bootstrap.min.js" afterPath="" />
       <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\js\jquery.js" afterPath="" />
       <change type="DELETED" beforePath="E:\GitHub\PsyMap\static\js\npm.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/PsyMap/base/_navbar.html" afterPath="$PROJECT_DIR$/pages/PsyMap/base/_navbar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/PsyMap/index.html" afterPath="$PROJECT_DIR$/pages/PsyMap/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/PsyMap/index0.html" afterPath="$PROJECT_DIR$/pages/PsyMap/index0.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Web/settings.py" afterPath="$PROJECT_DIR$/Web/settings.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsyMap/urls.py" afterPath="$PROJECT_DIR$/PsyMap/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Web/urls.py" afterPath="$PROJECT_DIR$/Web/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsyMap/views.py" afterPath="$PROJECT_DIR$/PsyMap/views.py" />
@@ -1564,52 +1320,50 @@
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="page-quiz.css" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/PsyMap/static/css/page-quiz.css">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state vertical-scroll-proportion="0.37542278" vertical-offset="0" max-vertical-offset="2960">
+                    <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="site-common.css" pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/PsyMap/static/css/site-common.css">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state vertical-scroll-proportion="0.0" vertical-offset="2961" max-vertical-offset="3848">
+                    <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="PsyMap" />
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PsyMap/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="629">
-              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-              <folding>
-                <element signature="e#0#35#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PsyMap/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="518">
-              <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
-              <folding>
-                <element signature="e#22#64#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index0.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/PsyMap/index0.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.794118" vertical-offset="0" max-vertical-offset="555">
-              <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pages/PsyMap/index.html">
+        <entry file="file://$PROJECT_DIR$/pages/PsyMap/quiz/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6335617" vertical-offset="4921" max-vertical-offset="7881">
-              <caret line="143" column="19" selection-start-line="143" selection-start-column="19" selection-end-line="143" selection-end-column="19" />
-              <folding />
+            <state vertical-scroll-proportion="0.18663304" vertical-offset="2220" max-vertical-offset="5883">
+              <caret line="64" column="49" selection-start-line="64" selection-start-column="49" selection-end-line="64" selection-end-column="49" />
+              <folding>
+                <element signature="e#4900#4921#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -1624,11 +1378,18 @@
       <list>
         <option value="$PROJECT_DIR$/pages/PsyMap/index0.html" />
         <option value="$PROJECT_DIR$/pages/PsyMap/base/_navbar.html" />
-        <option value="$PROJECT_DIR$/Web/urls.py" />
-        <option value="$PROJECT_DIR$/PsyMap/urls.py" />
-        <option value="$PROJECT_DIR$/PsyMap/views.py" />
         <option value="$PROJECT_DIR$/Web/settings.py" />
         <option value="$PROJECT_DIR$/pages/PsyMap/index.html" />
+        <option value="$PROJECT_DIR$/pages/PsyMap/main/about.html" />
+        <option value="$PROJECT_DIR$/pages/PsyMap/main/home.html" />
+        <option value="$PROJECT_DIR$/PsyMap/urls.py" />
+        <option value="$PROJECT_DIR$/PsyMap/views.py" />
+        <option value="$PROJECT_DIR$/Web/urls.py" />
+        <option value="$PROJECT_DIR$/pages/PsyMap/base_generic.html" />
+        <option value="$PROJECT_DIR$/pages/PsyMap/home/about.html" />
+        <option value="$PROJECT_DIR$/pages/PsyMap/home/home.html" />
+        <option value="$PROJECT_DIR$/PsyMap/static/css/page-quiz.css" />
+        <option value="$PROJECT_DIR$/pages/PsyMap/quiz/index.html" />
       </list>
     </option>
   </component>
@@ -1718,7 +1479,29 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="base" />
+              <option name="myItemId" value="quiz" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PsyMap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PsyMap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PsyMap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="home" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1750,6 +1533,64 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PsyMap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PsyMap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PsyMap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PsyMap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PsyMap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PsyMap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PsyMap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PsyMap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PsyMap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="migrations" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -1759,11 +1600,21 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
+    <property name="options.lastSelected" value="configurable.group.appearance" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="LayoutCode.rearrangeEntriesDjangoTemplate" value="false" />
+    <property name="LayoutCode.rearrangeEntriesCSS" value="false" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
       <console-settings />
     </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\GitHub\PsyMap\pages\PsyMap\main" />
+    </key>
   </component>
   <component name="RunManager" selected="Django server.PsyMap">
     <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
@@ -2002,6 +1853,9 @@
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="691ade6c-256e-4919-b4ef-6455440bc15a" name="Default" comment="" />
@@ -2037,15 +1891,15 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32949308" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32949308" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28859857" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32949308" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17396313" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2764977" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32949308" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19376528" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33870968" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -2080,58 +1934,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/PsyMap/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="629">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PsyMap/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="518">
-          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
-          <folding>
-            <element signature="e#22#64#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/PsyMap/index0.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.794118" vertical-offset="0" max-vertical-offset="555">
-          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/PsyMap/base/_navbar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2919132" vertical-offset="222" max-vertical-offset="3367">
-          <caret line="10" column="90" selection-start-line="10" selection-start-column="90" selection-end-line="10" selection-end-column="90" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/PsyMap/base/_head.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1073">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/PsyMap/base/_footer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="703">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Web/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="554">
@@ -2148,16 +1950,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Web/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40524194" vertical-offset="58" max-vertical-offset="629">
-          <caret line="7" column="48" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Web/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3326613" vertical-offset="2832" max-vertical-offset="3441">
@@ -2166,10 +1958,134 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/PsyMap/index.html">
+    <entry file="file://$PROJECT_DIR$/PsyMap/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6335617" vertical-offset="4921" max-vertical-offset="7881">
-          <caret line="143" column="19" selection-start-line="143" selection-start-column="19" selection-end-line="143" selection-end-column="19" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="571">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PsyMap/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="571">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PsyMap/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1628">
+          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Web/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.49333334" vertical-offset="0" max-vertical-offset="600">
+          <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PsyMap/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.445" vertical-offset="214" max-vertical-offset="814">
+          <caret line="13" column="36" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/PsyMap/quiz/index - Copy.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.6630435" vertical-offset="1087" max-vertical-offset="4218">
+          <caret line="36" column="50" selection-start-line="36" selection-start-column="42" selection-end-line="36" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/PsyMap/base_generic.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.0050441" vertical-offset="4793" max-vertical-offset="6031">
+          <caret line="108" column="44" selection-start-line="108" selection-start-column="44" selection-end-line="108" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/PsyMap/home/about.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="4.4791927" vertical-offset="0" max-vertical-offset="4662">
+          <caret line="96" column="30" selection-start-line="96" selection-start-column="30" selection-end-line="96" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/PsyMap/home/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.32660782" vertical-offset="1443" max-vertical-offset="5032">
+          <caret line="46" column="30" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PsyMap/static/css/page-home.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334" vertical-offset="53" max-vertical-offset="3219">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PsyMap/static/css/bootstrap.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1789601" vertical-offset="0" max-vertical-offset="827">
+          <caret line="4" column="109294" selection-start-line="4" selection-start-column="109294" selection-end-line="4" selection-end-column="109294" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Anaconda/node-webkit/launcher/static/vendor/bootstrap/css/bootstrap-responsive.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334" vertical-offset="34722" max-vertical-offset="41255">
+          <caret line="946" column="2" selection-start-line="946" selection-start-column="2" selection-end-line="946" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Anaconda/node-webkit/launcher/static/vendor/bootstrap/css/bootstrap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="225240" max-vertical-offset="228401">
+          <caret line="6095" column="0" selection-start-line="6095" selection-start-column="0" selection-end-line="6095" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PsyMap/static/css/site-common.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2961" max-vertical-offset="3848">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/PsyMap/quiz/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18663304" vertical-offset="2220" max-vertical-offset="5883">
+          <caret line="64" column="49" selection-start-line="64" selection-start-column="49" selection-end-line="64" selection-end-column="49" />
+          <folding>
+            <element signature="e#4900#4921#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PsyMap/static/css/page-quiz.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37542278" vertical-offset="0" max-vertical-offset="2960">
+          <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
           <folding />
         </state>
       </provider>
