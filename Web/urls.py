@@ -6,4 +6,5 @@ from PsyMap.views import *
 urlpatterns = patterns(
     '',
     url(r'^PsyMap/', include('PsyMap.urls')),
+    url(r'^$', include('PsyMap.urls')),
 )
