@@ -1,0 +1,99 @@
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+
+body {
+  padding-bottom: 40px;
+  color: #5a5a5a;
+}
+
+
+/* ------------------------ Page main content ---------------------- */
+main{
+  margin-top:60px;
+}
+
+.semi-trans{
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* ------------------------ Page Header ---------------------- */
+
+.header-bg{
+  margin: 80px 0 -40px 0;
+  padding: 0 0 20px 0 !important;
+  width:100%;
+  overflow: hidden;
+}
+
+.header-bg .semi-trans{
+  padding: 30px;
+  margin: 20px 0 0 0;
+  color: #FFF;
+}
+
+/* ------------------------ Square Button ---------------------- */
+.btn-square {
+  border: 2px solid #fff;
+  padding: 14px 35px 14px 35px;
+  margin: 0 10px 0 10px;
+  color: #fff;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 250ms;
+}
+
+.btn-square:hover{
+  color: #fff;
+  text-decoration: none;
+}
+
+.btn-clr-blue:hover{
+  background: rgba(0, 125, 200, 0.7);
+}
+
+.btn-clr-red:hover{
+  background: rgba(200, 125, 0, 0.7);
+}
+
+.btn-clr-green:hover{
+  background: rgba(0, 200, 125, 0.7);
+}
+
+/* ------------------------ CUSTOMIZE THE NAVBAR ---------------------- */
+.navbar{
+  background:rgba(0,0,10,0.7);
+  padding: 5px 0 5px 0;
+}
+
+.navbar-inverse .navbar-nav > .open > a{
+  background:rgba(0,0,10,0.3) !important;
+}
+
+.navbar-inverse .navbar-nav>li>a{
+  color: #fff !important;
+}
+
+.navbar-fixed-top{
+  border: 0 !important;
+}
+
+.logo{
+  margin: -8px 50px 16px 10px;
+}
+
+.m-logo{
+  height: 30px;
+  weight: 30px;
+  margin: 0px 10px 0 -5px;
+}
+
+
+/* -------------------RESPONSIVE CSS--------------------- */
+@media (min-width: 768px) {
+  .navbar-wrapper .navbar {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}

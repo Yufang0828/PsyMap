@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 
-def home(request, page):
+def home(request, page='home'):
     if page not in {'home', 'about'}:
         page = 'home'
     return render(request, 'PsyMap/home/%s.html' % page)

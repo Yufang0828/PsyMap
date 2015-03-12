@@ -1,0 +1,109 @@
+{% extends "PsyMap/base_generic.html" %}
+
+{% block title %}心理地图 - 科学的心理测评{% endblock %}
+{% block html_head %}
+    <style type="text/css">
+        .carousel {
+          height: 550px;
+            margin-top: -10px;
+            width: 100%;
+        }
+        /* Since positioning the image, we need to help out the caption */
+        .carousel-caption {
+          z-index: 10;
+          margin-bottom: 60px;
+        }
+
+        /* Declare heights because of positioning of img element */
+        .carousel .item {
+          height: 550px;
+          background-color: #777;
+        }
+        .carousel-inner > .item > img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          min-width: 100%;
+          height: 550px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <header class="container jumbotron header-bg" style="background-image: url(assets/img/slide-04.jpg);">
+        <div class="intro-ico">
+            <img class="img-circle " src="assets/img/c-a.png">
+        </div>
+        <div class="semi-trans pull-right col-xs-8">
+            <h1>科学全面的心理测评</h1>
+
+            <p>　　在这里，您能够获取科学的心理评估服务，深入了解自身的内心世界。这里收录的心理评估量表均为专业性心理测评工具，经过了专业科研人员的修订和检测，具备较好的测量效果，在心理学专业内享有较高的声誉。</p>
+        </div>
+    </header>
+
+    <div class="main-content ">
+
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img src="assets/img/slide-05.jpg">
+
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h1>探索你的人格</h1>
+
+                            <p>
+                                　　人格（Personality，又译为性格），指人类心理特征的整合、统一体，是一个相对稳定的结构组织。并在不同时间、地域下影响着人的内隐和外显的心理特征和行为模式。西方语言中“人格”一词多源自拉丁文的persona，即“面具”，暗示了“人格”的社会功能。人格更是体现了一个人的特点和与众不同。万千世界，自然有不同的人格元素组合成了这一个个性格迥异的个体。</p>
+
+                            <p><a class="btn btn-lg btn-square" href="#" role="button">探索人格世界</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="assets/img/slide-17.jpg">
+
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h1>你幸福吗？</h1>
+
+                            <p>
+                                　　幸福，是指一个人的需求得到满足而产生喜快乐与稳定的心理状态。幸福划分为四个维度，满足、快乐、投入、意义。每个维度的幸福都是好的，但是将浅层次的快乐转化为深远的满足感和持久的幸福感是一件益处更大的事情。对于幸福的诠释涉及了哲学、心理学、社会学、经济学、文化学等多个学科。</p>
+
+                            <p><a class="btn btn-lg btn-square" href="#" role="button">测一测，你幸福吗？</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="assets/img/slide-08.jpg">
+
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h1>关注你和亲友的心理健康</h1>
+
+                            <p>
+                                　　心理健康指个体能够适应和发展着的环境，具有完善的个性特征；且其认知、情绪反应、意志行为处于积极状态，并能保持正常的调控能力。从广义上讲，心理健康是指一种高效而满意的、持续的心理状态。从狭义上讲，心理健康是指人的基本心理活动的过程内容完整、协调一致，即认识、情感、意志、行为、人格完整和协调，能适应社会，与社会保持同步。</p>
+
+                            <p><a class="btn btn-lg btn-square" href="#" role="button">走出抑郁，克服焦虑</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <!-- /.carousel -->
+
+    </div>
+{% endblock content %}
