@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE questionnaire SYSTEM "Questionnaire.dtd">
+
+<!--
+幸福感：
+	Satisfaction With Life Scale (Pavot & Diener, 1993) q01~q05
+	情感量表：正性情感、负性情感、情感平衡 q06~q15 : p n p n p n p n p n
+-->
+
+<questionnaire>
+  <description>
+    <identifier>Happiness</identifier>
+    <caption>幸福感测量</caption>
+    <information><![CDATA[欢迎您填写本量表，本量表是用于衡量填写者的幸福感的。通过填写本量表，您可以评测您的幸福感。]]>
+	</information>
+    <interfacetype>CompareToAverage</interfacetype>
+  </description>
+
+  <questions>
+  
+	<question qid="q01" tag="swls">
+      <title>我的生活大致符合我的理想。</title>
+      <answer aid="a" score="1">非常不同意</answer>
+      <answer aid="b" score="2">不同意</answer>
+	  <answer aid="c" score="3">少许不同意</answer>
+	  <answer aid="d" score="4">中立</answer>
+	  <answer aid="e" score="5">少许同意</answer>
+	  <answer aid="f" score="6">同意</answer>
+	  <answer aid="g" score="7">非常同意</answer>
+    </question>
+  
+  	<question qid="q02" tag="swls">
+      <title>我的生活状况非常圆满。</title>
+      <answer aid="a" score="1">非常不同意</answer>
+      <answer aid="b" score="2">不同意</answer>
+	  <answer aid="c" score="3">少许不同意</answer>
+	  <answer aid="d" score="4">中立</answer>
+	  <answer aid="e" score="5">少许同意</answer>
+	  <answer aid="f" score="6">同意</answer>
+	  <answer aid="g" score="7">非常同意</answer>
+    </question>
+	
+	<question qid="q03" tag="swls">
+      <title>我满意自己的生活。</title>
+      <answer aid="a" score="1">非常不同意</answer>
+      <answer aid="b" score="2">不同意</answer>
+	  <answer aid="c" score="3">少许不同意</answer>
+	  <answer aid="d" score="4">中立</answer>
+	  <answer aid="e" score="5">少许同意</answer>
+	  <answer aid="f" score="6">同意</answer>
+	  <answer aid="g" score="7">非常同意</answer>
+    </question>
+	
+	<question qid="q04" tag="swls">
+      <title>直到现在为止，我都能够得到我在生活上希望拥有的重要东西。</title>
+      <answer aid="a" score="1">非常不同意</answer>
+      <answer aid="b" score="2">不同意</answer>
+	  <answer aid="c" score="3">少许不同意</answer>
+	  <answer aid="d" score="4">中立</answer>
+	  <answer aid="e" score="5">少许同意</answer>
+	  <answer aid="f" score="6">同意</answer>
+	  <answer aid="g" score="7">非常同意</answer>
+    </question>
+	
+	<question qid="q05" tag="swls">
+      <title>如果我能重新活过，差不多没有东西我想改变。</title>
+      <answer aid="a" score="1">非常不同意</answer>
+      <answer aid="b" score="2">不同意</answer>
+	  <answer aid="c" score="3">少许不同意</answer>
+	  <answer aid="d" score="4">中立</answer>
+	  <answer aid="e" score="5">少许同意</answer>
+	  <answer aid="f" score="6">同意</answer>
+	  <answer aid="g" score="7">非常同意</answer>
+    </question>
+	
+	<question qid="q06" tag="pa">
+      <title>在过去几周里你是否感到：对某事特别热衷或特别感兴趣？</title>
+      <answer aid="y" score="1">是</answer>
+      <answer aid="n" score="0">否</answer>
+    </question>
+	
+	<question qid="q07" tag="na">
+      <title>在过去几周里你是否感到：感到坐立不安？</title>
+      <answer aid="y" score="1">是</answer>
+      <answer aid="n" score="0">否</answer>
+    </question>
+    
+	<question qid="q08" tag="pa">
+      <title>在过去几周里你是否感到：因为别人对你工作的赞扬而感到骄傲？</title>
+      <answer aid="y" score="1">是</answer>
+      <answer aid="n" score="0">否</answer>
+    </question>
+    
+	<question qid="q09" tag="na">
+      <title>在过去几周里你是否感到：十分孤独或远离他人？</title>
+      <answer aid="y" score="1">是</answer>
+      <answer aid="n" score="0">否</answer>
+    </question>
+    
+	<question qid="q10" tag="pa">
+      <title>在过去几周里你是否感到：由于完成了某项工作而感到愉快？</title>
+      <answer aid="y" score="1">是</answer>
+      <answer aid="n" score="0">否</answer>
+    </question>
+    
+	<question qid="q11" tag="na">
+      <title>在过去几周里你是否感到：心烦？</title>
+      <answer aid="y" score="1">是</answer>
+      <answer aid="n" score="0">否</answer>
+    </question>
+    
+	<question qid="q12" tag="pa">
+      <title>在过去几周里你是否感到：仿佛处在世界的顶峰（有飘然的感觉）？</title>
+      <answer aid="y" score="1">是</answer>
+      <answer aid="n" score="0">否</answer>
+    </question>
+    
+	<question qid="q13" tag="na">
+      <title>在过去几周里你是否感到：忧郁或非常不幸福？</title>
+      <answer aid="y" score="1">是</answer>
+      <answer aid="n" score="0">否</answer>
+    </question>
+    
+	<question qid="q14" tag="pa">
+      <title>在过去几周里你是否感到：事情在按你的意愿发展？</title>
+      <answer aid="y" score="1">是</answer>
+      <answer aid="n" score="0">否</answer>
+    </question>
+    
+	<question qid="q15" tag="na">
+      <title>在过去几周里你是否感到：由于某人的批评而感到不安？</title>
+      <answer aid="y" score="1">是</answer>
+      <answer aid="n" score="0">否</answer>
+    </question>
+
+  </questions>
+  
+  <tags>
+	<tag name="swls" label="生活满意度"><![CDATA[本维度表征填写者对生活的满意程度。]]></tag>
+	<tag name="pa"   label="正性情感"><![CDATA[本维度表征填写者在过去几周中的正性情感。]]></tag>
+	<tag name="na"   label="负性情感"><![CDATA[本维度表征填写者在过去几周中的负性情感]]></tag>
+  </tags>
+
+  <remarks>
+	<remark tag="swls" minScore="min" maxScore="avg">您的得分低于平均水平。</remark>
+    <remark tag="swls" minScore="avg" maxScore="max">您的得分高于平均水平。</remark>
+    <remark tag="pa"   minScore="min" maxScore="avg">您的得分低于平均水平。</remark>
+    <remark tag="pa"   minScore="avg" maxScore="max">您的得分高于平均水平。</remark>
+    <remark tag="na"   minScore="min" maxScore="avg">您的得分低于平均水平。</remark>
+    <remark tag="na"   minScore="avg" maxScore="max">您的得分高于平均水平。</remark>
+  </remarks>
+
+</questionnaire>

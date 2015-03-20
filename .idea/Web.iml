@@ -11,15 +11,21 @@
     </facet>
   </component>
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/PsyMap/views" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/PsyMap/models" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Web/util" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/PsyMap/models/quiz" isTestSource="false" />
+    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="miner" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
     <option name="TEMPLATE_FOLDERS">
       <list>
-        <option value="$MODULE_DIR$/../Web\pages" />
+        <option value="$MODULE_DIR$/pages/PsyMap" />
       </list>
     </option>
   </component>

@@ -1,5 +1,4 @@
-/* CUSTOMIZE THE CAROUSEL
--------------------------------------------------- */
+/* ----------------CUSTOMIZE THE CAROUSEL--------------------- */
 
 /* Carousel base class */
 .carousel {
@@ -26,8 +25,7 @@
 }
 
 
-/* MARKETING CONTENT
--------------------------------------------------- */
+/* ---------------MARKETING CONTENT---------------- */
 
 /* Center align the text within the three columns below the carousel */
 .marketing .col-lg-4 {
@@ -43,8 +41,7 @@
 }
 
 
-/* Featurettes
-------------------------- */
+/* ---------------Featurettes---------- */
 
 .featurette-divider {
   margin: 20px 0; /* Space out the Bootstrap <hr> more */
@@ -58,8 +55,7 @@
 }
 
 
-/* RESPONSIVE CSS
--------------------------------------------------- */
+/* -------------------------RESPONSIVE CSS------------------------ */
 
 @media (min-width: 768px) {
   /* Bump up size of carousel content */

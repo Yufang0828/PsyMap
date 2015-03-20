@@ -1,3 +1,5 @@
+/* ----------------Index Page of Quiz Page--------------------- */
+
 @media (min-width: 768px) {
     header {
         position: absolute;
@@ -6,6 +8,7 @@
     }
 
     .semi-trans {
+        padding-top: 150px;
         width: 72%;
     }
 }
@@ -33,7 +36,7 @@
 .carousel {
     width: 100%;
     height: 500px;
-    margin: 70px 0 50px 0;
+    margin: 30px 0 50px 0;
 }
 
 /* Since positioning the image, we need to help out the caption */
@@ -72,4 +75,79 @@ a.item-heading {
 
 .item-text {
     font-size: 16px;
+}
+
+
+
+
+/* ---------------- Fill Quiz Page --------------------- */
+
+main{
+  overflow-x: hidden;
+}
+
+.qPart *
+{
+
+}
+
+.quiz
+{	
+	font-size:1.3em;
+	min-height: 300px;
+}
+
+.progress{
+	width:100%;
+    margin-bottom: 50px;
+}
+
+.progress-bar{
+    min-width: 2em;
+}
+
+.ans label
+{
+	font-size: 20px;
+	margin:-7px 0 -7px 5px;
+	line-height: 30px;
+}
+
+.quiz > input,
+.quiz > textarea{
+	width: 100%;
+	padding: 6px;
+}
+
+.quiz input{
+    color: #080808;
+}
+
+#intro
+{
+	margin-bottom: 80px;
+}
+
+.list-group{
+	padding: 10px 30px 0 30px;
+}
+
+button:hover
+{
+	opacity: 0.4;
+}
+
+
+#divQ0{
+	line-height: 35px;
+}
+
+#btns {
+    padding-top: 50px;
+    float:none;
+}
+
+#remark, #wait
+{
+	margin-top:100px;
 }

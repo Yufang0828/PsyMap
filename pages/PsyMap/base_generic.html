@@ -75,9 +75,8 @@
                         <li><a href="home/about">关于心理地图</a></li>
                         <li class="divider"></li>
 
-                        <li class="dropdown-header">关注我们 - 微信</li>
-                        <li><a href="#"><img src="assets/img/qr_wechat.jpg" alt="关注我们的微信"/></a></li>
-
+                        <li class="dropdown-header">微信扫一扫关注我们的公众号 PsyMap</li>
+                        <li><a href="javascript:alert('请用微信搜索“PsyMap”来关注我们！');"><img src="assets/img/qr_wechat.jpg" alt="“心理地图的”微信公众号" title="微信扫一扫关注我们的公众号"/></a></li>
                         <li class="divider"></li>
                         <li><a target="_blank" href="http://weibo.com/u/2721210291">心理地图 - 新浪官方微博</a></li>
                         <li><a target="_blank" href="http://www.renren.com/601131652">心理地图 - 人人网</a></li>
@@ -105,7 +104,7 @@
 
                 <!--UserInformation /.-->
                 <li class="dropdown col-lg-push-10">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">登录<b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">登录 {{ request.session.nickname  }}<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li class="dropdown-header">连接登录后使用更多功能</li>
                         <li class="divider"></li>
@@ -137,7 +136,7 @@
 <!-- FOOTER  /. -->
 <div class="container">
     <footer>
-        <p class="pull-right"><a href="#">回到页面顶部</a></p>
+        <p class="pull-right"><a href="javascript:$('html, body').animate({ scrollTop: 0 }, 'slow');">回到页面顶部</a></p>
 
         <p>
             京ICP备10049795 · 中国科学院心理研究所 · 地址：北京市朝阳区林萃路16号院 · 邮编：100101<br>

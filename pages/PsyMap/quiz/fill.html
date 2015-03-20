@@ -1,377 +1,272 @@
-﻿<%@ page language="java" pageEncoding="utf-8"
-		 import="java.util.*"
-		 import="ac.ccpl.quizlite.base.*"
-%>
+﻿{% extends "PsyMap/base_generic.html" %}
 
-<%@ include file="/WEB-INF/jsp/_inc/header.jsp"%>
-<%
-	Quiz quiz = (Quiz)request.getAttribute("quiz");
-	Questionnaire Q = (Questionnaire)request.getAttribute("Q");
-	String grpId = (String)request.getAttribute("grpId");
-	
-	String _pageTitle = "心理地图 - 心理问卷填写：" + quiz.getScreenName();
-%>
+{% block title %}心理地图 - 科学的心理测评{% endblock %}
 
-<html>
-<%@ include file="/WEB-INF/jsp/_inc/html-head.jsp"%>
+{% block html_head %}
+    <link href="assets/css/page-quiz.css" rel="stylesheet">
+    <script type="text/javascript">
+        var begT = -1, curQ = 0, numQ = {{ quiz.questions|length }};
+        var lat = null, long = null;
 
-  
-<body>
-	<in-header-code>
-		<style type="text/css">
-        .qPart *
-        {
-            float:left;
-            position:relative;
-        }
-        
-        .quiz
-        {
-            width:700px;
-            padding:10px 40px 60px 0;
-            margin-left: 30px;
-            font-size:1.7em;
-        }
-        
-        .progress{
-        	margin-left:30px;
-        	width:100%;
-        }
-        
-        .question
-        {
-            display:block;
-            margin-bottom: 10px;
-            line-height: 35px;
-        }
-        
-        .ans label
-        {
-        	font-size: 20px;
-            margin:-7px 0 -7px 5px;
-            line-height: 30px;
-        }
-        
-        .ans input{
-        	margin-bottom:10px;
-        }
-        
-        .ans:hover
-        {
-            color:white;
-            background-color:grey;
-            border-left: dotted;
-            border-right: dotted;
-        }
-        
-        #intro
-        {
-            background:transparent;
-            color:Olive;
-            border:none;
-            font-size:16pt;
-            width:700px;
-            height:250px;
-            resize:none;
-        }
-        
-        #fillQ{
-        	margin:50px 0 0 50px;
-        }
-        
-        button
-        {
-            display:block;
-            margin:10px 0 20px 10px;
-            width:100px;
-            height:30px;
-            border-radius:10px;
-            border:1px;
-        }
-        
-        button:hover
-        {
-            opacity: 0.4;
-        }
-        
-        #btns
-        {
-        	height:100px;
-        	display:table;
-            margin:auto;
-        }
-        
-        #divQ0{
-        	line-height: 35px;
-        }
-        
-        #tips h2
-        {
-            display:inline-block;
-            padding:10px 0 0 70px;
-        }
-        
-        #remark, #wait
-        {
-            margin-top:100px;
-        }
-    </style>
-	
-	</in-header-code>
+        var Q = {
+            show: function (id) {
+                $('#bNext b').text("下一题").fadeIn();
+                $('#bPrev').show();
+                if (id == numQ) {
+                    $('#bNext b').text("提交");
+                } else if (id == 0) {
+                    $('#bPrev').hide();
+                    $('#bNext b').text("开始");
+                } else if (id == 1 && -1 == begT) {
+                    begT = (new Date()).getTime();
+                }
+                var progress = (curQ * 100 / numQ).toFixed(1) + '%';
+                var pbar = $('#progR').width(progress).text(progress);
+                $('html,body').scrollTop(pbar.offset().top - 80);
+                return $("#divQ" + id).fadeIn();
+            },
+            hide: function (id) {
+                return $("#divQ" + id).hide();
+            },
+            next: function () {
+                if (!Q.chk(curQ)) {
+                    alert("请您正确填写完成当前题目！");
+                    return false;
+                }
+                (curQ < numQ) ? ( Q.hide(curQ) && Q.show(++curQ)) : Q.done();
+            },
+            prev: function () {
+                (curQ > 0) ? ( Q.hide(curQ) && Q.show(--curQ)) : 0;
+            },
+            chk: function (i) {
+                if (0 == i)return true;
+                var div = '#divQ' + i;
+                var t = $(div).find('>input, >textarea, .active>input');
+                if (t.length) {
+                    return t.val() != "" || t.val().length > 0;
+                }
+                if ($(div).attr('type')=='single') {
+                    return $(div).find('.active').length>0;
+                }
+                return true;
+            },
+            done: function () {
+                var r = $('.quiz[id!="divQ0"]').map(function(){
+                    return '#' + $(this).attr('data') + '@' + $(this).attr('value');
+                }).get().join('');
+                if (confirm("你确认提交答卷吗？")) {
+                    if (curQ < 0)
+                        return alert('正在提交，请稍后！');
+                    curQ = -1;
 
-	<%@ include file="/WEB-INF/jsp/_inc/html-navbar.jsp"%>
+                    var aa = {
+                        "qid": "{{ quiz_id }}",
+                        "grpId": "{{ grp_id }}",
+                        "result": r,
+                        "lat": lat,
+                        "long": long,
+                        "costTime": (begT > 0) ? (((new Date()).getTime() - begT) / 1000) : -1
+                    };
 
-	<div class="container">
-		<div id="maincontent">
+                    $.post("quiz/submit", aa, function (dd) {
+                        if (dd.status == "success") {
+                            $('body').append($('<form/>', {
+                                id: 'fm',
+                                method: 'POST',
+                                action: "quiz/result"
+                            }));
+                            for (var i in dd) {
+                                $('#fm').append($('<input/>', {type: 'hidden', name: i, value: dd[i]}));
+                            }
+                            $('#fm').submit();
+                        } else if (dd.status == "no-login") {
+                            alert("请您先登录之后再提交填写记过！您点击确认后将弹出登录窗口，请您允许弹出的窗口，并在登录之后再点击提交按钮。");
+                            window.open("account/login");
+                        }
+                    }).error(function () {
+                        alert("抱歉，网络传输失败或系统错误，请您稍后重试！欢迎您通过微博向我们反馈！");
+                    }, "json");
+                    curQ = numQ;
+                }
+            }
+        };
 
-			<div class="container" style="padding-top:150px;">
-			
-			<div class="span3">
-					
-					<h3>
-						量表填写：<br/>　<%=quiz.getScreenName() %>
-					</h3>
-					<h4>
-						　　欢迎您填写该量表，<br/>
-						　　本问卷题目总数为：<i><%=Q.getQuestionsCount() %></i>题。
-					</h4>
-					
-					<hr/>
-					
-					<ul>
-						<li><h5>请您按照要求认真填写，我们按照用户协议保障您的隐私。您的填写将只用于科研用途。</h5></li>
-						<li><h5><%=quiz.getIntro() %></h5></li>
-					</ul>
-					
-					 
-			</div>
-								
-			<div id="fillQ" class="span7">
-				<div class="progress progress-info progress-striped">
-  					<div id="progR" class="bar"></div>
-				</div>
-				
-				<div class="quiz" id="divQ0">问卷正在加载中，如果长期没有加载成功，请刷新！</div>
-					
-<%
-	int countQ = 1;
-	for(String k : Q.getQuestionsIds()){
-		Question q = Q.getQuestion(k);
-%>
-                    <div class="quiz" id="divQ<%=countQ%>">
-                        <span class="question"><%=String.format("第%d题：%s",countQ,q.getText())%></span><br/>
-<%                
-		String inputType = null;
-		switch (q.getQuestionType())
-		{
-		    case Text: {
-%>
-						<span>
-							<textarea name="<%=q.getQId() %>" rows="8" style="width:100%; font-size:1.1em;"></textarea>
-						</span><br/>
-<%
-			}break;
+        var P = {
+            getPosSuccess: function (position) {
+                lat = position.coords.latitude;
+                long = position.coords.longitude;
+            },
+            getPosError: function (error) {
+                switch (error.code) {
+                    case error.TIMEOUT:
+                        lat = long = 9999;
+                        break;
+                    case error.PERMISSION_DENIED:
+                        lat = long = 9998;
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        lat = long = 9997;
+                        break;
+                }
+            }
+        };
 
-			case Multi: inputType = "checkbox"; break;                               
-			default: inputType = "radio"; break;
-		}
+        var OPT = {
+            enable_option: function (obj, enable) {
+                var status = enable ? ' active' : '';
+                $(obj).attr('class', 'list-group-item' + status);
+            },
+            update_value: function(divQ){
+                if(divQ.attr('type') in {'multi':1,'single':1}){
+                    var r = divQ.find('a.active').map(function(){
+                        var o = this.getAttribute('data');
+                        var t = $(this).find('input');
+                        if(t.length) o += '('+ t.val()+')';
+                        return o;
+                    }).get();
+                    r = r.length>1 ? ( '['+ r.join(' ') +']' ) : r.join(' ');
+                    divQ.attr('value', r);
+                }else{
+                    var r = divQ.find('>input').val();
+                    divQ.attr('value', r);
+                }
+            },
+            single_click: function () {
+                var a = $(this);
+                a.siblings().each(function () {
+                    OPT.enable_option(this, false);
+                });
+                if(this.getAttribute('class').indexOf('active') < 0){
+                    OPT.enable_option(this, true);
+                }else{
+                    OPT.enable_option(this, false);
+                }
+                if (a.find('input').length) { //there is input box in this single option
+                    a.find('input').select();
+                } else {
+                    setTimeout(Q.next, 800);
+                }
+                OPT.update_value(a.parent().parent());
+            },
+            multi_click: function(){
+                if(this.getAttribute('class').indexOf('active') < 0){
+                    OPT.enable_option(this, true);
+                }else{
+                    OPT.enable_option(this, false);
+                }
+                if ($(this).find('input').length) { //there is input box in this single option
+                    $(this).find('input').select();
+                }
+                OPT.update_value($(this).parent().parent());
+            }
+        };
 
-		for (Answer a : q.getAnswers().values()){
-%>
-						<div class="ans" id="_a<%=countQ+"_"+a.getAId()%>" >
-							<label for="_q<%=countQ+"_"+a.getAId()%>" id="_l<%=countQ+"_"+a.getAId()%>">
-								<input type="<%=inputType %>" id="_q<%=countQ+"_"+a.getAId()%>" name="<%=q.getQId() %>" value="<%=a.getAId()%>" />
-								<%=a.getAnswerInfo() %>
-<%			if(a.getAnswerType() == AnswerType.Text){%>
-								<input type="text" id="_t<%=countQ+"_"+a.getAId()%>" onfocus="this.select()" style="margin-top:7px;"/>
-<%			}%>
-							</label>
-						</div><br/>
-<%		}%>
+        function prepare() {
+            var str = "{{ quiz.information|linebreaksbr }}";
+            $('#divQ0').html(str);
+
+            $('.select-single a').click( OPT.single_click );
+            $('.select-multi a').click ( OPT.multi_click);
+
+            $('.quiz a>input').change( function(){
+                OPT.enable_option($(this).parent(), true);
+                OPT.update_value($(this).parent().parent().parent());
+            });
+            $('.quiz>input, .quiz>textarea').change( function(){
+                OPT.update_value($(this).parent());
+            });
+
+            $('.quiz').hide();
+            Q.show(curQ);
+            navigator.geolocation.getCurrentPosition(P.getPosSuccess, P.getPosError, {
+                enableHighAccuracy: true, maximumAge: 30000, timeout: 99999
+            });
+
+            $(document).keydown(function (event) {
+                if (event.keyCode == 37) Q.prev();
+                else if (event.keyCode == 39) Q.next();
+            });
+
+        }
+
+        window.onload = prepare;
+    </script>
+{% endblock %}
+
+
+{% block content %}
+    <main class="container">
+        <div class="row">
+
+            <div id="intro" class="col-xs-12 col-md-3">
+
+                <h3>量表填写：<br/>　{{ quiz.caption }}</h3>
+                <h4>
+                    　　欢迎您填写该量表，<br/>
+                    　　本问卷题目总数为：<i> {{ quiz.questions|length }}</i>题。
+                </h4>
+                <hr/>
+                <h4>　　请您按照要求认真填写，我们按照用户协议保障您的隐私。您的填写将只用于科研用途。</h4>
+                <hr/>
+                <span>{{ quiz.information|linebreaksbr }}</span>
+            </div>
+
+            <div class="col-xs-12 col-md-8 pull-right">
+                <div class="progress progress-striped">
+                    <div id="progR" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="2" aria-valuemin="0"
+                         aria-valuemax="100">
+                        0%
                     </div>
-<%
-		countQ++;
-	}
-%>					
-					<div id="btns" class="">
-           				<button id="bPrev" class="btn btn-primary" onclick="qPrev()" >《上一题</button>
-           				<button id="bNext" class="btn btn-primary" onclick="qNext()" >下一题》</button>
-        			</div>
-			</div>
-			
-				<script type="text/javascript">
-					var curQ = 0;
-			        var begT = -1;
-			        var lat=null, long=null;
-			        var numQ = <%=Q.getQuestionsCount() %>;
-			        function qShow(id) {
-			            $('#bNext').text("下一题》");
-			            $('#bPrev').fadeIn();
-			            if(id==numQ){$('#bNext').text("提交》");}
-			            else if(id==0){$('#bPrev').hide();$('#bNext').text("开始》");}
-			            else if(id==1 && -1==begT){begT=(new Date()).getTime();}
-			            $('#progR').width((curQ*100/numQ)+'%');
-			            return $("#divQ" + id).fadeIn();
-			        }
-			        function qHide(id) { return $("#divQ" + id).hide(); }
-			        function qNext() {
-			            if(!chkQ(curQ)){alert("请您正确填写完成当前题目！");return false;}
-			            (curQ<numQ) ? ( qHide(curQ) && qShow(++curQ)) : qDone();
-			        }
-			        function qPrev() { (curQ > 0)  ? ( qHide(curQ) && qShow(--curQ)) : 0;}
-			        function chkQ(i){
-			            if(0==i)return true;
-			            var t = $('#divQ'+i+' input').get(0);
-			            if (t==null){
-			                ans = $('#divQ'+i+' textarea').get(0).value;
-			                return !(ans==null || ans=="");
-			            }
-			            if(t && t.type.toUpperCase() == "CHECKBOX"){
-			                return true;
-			            }else{
-			                var Qs = $('#divQ'+i+' input:checked');
-			                if(Qs.length==0) Qs = $('#divQ'+i+' textarea');
-			                if(Qs.length==0 && !Qs.val())return false;
-			                if(Qs.get(0).tagName.toUpperCase()=='TEXTAREA')return false;
-			            }
-			            return true;
-			        }
-			
-			        function qDone() {
-			            var r = "";
-			            for(var i=1;i<=numQ;i++){
-			                var Qs = $('#divQ'+i+' input:checked');
-			                
-			                var t = $('#divQ'+i+' input').get(0);
-			                if(t && t.type.toUpperCase() == "CHECKBOX"){
-			                    r += "#" + $('#divQ'+i+' input').get(0).name + "@[";
-			                    Qs.each(function(){
-			                        r+=" "+this.value;
-			                        var x = $('#'+this.id).parent().children('input:text').val();
-			                        if(x) r+= "(" + x + ")";
-			                    });
-			                    r += "]";
-			                }else{
-			                    if(Qs.length==0) Qs = $('#divQ'+i+' textarea');
-			                    if(Qs.length==0 && !Qs.val()){
-			                        alert("您还没有填写第"+i+"题，点击确认为您跳转到该题。");
-			                        qHide(curQ) && qShow(curQ=i);
-			                        return false;
-			                    }
-			                
-			                    r += "#" + Qs[0].name + "@";
-			                    if(Qs.get(0).tagName.toUpperCase()=='TEXTAREA'){
-			                        r += "[" + Qs.val() + "]";
-			                    }else{
-			                        r += Qs.val()
-									var x = Qs.parent().find('input:text').val();
-			                        if(x) r+= "(" + x + ")";
-			                    }
-			                }
-			            }
-			
-			            if(confirm("你确认提交答卷吗？")){
-			            	if(curQ<0)
-			            		return alert('正在提交，请稍后！');
-			            	curQ = -1;
-			            	
-			            	var aa={
-			            		"qid":"<%=quiz.getQuizId()%>",
-			                	"grpId":"<%=grpId%>",
-			                	"result":r,
-			                	"lat":lat,
-			                	"long":long,
-			                	"costTime":(begT>0)?(((new Date()).getTime()-begT)/1000):-1
-			            	};
-			            	
-			            	$.post("<%=basePath%>Quiz/Submit.do",aa,function(dd){
-			                    if(dd.status=="success")
-			                    {
-									$('body').append($('<form/>', {id: 'fm', method: 'POST',action:"<%=basePath%>Quiz/Result.do"}));
-								    for(var i in dd){ $('#fm').append($('<input/>', {type:'hidden', name: i, value: dd[i]}));}
-									$('#fm').submit();
-								}else if(dd.status=="no-login"){
-									alert("请您先登录之后再提交填写记过！您点击确认后将弹出登录窗口，请您允许弹出的窗口，并在登录之后再点击提交按钮。");
-									window.open("<%=basePath%>Account/Login.do");
-								}
-			                }).error(function(){alert("抱歉，网络传输失败或系统错误，请您稍后重试！欢迎您通过微博向我们反馈！");},"json");
-			                curQ = numQ;
-			            }
-			        }
-			        
-			        function getPosSuccess( position ){
-						lat = position.coords.latitude;
-						long = position.coords.longitude;
-					}
+                </div>
 
-					function getPosError(error) {
-						switch (error.code) {
-							case error.TIMEOUT:
-								lat=long=9999;
-								break;
-							case error.PERMISSION_DENIED:
-								lat=long=9998;
-								break;
-							case error.POSITION_UNAVAILABLE:
-								lat=long=9997;
-								break;
-						}
-					}
+                <div class="quiz" id="divQ0">问卷正在加载中，如果长期没有加载成功，请刷新！</div>
+                {% for qid,q in quiz.questions.iteritems %}
+                    <div class="quiz" id="divQ{{ forloop.counter }}" type="{{ q.type }}" data="{{ qid }}">
+                        <label class="question"
+                               for="input_q{{ forloop.counter }}">第{{ forloop.counter }}题　{{ q.title }}</label>
+                        {% if q.type == 'multi' %}
+                            <div class="alert alert-success" role="alert">
+                                该题为多选题，点击选择所有答案后再点击“下一题”或“提交”按钮。
+                            </div>
+                        {% endif %}
 
-					$(document).ready(function(){
-						var str = '<%="<p>　　" + Q.getQuizInformation().replace("\n", "<br/></p><p>")%>' + '</p>';
-						$('#divQ0').html(str);
-						$('.ans :radio').each(function(k,v){
-							d = $('#' + v.id);
-							t = d.parent().find('input:text');
-							if(t.size()==0)d.click(function(){setTimeout("qNext()",350);});
-							else{
-								l = d.parent();
-								l.click(function(){
-									var tt = $('#'+this.id);									
-									var x = tt.find('input:text');
-									if(x.val()=="")x.val("请填写");
-									tt.find('input:radio').attr('checked',true);
-									x.select();
-								});
-								l.attr('for',l.find('input:text').attr('id'));
-								
-							}
-						});
-						
-						$('.ans :checkbox').each(function(k,v){
-							d = $('#' + v.id);
-							t = d.parent().find('input:text');
-							l = d.parent();
-							l.click(function(){
-								var tt = $('#'+this.id);									
-								var x = tt.find('input:text');
-								if(x.val()=="")x.val("请填写");
-								tt.find('input:checkbox').attr('checked',true);
-								x.select();
-							});
-							l.attr('for',l.find('input:text').attr('id'));
-						});
-						
-						$('.quiz').hide();
-						qShow(curQ);
-						navigator.geolocation.getCurrentPosition(getPosSuccess, getPosError, {
-							enableHighAccuracy: true, maximumAge: 30000, timeout: 99999
-						});
-			        });
-			        
-			         $(document).keydown(function(event){
-						if(event.keyCode == 37)qPrev(); 
-						else if (event.keyCode == 39)qNext(); 
-					});
-				</script>
-     		</div>
-     
+                        {% if q.type == 'textarea' %}
+                            <span>
+                                    <textarea name="{{ q.qid }}" rows="8" placeholder="请在此处填写"></textarea>
+                                </span>
+                        {% elif q.type == 'multi' or q.type == 'single' %}
+                            <div class="list-group select-{{ q.type }}">
+                                {% for aid,a in q.answers.iteritems %}
+                                    <a data="{{ aid }}" class="list-group-item">
+                                        {{ a.content }}
+                                        {% if a.type != None %}
+                                            <input type="{{ a.type }}" placeholder="请填写"/>
+                                        {% endif %}
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <input id="input_q{{ forloop.counter }}" type="{{ q.type }}" required="required" autocomplete="off"
+                            {% for r,rval in q.restriction.iteritems %}
+                                {{ r }}="{{ rval }}"
+                            {% endfor %} />
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <div id="btns" class="col-xs-8 col-md-5 center-block">
+                    <div>
+                        <button id="bPrev" class="btn btn-info pull-left" onclick="Q.prev()">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            <b>上一题</b>
+                        </button>
+                        <button id="bNext" class="btn btn-info pull-right" onclick="Q.next()">
+                            <b>下一题</b>
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-		
-		<%@ include file="/WEB-INF/jsp/_inc/html-footer.jsp"%>
-	</div>
-	
-</body>
+    </main>
 
-</html>
+{% endblock content %}

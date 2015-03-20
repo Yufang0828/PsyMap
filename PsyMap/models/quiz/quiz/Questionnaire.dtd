@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+        <!ELEMENT questionnaire (description,questions,tags?,remarks?)>
+
+        <!ELEMENT description (identifier,caption,information,questionsnum?,interfacetype?)>
+        <!ELEMENT identifier (#PCDATA)>
+        <!ELEMENT caption (#PCDATA)>
+        <!ELEMENT information (#PCDATA)>
+        <!ELEMENT questionsnum (#PCDATA)>
+        <!ELEMENT interfacetype (#PCDATA)>
+
+        <!ELEMENT questions (question+)>
+        <!ELEMENT question (title,restriction?,answer*)>
+        <!ELEMENT title (#PCDATA)>
+        <!ATTLIST question
+                qid CDATA #REQUIRED
+                tag CDATA #IMPLIED
+                type (single|multi|textarea|text|number|range|color|date|time|email) "single"
+                >
+
+        <!ELEMENT restriction EMPTY>
+        <!ATTLIST restriction
+                placeholder CDATA #IMPLIED
+                min CDATA #IMPLIED
+                max CDATA #IMPLIED
+                maxlength CDATA #IMPLIED
+                pattern CDATA #IMPLIED
+                size    CDATA #IMPLIED
+                step    CDATA #IMPLIED
+                >
+
+        <!ELEMENT answer (#PCDATA)>
+        <!ATTLIST answer
+                aid CDATA #REQUIRED
+                score CDATA #IMPLIED
+                type CDATA #IMPLIED
+                >
+
+        <!ELEMENT tags (tag+)>
+        <!ELEMENT tag (#PCDATA)>
+        <!ATTLIST tag
+                name CDATA #REQUIRED
+                label CDATA #REQUIRED
+                >
+
+        <!ELEMENT remarks (remark+)>
+        <!ELEMENT remark (#PCDATA)>
+        <!ATTLIST remark
+                tag CDATA #IMPLIED
+                minScore CDATA #REQUIRED
+                maxScore CDATA #REQUIRED
+                >
