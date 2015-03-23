@@ -1,7 +1,8 @@
-from django.conf.urls import patterns, include, url
-# from django.contrib import admin
+# -*- coding: UTF-8 -*-
+__author__ = 'Peter_Howe<haobibo@gmail.com>'
 
-from PsyMap.views import *
+from django.conf.urls import patterns, include, url
+
 
 urlpatterns = patterns(
     '',

@@ -7,7 +7,8 @@ from collections import OrderedDict, namedtuple
 from datetime import datetime
 
 import dbutil
-from quiz import QService
+from questionnaire import QService
+
 
 dimensions = OrderedDict()
 users = dict()

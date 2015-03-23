@@ -2,37 +2,88 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="691ade6c-256e-4919-b4ef-6455440bc15a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PsyMap/models/quiz/quiz/Q02_2K/Questionnaire.dtd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PsyMap/models/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PsyMap/views/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PsyMap/views/account.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PsyMap/views/experiment.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PsyMap/views/home.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PsyMap/views/knowledge.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PsyMap/views/quiz.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PsyMap/views/sns.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PsyMap/views/therapy.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PsyMap/views/wechat.py" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\views.py" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\pages\PsyMap\quiz\index - Copy.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsyMap/static/img/qr_wechat.jpg" afterPath="$PROJECT_DIR$/PsyMap/static/img/qr_wechat.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PsyMap/util/__init__.py" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models.py" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz.py" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\check_ip_time.py" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\dbutil.py" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\export.py" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\meta.py" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz.py" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q00\BFI44.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q00\BFI48.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q00\EQ.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q00\Questionnaire.dtd" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q00\SCL90R.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q00\SWB.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q01_IPsy\CellPhone.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q01_IPsy\P1_UsingCyber.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q01_IPsy\P2_Motion.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q01_IPsy\P3_Continuous.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q01_IPsy\P4_BasicInfo.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q01_IPsy\P5_WeiboBasic.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q01_IPsy\Questionnaire.dtd" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q02_2K\Q2_CES-D.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q02_2K\Q2_Demographic.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q02_2K\Q2_InternetAddiction.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q02_2K\Q2_Loneliness.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q02_2K\Q2_SIAnx.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q02_2K\Q2_SSQ6.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q02_2K\Q2_STAnx.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q02_2K\Questionnaire.dtd" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q04_GD\Questionnaire.dtd" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q04_GD\Soc0_Demographic.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q04_GD\Soc1_WorkLife.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q04_GD\Soc2_Government.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q04_GD\Soc3_EcoSoc.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q04_GD\Soc5_Justice.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q05_Sina\Questionnaire.dtd" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q05_Sina\SINA_CES-D.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q05_Sina\SINA_Demo.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q05_Sina\SINA_SAS.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q05_Sina\SINA_SINA.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q05_Sina\SINA_SWLS.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q05_Sina\SINA_Soc.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q07_SCD\BeckSIS.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q07_SCD\DASS.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q07_SCD\FES-CV-Partial.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q07_SCD\FES-CV.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q07_SCD\HKU-CSRP.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q07_SCD\Questionnaire.dtd" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q07_SCD\SAS.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q07_SCD\SDS.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q07_SCD\SPS.notag.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q07_SCD\SPS.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q07_SCD\SPS_+HKU-SBS.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q08_BJ\BJ_Demographic.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q08_BJ\BJ_SocialAttitude.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q08_BJ\Happiness.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Q08_BJ\Questionnaire.dtd" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\Questionnaire.dtd" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\consent\Q01_IPsy.htm" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\consent\Q02_Weibo.htm" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\consent\Q03_Track.htm" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\consent\Q04_GD.htm" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\consent\Q05_Sina.htm" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\consent\Q05_Sina.htm.bak" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\consent\Q06_SCD.htm" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\consent\Q08_BJ.htm" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\models\quiz\quiz\meta.data" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\db.sqlite3" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Web.iml" afterPath="$PROJECT_DIR$/.idea/Web.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/PsyMap/base_generic.html" afterPath="$PROJECT_DIR$/pages/PsyMap/base_generic.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsyMap/admin.py" afterPath="$PROJECT_DIR$/PsyMap/admin.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../miner/extractor/dump.py" afterPath="$PROJECT_DIR$/../miner/extractor/dump.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/PsyMap/quiz/fill.html" afterPath="$PROJECT_DIR$/pages/PsyMap/quiz/fill.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../miner/hbase/gateway.py" afterPath="$PROJECT_DIR$/../miner/hbase/gateway.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsyMap/static/css/page-home.css" afterPath="$PROJECT_DIR$/PsyMap/static/css/page-home.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsyMap/static/css/page-quiz.css" afterPath="$PROJECT_DIR$/PsyMap/static/css/page-quiz.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsyMap/views/quiz.py" afterPath="$PROJECT_DIR$/PsyMap/views/quiz.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Web/settings.py" afterPath="$PROJECT_DIR$/Web/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsyMap/static/css/site-common.css" afterPath="$PROJECT_DIR$/PsyMap/static/css/site-common.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../miner/weibo/source_hbase.py" afterPath="$PROJECT_DIR$/../miner/weibo/source_hbase.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../miner/test/test_download.py" afterPath="$PROJECT_DIR$/../miner/test/test_download.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsyMap/views/therapy.py" afterPath="$PROJECT_DIR$/PsyMap/views/therapy.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsyMap/urls.py" afterPath="$PROJECT_DIR$/PsyMap/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Web/urls.py" afterPath="$PROJECT_DIR$/Web/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="E:\GitHub\PsyMap\PsyMap\models.py" afterPath="$PROJECT_DIR$/PsyMap/models/quiz.py" />
     </list>
     <ignored path="PsyMap.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -59,6 +110,36 @@
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
   </component>
+  <component name="DatabaseView">
+    <option name="FLATTEN" value="false" />
+    <option name="GROUP_BY_TYPE" value="true" />
+    <option name="SORT_CHILDREN" value="false" />
+    <option name="SHOW_TABLE_CONSTRAINTS" value="true" />
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="PsyMap" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="PsyMap.public" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="PsyMap" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
+  </component>
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
@@ -70,7 +151,7 @@
             <file leaf-file-name="page-quiz.css" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/PsyMap/static/css/page-quiz.css">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="1.0593368" vertical-offset="4092" max-vertical-offset="5883">
+                  <state vertical-scroll-proportion="0.6843292" vertical-offset="4092" max-vertical-offset="5883">
                     <caret line="127" column="20" selection-start-line="127" selection-start-column="20" selection-end-line="127" selection-end-column="20" />
                     <folding />
                   </state>
@@ -80,7 +161,7 @@
             <file leaf-file-name="site-common.css" pinned="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/PsyMap/static/css/site-common.css">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="-0.0" vertical-offset="555" max-vertical-offset="3959">
+                  <state vertical-scroll-proportion="0.0" vertical-offset="555" max-vertical-offset="3959">
                     <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
                     <folding />
                   </state>
@@ -99,66 +180,57 @@
   <component name="FileEditorManager">
     <leaf>
       <file leaf-file-name="quiz.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PsyMap/views/quiz.py">
+        <entry file="file://$PROJECT_DIR$/PsyMap/models/quiz.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.4827585" vertical-offset="0" max-vertical-offset="1036">
-              <caret line="18" column="14" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="555" max-vertical-offset="2405">
+              <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
               <folding>
-                <element signature="e#70#105#0" expanded="true" />
+                <element signature="e#70#100#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/PsyMap/quiz/index.html">
+      <file leaf-file-name="admin.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/PsyMap/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.0882353" vertical-offset="1776" max-vertical-offset="6438">
-              <caret line="49" column="5" selection-start-line="49" selection-start-column="5" selection-end-line="49" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.53667265" vertical-offset="662" max-vertical-offset="1221">
+              <caret line="26" column="39" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
+              <folding>
+                <element signature="e#0#49#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider editor-type-id="MarkdownPreviewEditor">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.6" vertical-offset="285" max-vertical-offset="814">
+              <caret line="9" column="70" selection-start-line="9" selection-start-column="70" selection-end-line="9" selection-end-column="70" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="quiz.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PsyMap/models/quiz/quiz.py">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Web/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4998" max-vertical-offset="6734">
-              <caret line="98" column="34" selection-start-line="98" selection-start-column="34" selection-end-line="98" selection-end-column="34" />
-              <folding>
-                <element signature="e#70#79#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="export.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PsyMap/models/quiz/export.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1103" max-vertical-offset="4736">
-              <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-              <folding>
-                <element signature="e#70#80#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dbutil.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PsyMap/models/quiz/dbutil.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="373" max-vertical-offset="851">
-              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3959">
+              <caret line="60" column="26" selection-start-line="60" selection-start-column="26" selection-end-line="60" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fill.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pages/PsyMap/quiz/fill.html">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Web/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.3905013" vertical-offset="2581" max-vertical-offset="10249">
-              <caret line="84" column="25" selection-start-line="84" selection-start-column="25" selection-end-line="84" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="592">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -181,8 +253,6 @@
         <option value="$PROJECT_DIR$/pages/PsyMap/quiz/index.html" />
         <option value="$PROJECT_DIR$/manage.py" />
         <option value="$PROJECT_DIR$/pages/PsyMap/home/home.html" />
-        <option value="$PROJECT_DIR$/Web/urls.py" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/PsyMap/test.py" />
         <option value="$PROJECT_DIR$/PsyMap/test.json" />
         <option value="$PROJECT_DIR$/PsyMap/views.py" />
@@ -191,29 +261,36 @@
         <option value="$PROJECT_DIR$/PsyMap/views/home.py" />
         <option value="$PROJECT_DIR$/PsyMap/views/experiment.py" />
         <option value="$PROJECT_DIR$/PsyMap/views/sns.py" />
-        <option value="$PROJECT_DIR$/PsyMap/views/therapy.py" />
         <option value="$PROJECT_DIR$/PsyMap/views/account.py" />
         <option value="$PROJECT_DIR$/PsyMap/views/knowledge.py" />
-        <option value="$PROJECT_DIR$/PsyMap/urls.py" />
-        <option value="$PROJECT_DIR$/Web/settings.py" />
         <option value="$PROJECT_DIR$/PsyMap/models/score/meta.py" />
         <option value="$PROJECT_DIR$/PsyMap/models/score/quiz.py" />
-        <option value="$PROJECT_DIR$/PsyMap/models/quiz.py" />
         <option value="E:/WordCloud/WordCloud/gen.html" />
         <option value="E:/WordCloud/WordCloud/generator.html" />
         <option value="E:/WordCloud/words/convert.py" />
         <option value="$PROJECT_DIR$/PsyMap/models/quiz/dbutil.py" />
-        <option value="$PROJECT_DIR$/PsyMap/views/quiz.py" />
         <option value="$PROJECT_DIR$/PsyMap/models/quiz/meta.py" />
         <option value="$PROJECT_DIR$/PsyMap/models/quiz/quiz/Questionnaire.dtd" />
         <option value="$PROJECT_DIR$/PsyMap/models/quiz/quiz/Q02_2K/Questionnaire.dtd" />
         <option value="$PROJECT_DIR$/PsyMap/models/quiz/quiz/Q02_2K/Q2_Demographic.xml" />
-        <option value="$PROJECT_DIR$/PsyMap/models/quiz/quiz.py" />
         <option value="$PROJECT_DIR$/PsyMap/models/quiz/export.py" />
         <option value="$PROJECT_DIR$/PsyMap/static/css/site-common.css" />
         <option value="$PROJECT_DIR$/PsyMap/static/css/page-quiz.css" />
         <option value="$PROJECT_DIR$/pages/PsyMap/base_generic.html" />
         <option value="$PROJECT_DIR$/pages/PsyMap/quiz/fill.html" />
+        <option value="$PROJECT_DIR$/PsyMap/views/therapy.py" />
+        <option value="$PROJECT_DIR$/PsyMap/urls.py" />
+        <option value="$PROJECT_DIR$/PsyMap/models/quiz/questionnaire.py" />
+        <option value="$PROJECT_DIR$/PsyMap/models/quiz/quiz.py" />
+        <option value="$PROJECT_DIR$/PsyMap/util/quiz/questionnaire.py" />
+        <option value="$PROJECT_DIR$/PsyMap/views/quiz.py" />
+        <option value="$PROJECT_DIR$/resource/test.sql" />
+        <option value="$PROJECT_DIR$/Web/settings.py" />
+        <option value="$PROJECT_DIR$/Web/urls.py" />
+        <option value="$PROJECT_DIR$/PsyMap/migrations/0001_initial.py" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/PsyMap/models/quiz.py" />
+        <option value="$PROJECT_DIR$/PsyMap/admin.py" />
       </list>
     </option>
   </component>
@@ -221,10 +298,10 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
+    <option name="x" value="-1688" />
     <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="width" value="1696" />
+    <option name="height" value="1026" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -256,15 +333,9 @@
               <option name="myItemId" value="PsyMap" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="PsyMap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="miner" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -276,10 +347,6 @@
               <option name="myItemId" value="miner" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="weibo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -287,15 +354,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="miner" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="weibo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="obj" />
+              <option name="myItemId" value="PsyMap" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -306,6 +365,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="PsyMap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resource" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -337,37 +400,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PsyMap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="quiz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PsyMap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PsyMap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PsyMap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="home" />
+              <option name="myItemId" value="Web" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -399,87 +432,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PsyMap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PsyMap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PsyMap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PsyMap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PsyMap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PsyMap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PsyMap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PsyMap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PsyMap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PsyMap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PsyMap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PsyMap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="quiz" />
+              <option name="myItemId" value="migrations" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -492,7 +445,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="options.lastSelected" value="preferences.pluginManager" />
+    <property name="options.lastSelected" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="LayoutCode.rearrangeEntriesDjangoTemplate" value="false" />
@@ -503,6 +456,8 @@
     <property name="last_opened_file_path" value="E:/WordCloud/words/convert.py" />
     <property name="LayoutCode.rearrangeEntriesHTML" value="false" />
     <property name="LayoutCode.rearrangeEntriesDTD" value="false" />
+    <property name="dynamic.classpath" value="false" />
+    <property name="LayoutCode.rearrangeEntriesPostgreSQL" value="false" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -517,9 +472,11 @@
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\GitHub\PsyMap\PsyMap\models" />
+      <recent name="E:\GitHub\PsyMap\PsyMap\util" />
+      <recent name="E:\GitHub\PsyMap\PsyMap\models\quiz" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.export">
+  <component name="RunManager" selected="Django server.PsyMap">
     <configuration default="false" name="quiz" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -533,7 +490,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Web" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PsyMap/models/quiz/quiz.py" />
+      <option name="SCRIPT_NAME" value="E:\GitHub\PsyMap\PsyMap\models\quiz\questionnaire.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <RunnerSettings RunnerId="PyDebugRunner" />
@@ -778,6 +735,12 @@
       <option name="USE_PATTERN" value="false" />
       <method />
     </configuration>
+    <configuration default="true" type="com.intellij.database.run.ConsoleRunConfigurationType" factoryName="Query Language Console">
+      <option name="VM_PARAMETERS" value="" />
+      <option name="USER_CFG_CLASS" />
+      <option name="CONTEXT_PROVIDER" />
+      <method />
+    </configuration>
     <configuration default="false" name="PsyMap" type="Python.DjangoServer" factoryName="Django server">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -850,7 +813,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-1688" y="-8" width="1696" height="1026" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32897863" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -859,11 +822,10 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32949308" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22525597" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" x="-1705" y="506" width="1636" height="240" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32373273" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" x="-1705" y="506" width="1636" height="240" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32949308" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20196672" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46075085" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1809291" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2958435" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39904988" sideWeight="0.7265372" order="9" side_tool="false" content_ui="tabs" />
@@ -872,6 +834,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46075085" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -905,328 +868,83 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/PsyMap/tests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="333">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PsyMap/views/home.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35440612" vertical-offset="0" max-vertical-offset="629">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PsyMap/views/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21264368" vertical-offset="0" max-vertical-offset="592">
-          <caret line="3" column="21" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PsyMap/views/therapy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35440612" vertical-offset="0" max-vertical-offset="666">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PsyMap/views/account.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35440612" vertical-offset="0" max-vertical-offset="666">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PsyMap/views/sns.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21264368" vertical-offset="0" max-vertical-offset="703">
-          <caret line="3" column="45" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PsyMap/views/knowledge.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2835249" vertical-offset="0" max-vertical-offset="629">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PsyMap/views/experiment.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21264368" vertical-offset="0" max-vertical-offset="999">
-          <caret line="3" column="45" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PsyMap/views/wechat.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49616858" vertical-offset="0" max-vertical-offset="1480">
-          <caret line="7" column="43" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Anaconda/Lib/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3326572" vertical-offset="32285" max-vertical-offset="40737">
-          <caret line="877" column="0" selection-start-line="877" selection-start-column="0" selection-end-line="877" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PsyMap/models/quiz.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="703">
-          <caret line="1" column="44" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5568562" vertical-offset="0" max-vertical-offset="598">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding>
-            <element signature="e#22#31#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://E:/WordCloud/words/convert.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1036">
-          <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Web/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32274246" vertical-offset="2730" max-vertical-offset="3404">
-          <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PsyMap/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6187291" vertical-offset="185" max-vertical-offset="1258">
-          <caret line="15" column="50" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="50" />
-          <folding>
-            <element signature="e#71#113#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../miner/score/check_ip_time.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1665">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding>
-            <element signature="e#46#81#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../miner/score/dbutil.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="814">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../miner/score/export.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3404">
-          <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
-          <folding>
-            <element signature="e#70#87#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PsyMap/models/quiz/check_ip_time.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="151" max-vertical-offset="1591">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PsyMap/models/quiz/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="840">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Anaconda/Lib/json/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334" vertical-offset="4332" max-vertical-offset="13172">
-          <caret line="123" column="8" selection-start-line="123" selection-start-column="8" selection-end-line="123" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../miner/extractor/dump.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334" vertical-offset="1039" max-vertical-offset="3108">
-          <caret line="35" column="34" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../miner/weibo/obj/profile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3663">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../miner/weibo/obj/psy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.5915751" vertical-offset="1415" max-vertical-offset="1961">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PsyMap/models/quiz/quiz/Q00/BFI48.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="31.558823" vertical-offset="1776" max-vertical-offset="18648">
-          <caret line="19" column="16" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../miner/textmind/result.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="6.7087913" vertical-offset="0" max-vertical-offset="4625">
-          <caret line="101" column="8" selection-start-line="101" selection-start-column="8" selection-end-line="101" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PsyMap/models/quiz/quiz/Q02_2K/Q2_InternetAddiction.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="107.73529" vertical-offset="3663" max-vertical-offset="9398">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/PsyMap/home/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3322091" vertical-offset="839" max-vertical-offset="5032">
-          <caret line="28" column="75" selection-start-line="28" selection-start-column="74" selection-end-line="28" selection-end-column="75" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/PsyMap/home/about.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3322091" vertical-offset="3577" max-vertical-offset="4662">
           <caret line="102" column="70" selection-start-line="102" selection-start-column="68" selection-end-line="102" selection-end-column="70" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PsyMap/models/quiz/quiz/Q02_2K/Questionnaire.dtd">
+    <entry file="file://$PROJECT_DIR$/PsyMap/util/quiz/quiz/Q02_2K/Questionnaire.dtd">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.80878556" vertical-offset="1537" max-vertical-offset="2072">
           <caret line="50" column="17" selection-start-line="50" selection-start-column="17" selection-end-line="50" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PsyMap/models/quiz/meta.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="615" max-vertical-offset="2701">
-          <caret line="32" column="28" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
-          <folding>
-            <element signature="e#46#55#0" expanded="true" />
-            <marker date="1426682834077" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..Quiz..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PsyMap/models/quiz/quiz/Questionnaire.dtd">
+    <entry file="file://$PROJECT_DIR$/PsyMap/util/quiz/quiz/Questionnaire.dtd">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.264706" vertical-offset="444" max-vertical-offset="2072">
           <caret line="15" column="34" selection-start-line="0" selection-start-column="0" selection-end-line="50" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PsyMap/models/quiz/quiz/Q02_2K/Q2_Demographic.xml">
+    <entry file="file://$PROJECT_DIR$/PsyMap/util/quiz/quiz/Q02_2K/Q2_Demographic.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="26.117647" vertical-offset="1591" max-vertical-offset="8029">
           <caret line="19" column="2" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PsyMap/models/quiz/quiz/meta.data">
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/PsyMap/util/quiz/quiz/meta.data">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3313253" vertical-offset="6587" max-vertical-offset="7844">
           <caret line="181" column="9" selection-start-line="181" selection-start-column="2" selection-end-line="181" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PsyMap/models/quiz/quiz/Q04_GD/Soc2_Government.xml">
+    <entry file="file://$PROJECT_DIR$/PsyMap/util/quiz/quiz/Q04_GD/Soc2_Government.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.73913044" vertical-offset="10070" max-vertical-offset="11544">
           <caret line="274" column="4" selection-start-line="274" selection-start-column="4" selection-end-line="274" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PsyMap/models/quiz/quiz/Q01_IPsy/P2_Motion.xml">
+    <entry file="file://$PROJECT_DIR$/PsyMap/util/quiz/quiz/Q01_IPsy/P2_Motion.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.10364146" vertical-offset="0" max-vertical-offset="19499">
           <caret line="1" column="29" selection-start-line="1" selection-start-column="27" selection-end-line="1" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PsyMap/models/quiz/quiz/Q01_IPsy/P3_Continuous.xml">
+    <entry file="file://$PROJECT_DIR$/PsyMap/util/quiz/quiz/Q01_IPsy/P3_Continuous.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.10364146" vertical-offset="0" max-vertical-offset="7733">
           <caret line="1" column="29" selection-start-line="1" selection-start-column="27" selection-end-line="1" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PsyMap/models/quiz/quiz/Q01_IPsy/P4_BasicInfo.xml">
+    <entry file="file://$PROJECT_DIR$/PsyMap/util/quiz/quiz/Q01_IPsy/P4_BasicInfo.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.10364146" vertical-offset="0" max-vertical-offset="4292">
           <caret line="1" column="29" selection-start-line="1" selection-start-column="27" selection-end-line="1" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PsyMap/models/quiz/quiz/Q01_IPsy/P5_WeiboBasic.xml">
+    <entry file="file://$PROJECT_DIR$/PsyMap/util/quiz/quiz/Q01_IPsy/P5_WeiboBasic.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.10364146" vertical-offset="0" max-vertical-offset="4403">
           <caret line="1" column="29" selection-start-line="1" selection-start-column="27" selection-end-line="1" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PsyMap/models/quiz/quiz/Q01_IPsy/P1_UsingCyber.xml">
+    <entry file="file://$PROJECT_DIR$/PsyMap/util/quiz/quiz/Q01_IPsy/P1_UsingCyber.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.6764705" vertical-offset="1725" max-vertical-offset="8991">
           <caret line="50" column="16" selection-start-line="48" selection-start-column="4" selection-end-line="50" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1234,7 +952,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1814" max-vertical-offset="3071">
           <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PsyMap/static/js/bootstrap.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.118589744" vertical-offset="0" max-vertical-offset="312">
+          <caret line="5" column="5733" selection-start-line="5" selection-start-column="5733" selection-end-line="5" selection-end-column="5733" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/PsyMap/base_generic.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48812664" vertical-offset="222" max-vertical-offset="5994">
+          <caret line="11" column="36" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PsyMap/util/quiz/export.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.2707582" vertical-offset="0" max-vertical-offset="4736">
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1242,45 +980,116 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.0882353" vertical-offset="1776" max-vertical-offset="6438">
           <caret line="49" column="5" selection-start-line="49" selection-start-column="5" selection-end-line="49" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/PsyMap/quiz/fill.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.794118" vertical-offset="0" max-vertical-offset="10249">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PsyMap/views/therapy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="666">
+          <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PsyMap/views/account.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3" max-vertical-offset="666">
+          <caret line="3" column="45" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PsyMap/util/quiz/meta.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1887" max-vertical-offset="2701">
+          <caret line="19" column="25" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="25" />
+          <folding>
+            <marker date="1427137835777" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..Quiz..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PsyMap/util/quiz/quiz/Q00/BFI48.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.2840238" vertical-offset="2442" max-vertical-offset="18648">
+          <caret line="21" column="24" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Anaconda/Lib/site-packages/django/contrib/postgres/fields/array.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.8140793" vertical-offset="4329" max-vertical-offset="9213">
+          <caret line="0" column="11" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Anaconda/Lib/site-packages/django/contrib/postgres/fields/hstore.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.60108304" vertical-offset="333" max-vertical-offset="4070">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Anaconda/Lib/site-packages/django/contrib/gis/geometry/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="554">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Anaconda/Lib/site-packages/django/contrib/gis/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="554">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Anaconda/Lib/site-packages/django/contrib/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="554">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Anaconda/Lib/site-packages/django/contrib/postgres/fields/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.066787004" vertical-offset="0" max-vertical-offset="554">
+          <caret line="1" column="9" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Anaconda/Lib/site-packages/django/db/models/fields/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.79427546" vertical-offset="222" max-vertical-offset="88578">
+          <caret line="48" column="16" selection-start-line="48" selection-start-column="16" selection-end-line="48" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Anaconda/Lib/site-packages/django/db/models/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6618962" vertical-offset="0" max-vertical-offset="2590">
+          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PsyMap/util/quiz/check_ip_time.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="151" max-vertical-offset="1591">
+          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PsyMap/models/quiz/quiz.py">
+    <entry file="file://$PROJECT_DIR$/PsyMap/util/quiz/dbutil.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="6108" max-vertical-offset="6734">
-          <caret line="98" column="34" selection-start-line="98" selection-start-column="34" selection-end-line="98" selection-end-column="34" />
-          <folding>
-            <element signature="e#70#79#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PsyMap/models/quiz/export.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1103" max-vertical-offset="4736">
-          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-          <folding>
-            <element signature="e#70#80#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PsyMap/models/quiz/dbutil.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="373" max-vertical-offset="851">
+        <state vertical-scroll-proportion="0.0" vertical-offset="297" max-vertical-offset="851">
           <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PsyMap/views/quiz.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.4827585" vertical-offset="0" max-vertical-offset="1036">
-          <caret line="18" column="14" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
-          <folding>
-            <element signature="e#70#105#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1292,35 +1101,158 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PsyMap/static/js/bootstrap.min.js">
+    <entry file="file://C:/Anaconda/Lib/site-packages/django/conf/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.118589744" vertical-offset="0" max-vertical-offset="312">
-          <caret line="5" column="5733" selection-start-line="5" selection-start-column="5733" selection-end-line="5" selection-end-column="5733" />
+        <state vertical-scroll-proportion="0.53667265" vertical-offset="5990" max-vertical-offset="6549">
+          <caret line="179" column="0" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/PsyMap/base_generic.html">
+    <entry file="file://C:/Anaconda/Lib/importlib/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48812664" vertical-offset="222" max-vertical-offset="5994">
-          <caret line="11" column="36" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1069" max-vertical-offset="1628">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Anaconda/Lib/site-packages/django/utils/module_loading.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33273703" vertical-offset="2145" max-vertical-offset="6290">
+          <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Anaconda/Lib/site-packages/django/contrib/gis/geos/libgeos.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.46332738" vertical-offset="666" max-vertical-offset="6290">
+          <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+          <folding>
+            <element signature="e#264#278#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Anaconda/Lib/site-packages/django/contrib/gis/geos/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4651163" vertical-offset="36" max-vertical-offset="1369">
+          <caret line="8" column="15" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Anaconda/Lib/site-packages/django/contrib/gis/db/models/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39713773" vertical-offset="0" max-vertical-offset="1110">
+          <caret line="6" column="40" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../miner/util.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="629">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Anaconda/Lib/collections.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="12505" max-vertical-offset="26159">
+          <caret line="344" column="0" selection-start-line="344" selection-start-column="0" selection-end-line="344" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PsyMap/util/quiz/questionnaire.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13416816" vertical-offset="1368" max-vertical-offset="6549">
+          <caret line="44" column="28" selection-start-line="44" selection-start-column="28" selection-end-line="44" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PsyMap/static/css/page-quiz.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0593368" vertical-offset="4092" max-vertical-offset="5883">
+        <state vertical-scroll-proportion="0.6843292" vertical-offset="4092" max-vertical-offset="5883">
           <caret line="127" column="20" selection-start-line="127" selection-start-column="20" selection-end-line="127" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/PsyMap/quiz/fill.html">
+    <entry file="file://$PROJECT_DIR$/Web/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.3905013" vertical-offset="2581" max-vertical-offset="10249">
-          <caret line="84" column="25" selection-start-line="84" selection-start-column="25" selection-end-line="84" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="592">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PsyMap/views/quiz.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1073">
+          <caret line="0" column="23" selection-start-line="0" selection-start-column="23" selection-end-line="0" selection-end-column="23" />
+          <folding>
+            <element signature="e#70#105#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PsyMap/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.19856887" vertical-offset="0" max-vertical-offset="1332">
+          <caret line="3" column="51" selection-start-line="3" selection-start-column="51" selection-end-line="3" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PsyMap/migrations/0001_initial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.9856887" vertical-offset="1110" max-vertical-offset="3071">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.6" vertical-offset="285" max-vertical-offset="814">
+          <caret line="9" column="70" selection-start-line="9" selection-start-column="70" selection-end-line="9" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Web/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1883" max-vertical-offset="3959">
+          <caret line="60" column="26" selection-start-line="60" selection-start-column="26" selection-end-line="60" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PsyMap/models/quiz.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="555" max-vertical-offset="2405">
+          <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+          <folding>
+            <element signature="e#70#100#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PsyMap/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.53667265" vertical-offset="662" max-vertical-offset="1221">
+          <caret line="26" column="39" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

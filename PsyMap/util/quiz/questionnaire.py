@@ -3,25 +3,25 @@ __author__ = 'Peter_Howe<haobibo@gmail.com>'
 
 import os
 from collections import OrderedDict, namedtuple
+
 from lxml import etree
 
 import meta
 
+
 Answer = namedtuple('Answer', 'aid, score, content, type')
 
 
-class Question:
+class Question(namedtuple('Question', 'qid, title, tag, type, restriction, answers_')):
     """Class for each question in a questionnaire"""
-    __slots__ = ['qid', 'title', 'tag', 'type', 'answers_score', 'answers_text']
-
     def __init__(self, qid, title=None, tag=None, _type=None, restriction=None):
         self.qid, self.title, self.tag, self.type, self.restriction = qid, title, tag, _type, restriction
-        self._answers = OrderedDict()
+        self.answers_ = OrderedDict()
 
     @property
     def answers(self):
         a = {}
-        for aid, answer in self._answers.iteritems():
+        for aid, answer in self.answers_.iteritems():
             a[aid] = dict(answer.__dict__)
         return a
 
@@ -36,16 +36,16 @@ class Question:
         }
 
     def add_answer(self, aid, score, content=None, _type=None):
-        self._answers[aid] = Answer(aid, score, content, _type)
+        self.answers_[aid] = Answer(aid, score, content, _type)
 
     def get_answer_score(self, aid):
-        return self._answers[aid].score
+        return self.answers_[aid].score
 
     def get_answer_content(self, aid):
-        return self._answers[aid].content
+        return self.answers_[aid].content
 
 
-class Quiz:
+class Questionnaire:
     """Class for a questionnaire"""
     def __init__(self, quiz_id, xml_path):
         self.quiz_id, self.xml = quiz_id, xml_path
@@ -157,7 +157,7 @@ class QService:
         except KeyError:
             xml_path = self.get_xml_path(quiz_id)
             meta.validate_xml(xml_path)
-            quiz = Quiz(quiz_id, xml_path)
+            quiz = Questionnaire(quiz_id, xml_path)
             QService.cache[quiz_id] = quiz
 
         return quiz

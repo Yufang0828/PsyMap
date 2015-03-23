@@ -4,7 +4,7 @@ __author__ = 'Peter_Howe<haobibo@gmail.com>'
 from django.http.response import HttpResponse
 
 
-def threapy(request, page):
+def therapy(request, page):
     print request.environ
     req = request.META
     ip = req.get('HTTP_X_FORWARDED_FOR', req.get('REMOTE_ADDR', 'Unknown'))

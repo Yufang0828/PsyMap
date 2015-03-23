@@ -2,7 +2,8 @@
 __author__ = 'Peter_Howe<haobibo@gmail.com>'
 
 from django.shortcuts import render
-from ..models.quiz.quiz import QService
+
+from PsyMap.util.quiz.questionnaire import QService
 
 qService = QService()
 

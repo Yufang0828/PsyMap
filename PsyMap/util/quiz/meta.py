@@ -4,9 +4,11 @@ import os
 import json
 import codecs
 from collections import OrderedDict
+
 from lxml import etree
 
 import dbutil
+
 
 base_dir = os.path.dirname(os.path.realpath(__file__))
 

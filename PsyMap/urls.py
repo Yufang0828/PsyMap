@@ -1,13 +1,15 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'Peter_Howe<haobibo@gmail.com>'
 
-
-from django.conf.urls import patterns, url
+from django.conf.urls import patterns, url, include
+from django.contrib import admin
 
 import views
 
 urlpatterns = patterns(
     '',
+
+    (r'^admin/', include(admin.site.urls)),                                     # admin page
 
     url(r'^$',                      views.home),                                # home page
     url(r'^home/(.*)$',             views.home),                                # home page
