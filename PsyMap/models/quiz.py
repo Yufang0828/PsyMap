@@ -7,13 +7,15 @@ from django.contrib.postgres.fields import DateTimeRangeField, HStoreField
 
 from django.contrib.auth.models import User
 
+from django.utils import timezone
 
 class Quiz(Model):
-    __slots__ = ['quiz_id', 'screen_name', 'xml_path', 'intro']
+    __slots__ = ['quiz_id', 'screen_name', 'xml_path', 'intro', 'scale']
     quiz_id = CharField(max_length=64, primary_key=True)
     screen_name = CharField(max_length=128)
     xml_path = CharField(max_length=128)
     intro = TextField(default=None)
+    scale = HStoreField(default=None, null=True)  # 用来存储常模信息
 
 
 class QGroup(Model):
@@ -29,9 +31,9 @@ class QGroupQuiz(Model):
     gq_id = AutoField(primary_key=True)
     qgroup = ForeignKey(QGroup)
     quiz = ForeignKey(Quiz)
-    alias = CharField(max_length=64)
-    priority = PositiveSmallIntegerField(default=0)
-    intro = TextField(default=None)
+    alias = CharField(max_length=64, null=True)
+    priority = PositiveSmallIntegerField(default=0, null=True)
+    intro = TextField(default=None, null=True)
 
 
 class Experiment(Model):
@@ -51,10 +53,10 @@ class UserFillQuiz(Model):
     user = ForeignKey(User)
     quiz = ForeignKey(Quiz)
     qgroup = ForeignKey(QGroup)
-    fill_time = DateTimeField(auto_now=True)
-    cost_seconds = PositiveSmallIntegerField()
-    ip_addr = GenericIPAddressField(default=None)
+    fill_time = DateTimeField(default=timezone.now)
+    cost_seconds = IntegerField(default=-1)
+    ip_addr = GenericIPAddressField(default=None, null=True)
     location = PointField(null=True)
     answer = HStoreField()
     score = HStoreField()
-    memo = HStoreField(default=None)
+    memo = HStoreField(default=None, null=True)

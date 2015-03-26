@@ -103,24 +103,32 @@
                 </li>
 
                 <!--UserInformation /.-->
-                <li class="dropdown col-lg-push-10">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">登录 {{ request.session.nickname  }}<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li class="dropdown-header">连接登录后使用更多功能</li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="https://api.weibo.com/oauth2/authorize?with_offical_account=1&response_type=code&client_id=2083434837&redirect_uri=http://ccpl.psych.ac.cn:10002/Account/SinaCallback.do"><img
-                                    class="m-logo" src="assets/img/icom_weibo.png">用新浪微博连接登录</a></li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="https://graph.renren.com/oauth/authorize?response_type=code&client_id=842991772a904fcba75ff418c9734b49&redirect_uri=http://ccpl.psych.ac.cn:10002/Account/RennCallback.do"><img
-                                    class="m-logo" src="assets/img/icom_renren.png">用人人网连接登录</a></li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="https://www.douban.com/service/auth2/auth?response_type=code&scope=shuo_basic_r,shuo_basic_w,douban_basic_common&client_id=0e9563ce7b25e16b2bc02b6b7171a441&redirect_uri=http://ccpl.psych.ac.cn:10002/Account/DoubanCallback.do"><img
-                                    class="m-logo" src="assets/img/icom_douban.png">用豆瓣网连接登录</a></li>
-                    </ul>
-
+                <li class="dropdown col-lg-push-9">
+                    {% if user.is_authenticated %}
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">欢迎　{{ user.first_name }}<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>    <a href="accounts/profile">我的账户</a>    </li>
+                            <li class="divider"></li>
+                            <li>    <a href="accounts/logout">注销登陆</a>    </li>
+                        <ul/>
+                    {% else %}
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">登录<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header">连接登录后使用更多功能</li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="https://api.weibo.com/oauth2/authorize?with_offical_account=1&response_type=code&client_id=2083434837&redirect_uri=http://ccpl.psych.ac.cn:10002/Account/SinaCallback.do"><img
+                                        class="m-logo" src="assets/img/icom_weibo.png">用新浪微博连接登录</a></li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="https://graph.renren.com/oauth/authorize?response_type=code&client_id=842991772a904fcba75ff418c9734b49&redirect_uri=http://ccpl.psych.ac.cn:10002/Account/RennCallback.do"><img
+                                        class="m-logo" src="assets/img/icom_renren.png">用人人网连接登录</a></li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="https://www.douban.com/service/auth2/auth?response_type=code&scope=shuo_basic_r,shuo_basic_w,douban_basic_common&client_id=0e9563ce7b25e16b2bc02b6b7171a441&redirect_uri=http://ccpl.psych.ac.cn:10002/Account/DoubanCallback.do"><img
+                                        class="m-logo" src="assets/img/icom_douban.png">用豆瓣网连接登录</a></li>
+                        </ul>
+                    {% endif %}
                 </li>
                 <!-- ./ UserInformation -->
 
@@ -150,6 +158,7 @@
 <!-- ./ FOOTER -->
 <!-- Bootstrap core JavaScript : Placed at the end of the document so the pages load faster -->
 <script src="assets/js/jquery-1.11.2.min.js"></script>
+<script src="assets/js/jquery.cookie.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

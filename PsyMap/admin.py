@@ -1,6 +1,6 @@
 from django.contrib.admin import ModelAdmin, site
 
-from models.quiz import *
+from PsyMap.models.quiz import *
 
 
 class QuizAdmin(ModelAdmin):

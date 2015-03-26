@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE questionnaire SYSTEM "Questionnaire.dtd">
+
+<!--
+本量表仅用于程序测试。
+-->
+<questionnaire>
+  <description>
+    <identifier>TEST</identifier>
+    <caption>量表系统测试</caption>
+    <information><![CDATA[本量表仅用于程序测试。]]>
+	</information>
+    <interfacetype>CompareToAverage</interfacetype>
+  </description>
+
+  <questions>
+    <question qid="q01" tag="A">
+      <title>单选题</title>
+      <answer aid="A" score="1">选项A</answer>
+      <answer aid="B" score="2">选项B</answer>
+      <answer aid="C" score="3">选项C</answer>
+      <answer aid="D" score="4">选项D</answer>
+      <answer aid="E" score="5" type="text">选项E</answer>
+    </question>
+
+    <question qid="q02" type="multi" tag="B">
+      <title>多选题</title>
+      <answer aid="A" score="5">选项A</answer>
+      <answer aid="B" score="4">选项B</answer>
+      <answer aid="C" score="3">选项C</answer>
+      <answer aid="D" score="2">选项D</answer>
+      <answer aid="E" score="1" type="text">选项E</answer>
+    </question>
+
+    <question qid="q03" type="number" tag="C">
+      <title>填写数字</title>
+      <restriction min="18" max="50" maxlength="2" placeholder="填写一个数字"></restriction>
+    </question>
+
+    <question qid="q04" type="text" tag="N">
+      <title>填写文本</title>
+      <restriction maxlength="10" placeholder="填写一段文本"></restriction>
+    </question>
+
+    <question qid="q05" type="textarea" tag="O">
+      <title>填写一段文本</title>
+    </question>
+
+    <question qid="q06" type="email" tag="E">
+      <title>填写一个邮箱</title>
+      <restriction placeholder="在此处填写您的邮箱"></restriction>
+    </question>
+
+    <question qid="q07" type="date" tag="A">
+      <title>填写一个日期</title>
+    </question>
+
+    <question qid="q08" type="time" tag="C">
+      <title>填写一个时间</title>
+    </question>
+
+    <question qid="q09" type="range" tag="N">
+      <title>放松的，可以很好应对压力</title>
+	  <restriction placeholder="在此范围内选取一个值" min="18" max="60"></restriction>
+    </question>
+
+  </questions>
+  
+</questionnaire>

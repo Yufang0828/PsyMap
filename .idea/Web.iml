@@ -15,7 +15,7 @@
       <sourceFolder url="file://$MODULE_DIR$/PsyMap/views" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/PsyMap/models" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Web/util" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/PsyMap/util/quiz" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/PsyMap/util" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

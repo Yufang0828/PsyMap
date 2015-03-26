@@ -3,7 +3,7 @@
 {% block title %}心理地图 - 科学的心理测评{% endblock %}
 
 {% block html_head %}
-    <link href="assets/css/page-quiz.css" rel="stylesheet">
+    <link href="assets/css/page-quiz.css" rel="stylesheet"/>
     <script type="text/javascript">
         var begT = -1, curQ = 0, numQ = {{ quiz.questions|length }};
         var lat = null, long = null;
@@ -22,7 +22,7 @@
                 }
                 var progress = (curQ * 100 / numQ).toFixed(1) + '%';
                 var pbar = $('#progR').width(progress).text(progress);
-                $('html,body').scrollTop(pbar.offset().top - 80);
+                if(id>0) $('html,body').scrollTop(pbar.offset().top - 80);
                 return $("#divQ" + id).fadeIn();
             },
             hide: function (id) {
@@ -45,39 +45,34 @@
                 if (t.length) {
                     return t.val() != "" || t.val().length > 0;
                 }
-                if ($(div).attr('type')=='single') {
-                    return $(div).find('.active').length>0;
+                if ($(div).attr('type') == 'single') {
+                    return $(div).find('.active').length > 0;
                 }
                 return true;
             },
             done: function () {
-                var r = $('.quiz[id!="divQ0"]').map(function(){
-                    return '#' + $(this).attr('data') + '@' + $(this).attr('value');
-                }).get().join('');
                 if (confirm("你确认提交答卷吗？")) {
                     if (curQ < 0)
                         return alert('正在提交，请稍后！');
                     curQ = -1;
 
                     var aa = {
-                        "qid": "{{ quiz_id }}",
-                        "grpId": "{{ grp_id }}",
-                        "result": r,
+                        "quiz_id": "{{ quiz_id }}",
+                        "qgroup_id": "{{ grp_id }}",
+                        "cost_seconds": (begT < 0) ? -1 : parseInt(((new Date()).getTime() - begT) / 1000),
                         "lat": lat,
                         "long": long,
-                        "costTime": (begT > 0) ? (((new Date()).getTime() - begT) / 1000) : -1
+                        "tz": (new Date()).getTimezoneOffset()*-60,
+                        "answer": $('.quiz[id!="divQ0"]').map(function () {
+                            var qid = $(this).attr('data'), ans = $(this).attr('value').replace(/"/g, '\\"');
+                            var k = '"' + qid + '"=>"' + ans + '"';
+                        }).get().join(',')
                     };
 
                     $.post("quiz/submit", aa, function (dd) {
                         if (dd.status == "success") {
-                            $('body').append($('<form/>', {
-                                id: 'fm',
-                                method: 'POST',
-                                action: "quiz/result"
-                            }));
-                            for (var i in dd) {
+                            for (var i in dd)
                                 $('#fm').append($('<input/>', {type: 'hidden', name: i, value: dd[i]}));
-                            }
                             $('#fm').submit();
                         } else if (dd.status == "no-login") {
                             alert("请您先登录之后再提交填写记过！您点击确认后将弹出登录窗口，请您允许弹出的窗口，并在登录之后再点击提交按钮。");
@@ -116,18 +111,18 @@
                 var status = enable ? ' active' : '';
                 $(obj).attr('class', 'list-group-item' + status);
             },
-            update_value: function(divQ){
-                if(divQ.attr('type') in {'multi':1,'single':1}){
-                    var r = divQ.find('a.active').map(function(){
+            update_value: function (divQ) {
+                if (divQ.attr('type') in {'multi': 1, 'single': 1}) {
+                    var r = divQ.find('a.active').map(function () {
                         var o = this.getAttribute('data');
                         var t = $(this).find('input');
-                        if(t.length) o += '('+ t.val()+')';
+                        if (t.length) o += '(' + t.val() + ')';
                         return o;
                     }).get();
-                    r = r.length>1 ? ( '['+ r.join(' ') +']' ) : r.join(' ');
+                    r = r.length > 1 ? ( '[' + r.join(' ') + ']' ) : r.join(' ');
                     divQ.attr('value', r);
-                }else{
-                    var r = divQ.find('>input').val();
+                } else {
+                    var r = divQ.find('>input, textarea').val();
                     divQ.attr('value', r);
                 }
             },
@@ -136,9 +131,9 @@
                 a.siblings().each(function () {
                     OPT.enable_option(this, false);
                 });
-                if(this.getAttribute('class').indexOf('active') < 0){
+                if (this.getAttribute('class').indexOf('active') < 0) {
                     OPT.enable_option(this, true);
-                }else{
+                } else {
                     OPT.enable_option(this, false);
                 }
                 if (a.find('input').length) { //there is input box in this single option
@@ -148,10 +143,10 @@
                 }
                 OPT.update_value(a.parent().parent());
             },
-            multi_click: function(){
-                if(this.getAttribute('class').indexOf('active') < 0){
+            multi_click: function () {
+                if (this.getAttribute('class').indexOf('active') < 0) {
                     OPT.enable_option(this, true);
-                }else{
+                } else {
                     OPT.enable_option(this, false);
                 }
                 if ($(this).find('input').length) { //there is input box in this single option
@@ -162,17 +157,30 @@
         };
 
         function prepare() {
+            function csrfSafeMethod(method) {
+                return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method)); // these HTTP methods do not require CSRF protection
+            }
+
+            $.ajaxSetup({
+                beforeSend: function (xhr, settings) {
+                    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", $.cookie('csrftoken'));
+                    }
+                }
+            });
             var str = "{{ quiz.information|linebreaksbr }}";
             $('#divQ0').html(str);
 
-            $('.select-single a').click( OPT.single_click );
-            $('.select-multi a').click ( OPT.multi_click);
+            $('.select-single a').click(OPT.single_click);
+            $('.select-multi a').click(OPT.multi_click);
 
-            $('.quiz a>input').change( function(){
+            $('.quiz a>input').change(function () {
                 OPT.enable_option($(this).parent(), true);
                 OPT.update_value($(this).parent().parent().parent());
             });
-            $('.quiz>input, .quiz>textarea').change( function(){
+            $('.quiz>input, .quiz textarea').blur(function () {
+                OPT.update_value($(this).parent());
+            }).change(function () {
                 OPT.update_value($(this).parent());
             });
 
@@ -209,11 +217,14 @@
                 <h4>　　请您按照要求认真填写，我们按照用户协议保障您的隐私。您的填写将只用于科研用途。</h4>
                 <hr/>
                 <span>{{ quiz.information|linebreaksbr }}</span>
+
+                <form id="fm" method="POST" action="quiz/result">{% csrf_token %}</form>
             </div>
 
             <div class="col-xs-12 col-md-8 pull-right">
                 <div class="progress progress-striped">
-                    <div id="progR" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="2" aria-valuemin="0"
+                    <div id="progR" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="2"
+                         aria-valuemin="0"
                          aria-valuemax="100">
                         0%
                     </div>
@@ -231,9 +242,8 @@
                         {% endif %}
 
                         {% if q.type == 'textarea' %}
-                            <span>
-                                    <textarea name="{{ q.qid }}" rows="8" placeholder="请在此处填写"></textarea>
-                                </span>
+                            <hr/>
+                            <textarea name="{{ q.qid }}" rows="8" placeholder="请在此处填写"></textarea>
                         {% elif q.type == 'multi' or q.type == 'single' %}
                             <div class="list-group select-{{ q.type }}">
                                 {% for aid,a in q.answers.iteritems %}
@@ -246,7 +256,8 @@
                                 {% endfor %}
                             </div>
                         {% else %}
-                            <input id="input_q{{ forloop.counter }}" type="{{ q.type }}" required="required" autocomplete="off"
+                            <input id="input_q{{ forloop.counter }}" type="{{ q.type }}" required="required"
+                                   autocomplete="off"
                             {% for r,rval in q.restriction.iteritems %}
                                 {{ r }}="{{ rval }}"
                             {% endfor %} />

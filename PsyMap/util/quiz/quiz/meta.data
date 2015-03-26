@@ -1,4 +1,9 @@
 {
+ "Test": {
+  "XmlPath": "./quiz/Q00/Test.xml", 
+  "Intro": "", 
+  "ScreenName": "测试量表"
+ },
  "BeckSIS": {
   "XmlPath": "./quiz/Q07_SCD/BeckSIS.xml", 
   "Intro": "", 
