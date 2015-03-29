@@ -6,7 +6,7 @@ from django.shortcuts import render
 
 
 def account(request, page):
-    if page not in {'index', 'fill', 'results'}:
-        page = 'index'
-    return render(request, 'PsyMap/quiz/%s.html' % page)
+
+    page = 'PsyMap/home/home.html' if page not in {'login', 'logout', 'profile'} else 'PsyMap/accounts/%s.html' % page
+    return render(request, page)
 

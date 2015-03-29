@@ -151,3 +151,18 @@ button:hover
 {
 	margin-top:100px;
 }
+
+
+
+/* ---------------- Quiz Result Page --------------------- */
+
+
+.jumbotron p {
+    text-indent: 2em;
+}
+
+
+#chart-container{
+	width: 100%;
+	margin-bottom:4em;
+}

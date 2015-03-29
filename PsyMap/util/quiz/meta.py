@@ -9,7 +9,6 @@ from lxml import etree
 
 import dbutil
 
-
 base_dir = os.path.dirname(os.path.realpath(__file__))
 
 
@@ -37,6 +36,14 @@ def validate_xml(xml_file, dtd_file='./quiz/Questionnaire.dtd'):
         if not validate:
             raise ValueError(msg)
         return validate
+
+
+def load_quiz_norm(quiz_id):
+    sql = 'SELECT norm::json FROM "PsyMap_quiz" WHERE quiz_id=%s'
+    cur = dbutil.get_cur_pg()
+    cur.execute(sql, (quiz_id,))
+    quiz = cur.fetchone()['norm']
+    return quiz
 
 
 def load_from_db():

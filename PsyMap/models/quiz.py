@@ -9,13 +9,14 @@ from django.contrib.auth.models import User
 
 from django.utils import timezone
 
+
 class Quiz(Model):
     __slots__ = ['quiz_id', 'screen_name', 'xml_path', 'intro', 'scale']
     quiz_id = CharField(max_length=64, primary_key=True)
     screen_name = CharField(max_length=128)
     xml_path = CharField(max_length=128)
     intro = TextField(default=None)
-    scale = HStoreField(default=None, null=True)  # 用来存储常模信息
+    norm = HStoreField(default=None, null=True)  # 用来存储常模信息
 
 
 class QGroup(Model):

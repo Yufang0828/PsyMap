@@ -68,15 +68,27 @@ def migrate_users():
         except psycopg2.IntegrityError as e:
             print e
 
-from shapely.geometry import Point
 
 def migrate_userfillquiz():
-    curMY.execute('SELECT * FROM userfillquiz where FillId<10')
+    curMY.execute('SELECT * FROM userfillquiz WHERE fillId<20')
 
     x = lambda i: r[i].encode('UTF-8') if isinstance(r[i], basestring) else r[i]
 
+    def to_number(s):
+        try:
+            return int(s)
+        except ValueError:
+            try:
+                return float(s)
+            except ValueError:
+                return s
+
     def convert(i):
-        w = ['"' + j.replace('"', '\\"').replace('@', '"=>"', 1) + '"' for j in i[1:].split('#')]
+        w = []
+        for j in i[1:].split('#'):
+            idx = j.find('@')
+            k, v = j[:idx], j[idx+1:].replace('"', '\\"')
+            w.append('"%s"=>%s' % (k, to_number(v)))
         return ','.join(w).encode('UTF-8')
 
     ans = lambda r: convert(r['Answer'])
@@ -86,7 +98,6 @@ def migrate_userfillquiz():
     sql = 'INSERT INTO "PsyMap_userfillquiz" ("fill_id","fill_time","cost_seconds","ip_addr","location","answer","score", "memo", "qgroup_id", "quiz_id", "user_id") VALUES' \
           ' (%s,%s,%s,%s,ST_SetSRID(ST_MakePoint(%s, %s), 4326),%s,%s,%s,%s,%s,%s)'
     for r in curMY:
-        print x('FillTime')
         data = ((x('FillId'), x('FillTime'), x('CostSeconds'), x('IPAddr'), x('Pos_Lng'), x('Pos_Lat'), ans(r), score(r), memo(r), x('QGroupId'), x('QuizId'), x('UserId')))
         curPG.execute(sql, data)
 

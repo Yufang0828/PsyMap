@@ -60,8 +60,13 @@
     </question>
 
     <question qid="q09" type="range" tag="N">
-      <title>放松的，可以很好应对压力</title>
+      <title>从下面的范围当中，选择一个值</title>
 	  <restriction placeholder="在此范围内选取一个值" min="18" max="60"></restriction>
+    </question>
+	
+	<question qid="q10" type="color" tag="N">
+      <title>选择一个你喜欢的颜色</title>
+	  <restriction min="18" max="60"></restriction>
     </question>
 
   </questions>

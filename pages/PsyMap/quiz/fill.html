@@ -22,7 +22,7 @@
                 }
                 var progress = (curQ * 100 / numQ).toFixed(1) + '%';
                 var pbar = $('#progR').width(progress).text(progress);
-                if(id>0) $('html,body').scrollTop(pbar.offset().top - 80);
+                if(id>0) $('html,body').scrollTop(pbar.offset().top - 100);
                 return $("#divQ" + id).fadeIn();
             },
             hide: function (id) {
@@ -64,8 +64,8 @@
                         "long": long,
                         "tz": (new Date()).getTimezoneOffset()*-60,
                         "answer": $('.quiz[id!="divQ0"]').map(function () {
-                            var qid = $(this).attr('data'), ans = $(this).attr('value').replace(/"/g, '\\"');
-                            var k = '"' + qid + '"=>"' + ans + '"';
+                            var qid = $(this).attr('data'), ans = $(this).attr('value') || "";
+                            return '"' + qid + '"=>"' + ans.replace(/"/g, '\\"') + '"';
                         }).get().join(',')
                     };
 
@@ -208,16 +208,17 @@
 
             <div id="intro" class="col-xs-12 col-md-3">
 
-                <h3>量表填写：<br/>　{{ quiz.caption }}</h3>
-                <h4>
-                    　　欢迎您填写该量表，<br/>
-                    　　本问卷题目总数为：<i> {{ quiz.questions|length }}</i>题。
-                </h4>
-                <hr/>
-                <h4>　　请您按照要求认真填写，我们按照用户协议保障您的隐私。您的填写将只用于科研用途。</h4>
-                <hr/>
-                <span>{{ quiz.information|linebreaksbr }}</span>
-
+                <h4><span class="glyphicon glyphicon-certificate"></span>量表填写</h4>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h2 class="panel-title" id="panel-title">{{ quiz.caption }}<a class="anchorjs-link" href="#panel-title"><span class="anchorjs-icon"></span></a></h2>
+                    </div>
+                    <div class="panel-body">
+                        <p>本问卷题目总数为：<i> {{ quiz.questions|length }}</i>题。</p>
+                        {{ quiz.information|linebreaks }}
+                    </div>
+                </div>
+                <span class="glyphicon glyphicon-envelope"></span>　请您按照要求认真填写，我们按照用户协议保障您的隐私。您的填写将只用于科研用途。
                 <form id="fm" method="POST" action="quiz/result">{% csrf_token %}</form>
             </div>
 
