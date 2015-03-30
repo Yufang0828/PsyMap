@@ -2,10 +2,13 @@
 -------------------------------------------------- */
 /* Padding below the footer and lighter body text */
 
+@import url('./font-awesome.min.css');
+@import url('./iconfont.css');
+
 body {
     padding-bottom: 40px;
     color: #5a5a5a;
-    font-family: "Helvetica Neue", "Hiragino Sans GB", "Segoe UI", "Microsoft Yahei", "微软雅黑", Tahoma, Arial, STHeiti, sans-serif;
+    font-family: "Helvetica Neue", "微软雅黑", "Hiragino Sans GB", "Segoe UI", "Microsoft Yahei", Tahoma, Arial, STHeiti, sans-serif;
 }
 
 /* ------------------------ Page main content ---------------------- */

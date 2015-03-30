@@ -19,6 +19,9 @@
     <![endif]-->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/site-common.css" rel="stylesheet">
+    <style>
+
+    </style>
     {% block html_head %}{% endblock %}
 </head>
 
@@ -117,16 +120,16 @@
                             <li class="dropdown-header">连接登录后使用更多功能</li>
                             <li class="divider"></li>
                             <li>
-                                <a href="https://api.weibo.com/oauth2/authorize?with_offical_account=1&response_type=code&client_id=2083434837&redirect_uri=http://ccpl.psych.ac.cn:10002/Account/SinaCallback.do"><img
-                                        class="m-logo" src="assets/img/icom_weibo.png">用新浪微博连接登录</a></li>
+                                <a href="https://api.weibo.com/oauth2/authorize?with_offical_account=1&response_type=code&client_id=2083434837&redirect_uri=http://ccpl.psych.ac.cn:10002/Account/SinaCallback.do">
+                                    <i class="fa fa-weibo fa-2x">　</i>微博连接登录</a></li>
                             <li class="divider"></li>
                             <li>
-                                <a href="https://graph.renren.com/oauth/authorize?response_type=code&client_id=842991772a904fcba75ff418c9734b49&redirect_uri=http://ccpl.psych.ac.cn:10002/Account/RennCallback.do"><img
-                                        class="m-logo" src="assets/img/icom_renren.png">用人人网连接登录</a></li>
+                                <a href="https://graph.renren.com/oauth/authorize?response_type=code&client_id=842991772a904fcba75ff418c9734b49&redirect_uri=http://ccpl.psych.ac.cn:10002/Account/RennCallback.do">
+                                    <i class="fa fa-renren fa-2x">　</i>人人网连接登录</a></li>
                             <li class="divider"></li>
                             <li>
-                                <a href="https://www.douban.com/service/auth2/auth?response_type=code&scope=shuo_basic_r,shuo_basic_w,douban_basic_common&client_id=0e9563ce7b25e16b2bc02b6b7171a441&redirect_uri=http://ccpl.psych.ac.cn:10002/Account/DoubanCallback.do"><img
-                                        class="m-logo" src="assets/img/icom_douban.png">用豆瓣网连接登录</a></li>
+                                <a href="https://www.douban.com/service/auth2/auth?response_type=code&scope=shuo_basic_r,shuo_basic_w,douban_basic_common&client_id=0e9563ce7b25e16b2bc02b6b7171a441&redirect_uri=http://ccpl.psych.ac.cn:10002/Account/DoubanCallback.do">
+                                    <i class="icon iconfont icon-doubanfangxing fa fa-2x">　</i>豆瓣连接登录</a></li>
                         </ul>
                     {% endif %}
                 </li>

@@ -20,6 +20,7 @@ urlpatterns = patterns(
     url(r'^quiz/result$',            views.quiz.result),                        # quiz result
 
     url(r'^accounts/(.*)$',          views.account),                             # account
+    url(r'^accounts/callback/(?P<site>\w+)$',          accounts.callback),                             # account
 
     url(r'^sns/(.*)$',              views.sns),                                 # sns
 
