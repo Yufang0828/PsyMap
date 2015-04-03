@@ -2,71 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="691ade6c-256e-4919-b4ef-6455440bc15a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PsyMap/util/api_hub/hub.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PsyMap/models/user.py" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\static\img\glyphicons-halflings-white.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\static\img\glyphicons-halflings.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\static\img\icom_douban.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\static\img\icom_facebook.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\static\img\icom_gplus.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\static\img\icom_qqweibo.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\static\img\icom_renren.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\static\img\icom_twitter.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\static\img\icom_wechat.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\static\img\icom_weibo.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\static\img\k_douban.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\static\img\k_renren.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\static\img\k_weibo.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\static\img\logo_doub.jpg" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\static\img\logo_renn.jpg" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\static\img\logo_sina.jpg" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\static\img\share_douban.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\static\img\share_sina.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\util\api_hub\decorators.py" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\util\api_hub\sina\weibo\__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\pages\PsyMap\accounts\login_error.html" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\pages\PsyMap\accounts\login_success.html" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\pages\PsyMap\admin\Index.jsp" afterPath="" />
-      <change type="DELETED" beforePath="E:\GitHub\PsyMap\pages\PsyMap\quiz\_result.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsyMap/util/quiz/quiz/meta.data" afterPath="$PROJECT_DIR$/PsyMap/util/quiz/quiz/meta.data" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsyMap/static/img/qr_wechat.jpg" afterPath="$PROJECT_DIR$/PsyMap/static/img/qr_wechat.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsyMap/util/quiz/quiz/Q00/BFI48.xml" afterPath="$PROJECT_DIR$/PsyMap/util/quiz/quiz/Q00/BFI48.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsyMap/util/quiz/quiz/Q00/SCL90R.xml" afterPath="$PROJECT_DIR$/PsyMap/util/quiz/quiz/Q00/SCL90R.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsyMap/models/__init__.py" afterPath="$PROJECT_DIR$/PsyMap/models/__init__.py" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\migrations\0001_initial.py" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\util\api_hub\sina\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\util\api_hub\sina\weibo\apps.py" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\util\api_hub\sina\weibo\open.py" afterPath="" />
+      <change type="DELETED" beforePath="E:\GitHub\PsyMap\PsyMap\util\api_hub\sina\weibo\web.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../miner/nlpir/ltp/__init__.py" afterPath="$PROJECT_DIR$/../miner/nlpir/ltp/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/PsyMap/home/about.html" afterPath="$PROJECT_DIR$/pages/PsyMap/home/about.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsyMap/views/accounts.py" afterPath="$PROJECT_DIR$/PsyMap/views/accounts.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsyMap/admin.py" afterPath="$PROJECT_DIR$/PsyMap/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/PsyMap/base_generic.html" afterPath="$PROJECT_DIR$/pages/PsyMap/base_generic.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsyMap/util/db_migrate.py" afterPath="$PROJECT_DIR$/PsyMap/util/db_migrate.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../miner/extractor/dump.py" afterPath="$PROJECT_DIR$/../miner/extractor/dump.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsyMap/util/quiz/echarts.py" afterPath="$PROJECT_DIR$/PsyMap/util/quiz/echarts.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsyMap/util/quiz/export.py" afterPath="$PROJECT_DIR$/PsyMap/util/quiz/export.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/PsyMap/quiz/fill.html" afterPath="$PROJECT_DIR$/pages/PsyMap/quiz/fill.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../miner/hbase/gateway.py" afterPath="$PROJECT_DIR$/../miner/hbase/gateway.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsyMap/static/css/iconfont.css" afterPath="$PROJECT_DIR$/PsyMap/static/css/iconfont.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/PsyMap/quiz/index.html" afterPath="$PROJECT_DIR$/pages/PsyMap/quiz/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsyMap/util/api_hub/jsonDict.py" afterPath="$PROJECT_DIR$/PsyMap/util/api_hub/jsonDict.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/PsyMap/accounts/link.html" afterPath="$PROJECT_DIR$/pages/PsyMap/accounts/link.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/PsyMap/accounts/login.html" afterPath="$PROJECT_DIR$/pages/PsyMap/accounts/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsyMap/util/quiz/meta.py" afterPath="$PROJECT_DIR$/PsyMap/util/quiz/meta.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsyMap/util/api_hub/open.py" afterPath="$PROJECT_DIR$/PsyMap/util/api_hub/open.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsyMap/static/css/page-quiz.css" afterPath="$PROJECT_DIR$/PsyMap/static/css/page-quiz.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsyMap/util/quiz/questionnaire.py" afterPath="$PROJECT_DIR$/PsyMap/util/quiz/questionnaire.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsyMap/models/quiz.py" afterPath="$PROJECT_DIR$/PsyMap/models/quiz.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsyMap/views/quiz.py" afterPath="$PROJECT_DIR$/PsyMap/views/quiz.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../miner/score/quiz.py" afterPath="$PROJECT_DIR$/../miner/score/quiz.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsyMap/static/css/site-common.css" afterPath="$PROJECT_DIR$/PsyMap/static/css/site-common.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../miner/weibo/source_hbase.py" afterPath="$PROJECT_DIR$/../miner/weibo/source_hbase.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../miner/test/test_download.py" afterPath="$PROJECT_DIR$/../miner/test/test_download.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsyMap/views/therapy.py" afterPath="$PROJECT_DIR$/PsyMap/views/therapy.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsyMap/urls.py" afterPath="$PROJECT_DIR$/PsyMap/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsyMap/util/api_hub/utils.py" afterPath="$PROJECT_DIR$/PsyMap/util/api_hub/utils.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="E:\GitHub\PsyMap\PsyMap\util\api_hub\sina\__init__.py" afterPath="$PROJECT_DIR$/PsyMap/util/api_hub/weibo/__init__.py" />
-      <change type="MOVED" beforePath="E:\GitHub\PsyMap\PsyMap\util\api_hub\sina\weibo\apps.py" afterPath="$PROJECT_DIR$/PsyMap/util/api_hub/weibo/apps.py" />
-      <change type="MOVED" beforePath="E:\GitHub\PsyMap\PsyMap\util\api_hub\sina\weibo\open.py" afterPath="$PROJECT_DIR$/PsyMap/util/api_hub/weibo/open.py" />
-      <change type="MOVED" beforePath="E:\GitHub\PsyMap\PsyMap\util\api_hub\sina\weibo\web.py" afterPath="$PROJECT_DIR$/PsyMap/util/api_hub/weibo/web.py" />
     </list>
     <ignored path="PsyMap.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -887,9 +834,9 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32796317" sideWeight="0.3838631" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.37284234" sideWeight="0.39608803" order="0" side_tool="true" content_ui="tabs" x="-1705" y="506" width="1636" height="240" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.37284234" sideWeight="0.39608803" order="0" side_tool="true" content_ui="tabs" x="-1705" y="506" width="1636" height="240" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.278481" sideWeight="0.6136919" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1888753" sideWeight="0.49920255" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1888753" sideWeight="0.49920255" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2958435" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30609897" sideWeight="0.52383864" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
