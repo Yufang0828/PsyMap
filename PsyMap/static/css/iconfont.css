@@ -15,7 +15,7 @@
   -webkit-text-stroke-width: 0.2px;
   -moz-osx-font-smoothing: grayscale;
 }
-.icon-doubanfangxing:before { content: "\3440"; }
+.icon-douban:before { content: "\3440"; }
 .icon-qq:before { content: "\e608"; }
 .icon-qq1:before { content: "\e606"; }
 .icon-weixin:before { content: "\e615"; }

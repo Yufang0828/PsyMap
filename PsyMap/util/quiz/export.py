@@ -46,7 +46,7 @@ def get_exp_fills(_exp_id):
     for r in cur:
         f = parse(r)
 
-        quiz = QService.get_quiz(f.quiz_id)
+        quiz = QService.get_questionnaire(f.quiz_id)
         ss = quiz.score(f.answer, col_name=f.quiz_id)
 
         u = users.get(f.site_uid)

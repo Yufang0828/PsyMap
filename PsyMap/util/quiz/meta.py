@@ -9,49 +9,22 @@ from lxml import etree
 
 import dbutil
 
-base_dir = os.path.dirname(os.path.realpath(__file__))
-
-
-def wrap_path(path):
-    if path[0] == '.':
-        path = os.path.join(base_dir, path)
-    return path
-
-
-def validate_xml(xml_file, dtd_file='./quiz/Questionnaire.dtd'):
-    with open(wrap_path(xml_file), 'r') as f_xml:
-        root = etree.XML(f_xml.read())
-
-    validate = False
-    dtd = None
-    with open(wrap_path(dtd_file), 'r') as f_dtd:
-        try:
-            dtd = etree.DTD(f_dtd)
-            validate = dtd.validate(root)
-        except Exception as e:
-            msg = e
-            if dtd is not None:
-                msg += ' \n ' + dtd.error_log.filter_from_errors()
-
-        if not validate:
-            raise ValueError(msg)
-        return validate
-
-
-def load_quiz_norm(quiz_id):
-    sql = 'SELECT norm::json FROM "PsyMap_quiz" WHERE quiz_id=%s'
-    cur = dbutil.get_cur_pg()
-    cur.execute(sql, (quiz_id,))
-    quiz = cur.fetchone()['norm']
-    return quiz
-
-
 def load_from_db():
     result = OrderedDict()
     cur = dbutil.get_cur()
     cur.execute('SELECT * FROM Quiz ORDER BY QuizId')
     for r in cur:
         qid = r.pop('QuizId')
+        result[qid] = r
+    return result
+
+
+def load_from_db_pg():
+    result = OrderedDict()
+    cur = dbutil.get_cur_pg()
+    cur.execute('SELECT * FROM "PsyMap_quiz" ORDER BY quiz_id')
+    for r in cur.fetchall():
+        qid = r.pop('quiz_id')
         result[qid] = r
     return result
 
@@ -69,6 +42,7 @@ def dump_db_to_json():
 
 
 def load_quiz_info():
+    # return load_from_db_pg()
     # return load_from_db()
     return load_from_json()
 

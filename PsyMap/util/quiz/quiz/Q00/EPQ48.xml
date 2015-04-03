@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE questionnaire SYSTEM "Questionnaire.dtd">
+
+<!--
+
+	EPQ(各维度求总分)	？	~01 ~02 ~03 ~04 ~05 ~06 ~07 ~08 ~09 ~10 ~11 ~12
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	神经质量表			N	+01 +05 +09 +13 +17 +21 +25 +30 +34 +38 +42 +46
+	精神质量表			P	-02 -06 +10 +14 -18 +22 -26 -28 +31 -35 +39 -43
+	外向量表			E	+03 +07 +11 +15 +19 +23 -27 +32 +36 +41 +44 +48
+	掩饰性量表			L	+04 -08 -12 +16 -20 -24 -29 -33 -37 -40 +45 -47
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+艾森克人格问卷（ Eysenck Personality Questionnaire, EPQ）由英国心理学家 艾森克编制的一种自陈量表，是在《艾森克人格调查表》（EH）基础上发展而成。
+20世纪40年代末开始制订，1952年首次发表，1975年正式命名。有成人问卷和儿童问卷两种格式。
+包括四个分量表：内外倾向量表（E），情绪性量表（N），心理变态量表（P，又称精神质）和效度量表（L）。
+本问卷为EPQ简版，共48题。
+
+-->
+
+<questionnaire>
+  <description>
+    <identifier>EPQ48</identifier>
+    <caption>艾森克人格问卷（简版）</caption>
+    <information><![CDATA[欢迎您填写本量表，本量表是针对人格评价而设计的。通过填写本量表，您可以评测您的人格。]]>
+	</information>
+    <interfacetype>CompareToAverage</interfacetype>
+  </description>
+
+  <questions>
+    <question qid="q01" tag="N">
+      <title>你的情绪是否时起时落？</title>
+      <answer aid="Y" score="1">是</answer>
+      <answer aid="N" score="0">否</answer>
+    </question>
+
+    <question qid="q02" tag="P">
+      <title>当你看到小孩（或动物）受折磨时是否感到难受？</title>
+      <answer aid="Y" score="0">是</answer>
+      <answer aid="N" score="1">否</answer>
+    </question>
+
+    <question qid="q03" tag="E">
+      <title>你是个健谈的人吗？</title>
+      <answer aid="Y" score="1">是</answer>
+      <answer aid="N" score="0">否</answer>
+    </question>
+
+    <question qid="q04" tag="L">
+      <title>如果你说了要做什么事，是否不论此事可能如果不顺利你都总能遵守诺言？</title>
+      <answer aid="Y" score="1">是</answer>
+      <answer aid="N" score="0">否</answer>
+    </question>
+
+    <question qid="q05" tag="N">
+      <title>你是否会无言无故地感到“很惨”？</title>
+      <answer aid="Y" score="1">是</answer>
+      <answer aid="N" score="0">否</answer>
+    </question>
+
+    <question qid="q06" tag="P">
+      <title>欠债会使你感到忧虑吗？</title>
+      <answer aid="Y" score="0">是</answer>
+      <answer aid="N" score="1">否</answer>
+    </question>
+
+    <question qid="q07" tag="E">
+      <title>你是个生气勃勃的人吗？</title>
+      <answer aid="Y" score="1">是</answer>
+      <answer aid="N" score="0">否</answer>
+    </question>
+
+    <question qid="q08" tag="L">
+      <title>你是否曾贪图过超过你应得的分外之物？</title>
+      <answer aid="Y" score="0">是</answer>
+      <answer aid="N" score="1">否</answer>
+    </question>
+
+    <question qid="q09" tag="N">
+      <title>你是个容易被激怒的人吗？</title>
+      <answer aid="Y" score="1">是</answer>
+      <answer aid="N" score="0">否</answer>
+    </question>
+
+    <question qid="q10" tag="P">
+      <title>你会服用能产生奇异或危险效果的药物吗？</title>
+      <answer aid="Y" score="1">是</answer>
+      <answer aid="N" score="0">否</answer>
+    </question>
+
+    <question qid="q11" tag="E">
+      <title>你愿意认识陌生人吗？</title>
+      <answer aid="Y" score="1">是</answer>
+      <answer aid="N" score="0">否</answer>
+    </question>
+
+    <question qid="q12" tag="L">
+      <title>你是否曾经有过明知自己做错了事却责备别人的情况？</title>
+      <answer aid="Y" score="0">是</answer>
+      <answer aid="N" score="1">否</answer>
+    </question>
+
+    <question qid="q13" tag="N">
+      <title> 你的感情容易受伤害吗？</title>
+      <answer aid="Y" score="1">是</answer>
+      <answer aid="N" score="0">否</answer>
+    </question>
+
+    <question qid="q14" tag="P">
+      <title>你是否愿意按照自己的方式行事，而不愿意按照规则办事？</title>
+      <answer aid="Y" score="1">是</answer>
+      <answer aid="N" score="0">否</answer>
+    </question>
+
+    <question qid="q15" tag="E">
+      <title>在热闹的聚会中你能使自己放得开，使自己玩得开心吗？</title>
+      <answer aid="Y" score="1">是</answer>
+      <answer aid="N" score="0">否</answer>
+    </question>
+
+    <question qid="q16" tag="L">
+      <title>你所有的习惯是否都是好的？</title>
+      <answer aid="Y" score="1">是</answer>
+      <answer aid="N" score="0">否</answer>
+    </question>
+
+    <question qid="q17" tag="N">
+      <title>你是否时常感到“极其厌倦”？</title>
+      <answer aid="Y" score="1">是</answer>
+      <answer aid="N" score="0">否</answer>
+    </question>
+
+    <question qid="q18" tag="P">
+      <title>良好的举止和整洁对你来说很重要吗？</title>
+      <answer aid="Y" score="0">是</answer>
+      <answer aid="N" score="1">否</answer>
+    </question>
+
+    <question qid="q19" tag="E">
+      <title>在结交新朋友时，你经常是积极主动的吗？</title>
+      <answer aid="Y" score="1">是</answer>
+      <answer aid="N" score="0">否</answer>
+    </question>
+
+    <question qid="q20" tag="L">
+      <title>你是否有过随口骂人的时候？</title>
+      <answer aid="Y" score="0">是</answer>
+      <answer aid="N" score="1">否</answer>
+    </question>
+
+    <question qid="q21" tag="N">
+      <title>你认为自己是一个胆怯不安的人吗？</title>
+      <answer aid="Y" score="1">是</answer>
+      <answer aid="N" score="0">否</answer>
+    </question>
+
+    <question qid="q22" tag="P">
+      <title>你是否认为婚姻是不合时宜的，应该废除？</title>
+      <answer aid="Y" score="1">是</answer>
+      <answer aid="N" score="0">否</answer>
+    </question>
+
+    <question qid="q23" tag="E">
+      <title>你能否很容易地给一个沉闷的聚会注入活力？</title>
+      <answer aid="Y" score="1">是</answer>
+      <answer aid="N" score="0">否</answer>
+    </question>
+
+    <question qid="q24" tag="L">
+      <title>你曾毁坏或丢失过别人的东西吗？</title>
+      <answer aid="Y" score="0">是</answer>
+      <answer aid="N" score="1">否</answer>
+    </question>
+
+    <question qid="q25" tag="N">
+      <title>你是个忧心忡忡的人吗？</title>
+      <answer aid="Y" score="1">是</answer>
+      <answer aid="N" score="0">否</answer>
+    </question>
+
+    <question qid="q26" tag="P">
+      <title>你爱和别人合作吗？</title>
+      <answer aid="Y" score="0">是</answer>
+      <answer aid="N" score="1">否</answer>
+    </question>
+
+    <question qid="q27" tag="E">
+      <title>在社交场合你是否倾向于呆在不显眼的地方？</title>
+      <answer aid="Y" score="0">是</answer>
+      <answer aid="N" score="1">否</answer>
+    </question>
+
+    <question qid="q28" tag="P">
+      <title>如果在你的工作中出现了错误，你知道后会感到忧虑吗？</title>
+      <answer aid="Y" score="0">是</answer>
+      <answer aid="N" score="1">否</answer>
+    </question>
+
+    <question qid="q29" tag="L">
+      <title>你讲过别人的坏话或脏话吗？</title>
+      <answer aid="Y" score="0">是</answer>
+      <answer aid="N" score="1">否</answer>
+    </question>
+
+    <question qid="q30" tag="N">
+      <title>你认为自己是个神经紧张或“弦绷得过紧”的人吗？</title>
+      <answer aid="Y" score="1">是</answer>
+      <answer aid="N" score="0">否</answer>
+    </question>
+
+    <question qid="q31" tag="P">
+      <title>你是否觉得人们为了未来有保障，而在储蓄和保险方面花费的时间太多了？</title>
+      <answer aid="Y" score="1">是</answer>
+      <answer aid="N" score="0">否</answer>
+    </question>
+
+    <question qid="q32" tag="E">
+      <title>你是否喜欢和人们相处在一起？</title>
+      <answer aid="Y" score="1">是</answer>
+      <answer aid="N" score="0">否</answer>
+    </question>
+
+    <question qid="q33" tag="L">
+      <title>当你还是个小孩子的时候，你是否曾有过对父母耍赖或不听话的行为？</title>
+      <answer aid="Y" score="0">是</answer>
+      <answer aid="N" score="1">否</answer>
+    </question>
+
+    <question qid="q34" tag="N">
+      <title>在经历了一次令人难堪的事之后，你是否会为此烦恼很长时间？</title>
+      <answer aid="Y" score="1">是</answer>
+      <answer aid="N" score="0">否</answer>
+    </question>
+
+    <question qid="q35" tag="P">
+      <title>你是否努力是自己对人不粗鲁？</title>
+      <answer aid="Y" score="0">是</answer>
+      <answer aid="N" score="1">否</answer>
+    </question>
+
+    <question qid="q36" tag="E">
+      <title>你是否喜欢在自己周围有许多热闹和令人兴奋的事情？</title>
+      <answer aid="Y" score="1">是</answer>
+      <answer aid="N" score="0">否</answer>
+    </question>
+
+    <question qid="q37" tag="L">
+      <title>曾在玩游戏时作过弊吗？</title>
+      <answer aid="Y" score="0">是</answer>
+      <answer aid="N" score="1">否</answer>
+    </question>
+
+    <question qid="q38" tag="N">
+      <title>你是否因自己的“神经过敏”而感到痛苦？</title>
+      <answer aid="Y" score="1">是</answer>
+      <answer aid="N" score="0">否</answer>
+    </question>
+
+    <question qid="q39" tag="P">
+      <title>你愿意别人怕你吗？</title>
+      <answer aid="Y" score="1">是</answer>
+      <answer aid="N" score="0">否</answer>
+    </question>
+
+    <question qid="q40" tag="L">
+      <title>你曾利用过别人吗？</title>
+      <answer aid="Y" score="0">是</answer>
+      <answer aid="N" score="1">否</answer>
+    </question>
+
+    <question qid="q41" tag="E">
+      <title>你是否喜欢说笑话和谈论有趣的事？</title>
+      <answer aid="Y" score="1">是</answer>
+      <answer aid="N" score="0">否</answer>
+    </question>
+
+    <question qid="q42" tag="N">
+      <title>你是否时常感到孤独？</title>
+      <answer aid="Y" score="1">是</answer>
+      <answer aid="N" score="0">否</answer>
+    </question>
+
+    <question qid="q43" tag="P">
+      <title>你是否认为遵循社会规范比按照个人方式行事更好一些？</title>
+      <answer aid="Y" score="0">是</answer>
+      <answer aid="N" score="1">否</answer>
+    </question>
+
+    <question qid="q44" tag="E">
+      <title>在别人眼里你总是充满活力的吗？</title>
+      <answer aid="Y" score="1">是</answer>
+      <answer aid="N" score="0">否</answer>
+    </question>
+	
+	  <question qid="q45" tag="L">
+      <title>你总能做到言行一致吗？</title>
+      <answer aid="Y" score="1">是</answer>
+      <answer aid="N" score="0">否</answer>
+    </question>
+	
+	<question qid="q46" tag="N">
+      <title>你是否时常被负疚感所困扰？</title>
+      <answer aid="Y" score="1">是</answer>
+      <answer aid="N" score="0">否</answer>
+    </question>
+	
+	<question qid="q47" tag="L">
+      <title>你有时将今天该做的事情拖到明天去做吗？</title>
+      <answer aid="Y" score="0">是</answer>
+      <answer aid="N" score="1">否</answer>
+    </question>
+	
+	<question qid="q48" tag="E">
+      <title>你能使一个聚会顺利进行下去吗？</title>
+      <answer aid="Y" score="1">是</answer>
+      <answer aid="N" score="0">否</answer>
+    </question>
+  </questions>
+  
+  <tags>
+	<tag name="P" label="精神质"><![CDATA[该维度并非暗指精神病，它在所有人身上都存在，只是程度不同。但如果某人表现出明显程度，则容易发展成行为异常。分数高可能是孤独、不关心他人，难以适应外部环境，不近人情，感觉迟钝，与别人不友好，喜欢寻衅搅扰，喜欢干奇特的事情，并且不顾危险。]]>
+	</tag>
+	
+	<tag name="E" label="外向性"><![CDATA[该维度分数高表示人格外向，可能是好交际、渴望刺激和冒险，情感易于冲动。分数低则表示人格内向，可能是好静，富于内省，除了亲密的朋友之外，对一般人缄默冷淡，不喜欢刺激，喜欢有秩序的生活方式，情绪比较稳定]]>
+	</tag>
+	
+	<tag name="N" label="神经质"><![CDATA[该维度反映的是正常行为，与病症无关。分数高可能是焦虑、担心、常常郁郁不乐、忧心忡忡，有强烈的情绪反应，以至于出现不够理智的行为。]]>
+	</tag>
+
+	<tag name="L" label="掩饰性"><![CDATA[该维度测定被试的掩饰、假托或自身隐蔽，或者测定其社会性朴实幼稚的水平。]]>
+	</tag>
+  </tags>
+
+  <remarks>
+	<remark tag="P" minScore="min" maxScore="5">您的得分低于平均水平，这表明你具有同情心，感觉敏锐，对同伴友好。</remark>
+    <remark tag="P" minScore="5" maxScore="max">您的得分高于平均水平，这表明你对他人可能关心不够，有时爱搞恶作剧。</remark>
+	
+    <remark tag="E" minScore="min" maxScore="10">您的得分低于平均水平，这表明你安静、离群、保守、交友不广、但有挚友。喜瞻前顾后，行为不易受冲动影响，不爱兴奋的事，作事有计划，生活有规律，作事严谨，倾向悲观，踏实可靠。</remark>
+    <remark tag="E" minScore="10" maxScore="max">您的得分高于平均水平，这表明你爱社交，广交朋友，渴望兴奋，喜欢冒险，行动常受冲动影响，反应快，乐观，好谈笑，但也许有时作事欠踏实。</remark>
+	
+    <remark tag="N" minScore="min" maxScore="7">您的得分低于平均水平，这表明你情绪过于稳定，反应很缓慢，很弱，又容易平复，通常是平静的，很难生气，在一般人难以忍耐的刺激下也有所反应，但不强烈。</remark>
+    <remark tag="N" minScore="7" maxScore="max">您的得分高于平均水平，这表明你情绪不稳定，焦虑、紧张、易怒，睡眠不好，对各种刺激的反应过于强烈，动情绪后难以平复。</remark>
+	
+    <remark tag="L" minScore="min" maxScore="9">您的得分低于平均水平，恭喜你，你的填写是有效的。</remark>
+    <remark tag="L" minScore="9" maxScore="max">您的得分高于平均水平，也许你需要重新测试一遍，这次要按照真实的情况填写哟。</remark>
+  </remarks>
+
+</questionnaire>

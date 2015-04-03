@@ -13,14 +13,15 @@ urlpatterns = patterns(
     url(r'^$',                      views.home),                                # home page
     url(r'^home/(.*)$',             views.home),                                # home page
 
-    url(r'^quiz/index$',             views.quiz.index),                         # quiz index
+    url(r'^quiz/index/(?P<page>\w*)$',                     views.quiz.index),   # quiz index
     url(r'^quiz/fill/(?P<grp_id>\d+)/(?P<quiz_id>\w+)$',   views.quiz.fill),    # quiz fill
     url(r'^quiz/fill/(?P<quiz_id>\w+)$',                   views.quiz.fill),    # quiz fill
     url(r'^quiz/submit$',            views.quiz.submit),                        # quiz submit
     url(r'^quiz/result$',            views.quiz.result),                        # quiz result
 
-    url(r'^accounts/(.*)$',          views.account),                             # account
-    url(r'^accounts/callback/(?P<site>\w+)$',          accounts.callback),                             # account
+    url(r'^accounts/login$',                                views.accounts.login),                       # account
+    url(r'^accounts/logout$',                               views.accounts.logout),                      # account
+    url(r'^accounts/callback/(?P<site>\w+)$',               views.accounts.callback),                    # account
 
     url(r'^sns/(.*)$',              views.sns),                                 # sns
 

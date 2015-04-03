@@ -6,6 +6,10 @@ from collections import namedtuple
 Chart = namedtuple('Chart', 'modules, data')
 
 
+def draw(quiz_id, scores):
+    return BFI44(scores)
+
+
 def BFI44(scores):
     chart_data = {
         'title': {

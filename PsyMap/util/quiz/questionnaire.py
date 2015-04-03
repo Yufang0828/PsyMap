@@ -6,8 +6,7 @@ from collections import OrderedDict, namedtuple, defaultdict
 
 from lxml import etree
 
-import meta
-
+from echarts import draw
 
 __all__ = ['Answer', 'Tag', 'Remark', 'Question', 'Questionnaire', 'QService']
 
@@ -17,11 +16,11 @@ Remark = namedtuple('Remark', 'tag, min_score, max_score, info')
 
 
 class Question:
-    __slots__ = ['qid', 'title', 'tag', 'type', 'restriction', 'answers']
+    __slots__ = ['qid', 'title', 'tags', 'type', 'restriction', 'answers']
 
     """Class for each question in a questionnaire"""
-    def __init__(self, qid, title=None, tag=None, _type='_def', restriction=None):
-        self.qid, self.title, self.tag, self.type, self.restriction = qid, title, tag, _type, restriction
+    def __init__(self, qid, title=None, tags=None, _type='_def', restriction=None):
+        self.qid, self.title, self.tags, self.type, self.restriction = qid, title, tags, _type, restriction
         self.answers = OrderedDict()
 
     def add_answer(self, aid, score=0, content=None, _type=None):
@@ -39,7 +38,7 @@ class Question:
         return {
             'qid': self.qid,
             'title': self.title,
-            'tag': self.tag,
+            'tags': self.tags,
             'type': self.type,
             'restriction': self.restriction,
             'answers': self.answers
@@ -65,11 +64,11 @@ class Questionnaire:
         # Setting questions
         for q_node in x.xpath('//questions/question'):
             title = q_node.xpath('./title')[0].text
-            qid, tag, _type = q_node.get('qid'), q_node.get('tag', '_def'), q_node.get('type', 'single')
+            qid, tags, _type = q_node.get('qid'), q_node.get('tag', '_def').split(' '), q_node.get('type', 'single')
 
             restriction = q_node.xpath('./restriction')
             restriction = restriction[0].attrib if len(restriction) > 0 else None
-            _q = Question(qid, title, tag, _type, restriction)
+            _q = Question(qid, title, tags, _type, restriction)
 
             for a in q_node.xpath('./answer'):
                 aid, score, _type, text = a.get('aid'), a.get('score'), a.get('type', None), a.text
@@ -106,7 +105,8 @@ class Questionnaire:
         result = defaultdict(float)
         for qid, aid in dic_ans.iteritems():
             q = self.questions[qid]
-            result[q.tag] += float(q.get_answer_score(aid))
+            for tag in q.tags:
+                result[tag] += float(q.get_answer_score(aid))
         return result
 
     def remark(self, dic_score):
@@ -127,50 +127,68 @@ class Questionnaire:
 
 
 class QService:
+    base_dir = os.path.dirname(os.path.realpath(__file__))
     quiz_cache = {}
     norm_cache = {}
 
     def __init__(self):
-        self.base_dir = os.path.dirname(os.path.realpath(__file__))
-        self.quiz_meta = meta.load_quiz_info()
+        pass
 
-    def get_xml_path(self, quiz_id):
-        try:
-            q_info = self.quiz_meta[quiz_id]
-            xml_path = q_info['XmlPath']
-        except KeyError:
-            raise RuntimeError('Cannot find XML path for quiz [%s]!' % quiz_id)
+    @staticmethod
+    def wrap_path(path):
+        if path[0] == '.':
+            path = os.path.join(QService.base_dir, path)
+        return path
 
-        return meta.wrap_path(xml_path)
+    @staticmethod
+    def validate_xml(xml_file, dtd_file='./quiz/Questionnaire.dtd'):
+        with open(QService.wrap_path(xml_file), 'r') as f_xml:
+            root = etree.XML(f_xml.read())
 
-    def get_quiz(self, quiz_id):
-        try:
-            quiz = QService.quiz_cache[quiz_id]
-        except KeyError:
-            xml_path = self.get_xml_path(quiz_id)
-            meta.validate_xml(xml_path)
-            quiz = Questionnaire(quiz_id, xml_path)
-            QService.quiz_cache[quiz_id] = quiz
+        validate = False
+        dtd = None
+        with open(QService.wrap_path(dtd_file), 'r') as f_dtd:
+            try:
+                dtd = etree.DTD(f_dtd)
+                validate = dtd.validate(root)
+            except Exception as e:
+                msg = e
+                if dtd is not None:
+                    msg += ' \n ' + dtd.error_log.filter_from_errors()
+
+            if not validate:
+                raise ValueError(msg)
+            return validate
+
+    @staticmethod
+    def get_questionnaire(xml_path=None, quiz_id=None):
+        if xml_path is None and quiz_id is None:
+            raise ValueError('Either xml_path or quiz_id must be given!')
+        if quiz_id is not None:
+            try:
+                return QService.quiz_cache[quiz_id]
+            except KeyError:
+                pass
+        xml_path = QService.wrap_path(xml_path)
+        QService.validate_xml(xml_path)
+        quiz = Questionnaire(quiz_id, xml_path)
+        QService.quiz_cache[quiz_id] = quiz
         return quiz
+
+    @staticmethod
+    def set_norm(quiz_id, norm):
+        QService.norm_cache[quiz_id] = norm
 
     @staticmethod
     def get_norm(quiz_id):
         try:
-            norm = QService.norm_cache[quiz_id]
+            return QService.norm_cache[quiz_id]
         except KeyError:
-            norm = meta.load_quiz_norm(quiz_id)
-            if norm is None:
-                tags = QService().get_quiz(quiz_id).tags.keys()
-                if len(tags) == 0:
-                    tags = ['_def']
-                norm = dict(zip(tags, [0]*len(tags)))
-            QService.norm_cache[quiz_id] = norm
-        return {k: float(v) for k, v in norm.iteritems()}
+            raise RuntimeError('Norm for quiz [%s] is not set!' % quiz_id)
 
     @staticmethod
-    def get_char_data(quiz_id, scores):
-        from echarts import *
-        return BFI44(scores)
+    def get_chart_data(quiz_id, scores):
+        return draw(quiz_id, scores)
 
 
 def unit_test(quiz_id):
@@ -179,7 +197,7 @@ def unit_test(quiz_id):
 
     >>> unit_test('Q1_Cyber')
     """
-    for qid, q in QService().get_quiz(quiz_id).questions.iteritems():
+    for qid, q in QService().get_questionnaire(quiz_id).questions.iteritems():
         print q.to_dict()
 
 if __name__ == '__main__':

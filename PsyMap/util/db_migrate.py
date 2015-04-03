@@ -19,6 +19,7 @@ def migrate_quiz():
     sql = 'INSERT INTO "PsyMap_quiz" VALUES (%s,%s, %s, %s, NULL )'
     curPG.executemany(sql, data)
 
+
 def migrate_qgroup():
     curMY.execute('SELECT * FROM qgroup')
 
@@ -69,8 +70,22 @@ def migrate_users():
             print e
 
 
+def migrate_ulink():
+    curMY.execute('SELECT * FROM userlink')
+
+    x = lambda i: r[i].encode('UTF-8') if isinstance(r[i], basestring) else r[i]
+    for r in curMY:
+        data = ( (x('LinkId'), x('SiteType'), x('SiteUid'), x('Token'), x('Updated'), x('UserId')) )
+        sql = 'INSERT INTO "PsyMap_userlink" VALUES (%s,%s, %s, %s, %s, %s)'
+
+        try:
+            curPG.execute(sql, data)
+        except psycopg2.IntegrityError as e:
+            print e
+
+
 def migrate_userfillquiz():
-    curMY.execute('SELECT * FROM userfillquiz WHERE fillId<20')
+    curMY.execute('SELECT * FROM userfillquiz')
 
     x = lambda i: r[i].encode('UTF-8') if isinstance(r[i], basestring) else r[i]
 
@@ -81,13 +96,14 @@ def migrate_userfillquiz():
             try:
                 return float(s)
             except ValueError:
-                return s
+                return '"%s"' % s
 
     def convert(i):
         w = []
         for j in i[1:].split('#'):
             idx = j.find('@')
-            k, v = j[:idx], j[idx+1:].replace('"', '\\"')
+            k, v = j[:idx], j[idx+1:].replace('"', '\\"').strip(' \t[]\r\n')
+            k = {'a52': 'q52', 'a53': 'q53'}.get(k, k)   # fix the SCL90R bug: a52\a53 should be q52 q53
             w.append('"%s"=>%s' % (k, to_number(v)))
         return ','.join(w).encode('UTF-8')
 
@@ -99,7 +115,11 @@ def migrate_userfillquiz():
           ' (%s,%s,%s,%s,ST_SetSRID(ST_MakePoint(%s, %s), 4326),%s,%s,%s,%s,%s,%s)'
     for r in curMY:
         data = ((x('FillId'), x('FillTime'), x('CostSeconds'), x('IPAddr'), x('Pos_Lng'), x('Pos_Lat'), ans(r), score(r), memo(r), x('QGroupId'), x('QuizId'), x('UserId')))
+        print data
         curPG.execute(sql, data)
+
+    sql = 'SELECT setval(\'"PsyMap_userfillquiz_fill_id_seq"\'::regclass, (SELECT max(fill_id) FROM "PsyMap_userfillquiz"))'
+    curPG.execute(sql)
 
 
 if __name__ == '__main__':
@@ -108,4 +128,5 @@ if __name__ == '__main__':
     # migrate_experiment()
     # migrate_qgroupquiz()
     # migrate_users()
+    # migrate_ulink()
     migrate_userfillquiz()

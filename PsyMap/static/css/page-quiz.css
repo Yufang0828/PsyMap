@@ -1,6 +1,6 @@
 /* ----------------Index Page of Quiz Page--------------------- */
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
     header {
         position: absolute;
         z-index: 1000;
@@ -13,7 +13,7 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     #btns-group, #intro-ico, hr {
         display: none;
     }
@@ -21,6 +21,17 @@
     .item-heading {
         font-size: 12pt !important;
     }
+	
+	.semi-trans {
+        padding-top: 0 !important;
+    }
+	header{
+		margin-top: 0 !important;
+	}
+	
+	.carousel{
+		margin-top: -150px !important;
+	}
 }
 
 @media (max-width: 1024px) {
@@ -36,7 +47,7 @@
 .carousel {
     width: 100%;
     height: 500px;
-    margin: 30px 0 50px 0;
+    margin: 0 0 50px 0;
 }
 
 /* Since positioning the image, we need to help out the caption */
@@ -62,7 +73,7 @@
 }
 
 .carousel-control {
-    top: 42%;
+    top: 63%;
 }
 
 .item-heading {
@@ -77,13 +88,35 @@ a.item-heading {
     font-size: 16px;
 }
 
+.nav-tabs li {
+	font-size: 1.1em;
+	font-style: bold;
+}
 
+.panel-heading{
+	font-size: 1.4em;
+	background: linear-gradient(to top right,rgba(0,0,0,.0001) 0,rgba(0,0,0,.3) 100%);
+}
+
+.panel-heading a{
+	font-size: 1em;
+}
+
+.panel-body{
+	padding: 10px;
+	font-size: 1.1em;
+}
+
+.panel-body p{
+	text-indent: 1.1em;
+}
 
 
 /* ---------------- Fill Quiz Page --------------------- */
 
 main{
   overflow-x: hidden;
+  min-height: 550px;
 }
 
 .qPart *

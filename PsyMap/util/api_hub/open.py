@@ -3,8 +3,7 @@ import time
 from requests.utils import default_user_agent
 from .request import Request
 from .exceptions import ApiError, MissingRedirectUri
-from .utils import request_url
-from .decorators import retry
+from .utils import request_url, retry
 from . import __version__, __title__
 
 DEFAULT_RETRIES = 3

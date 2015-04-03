@@ -1,6 +1,6 @@
 from django.contrib.admin import ModelAdmin, site
 
-from PsyMap.models.quiz import *
+from PsyMap.models import *
 
 
 class QuizAdmin(ModelAdmin):
@@ -26,3 +26,8 @@ site.register(Experiment, ExperimentAdmin)
 class UserFillQuizAdmin(ModelAdmin):
     fields = UserFillQuiz.__slots__[1:]
 site.register(UserFillQuiz, UserFillQuizAdmin)
+
+
+class UserLinkAdmin(ModelAdmin):
+    fields = UserLink.__slots__[1:]
+site.register(UserLink, UserLinkAdmin)

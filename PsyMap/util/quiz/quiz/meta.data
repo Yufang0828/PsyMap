@@ -1,8 +1,8 @@
 {
- "Test": {
-  "XmlPath": "./quiz/Q00/Test.xml", 
+ "EPQ48": {
+  "XmlPath": "./quiz/Q00/EPQ48.xml", 
   "Intro": "", 
-  "ScreenName": "测试量表"
+  "ScreenName": "艾森克人格测试量表"
  },
  "BeckSIS": {
   "XmlPath": "./quiz/Q07_SCD/BeckSIS.xml", 

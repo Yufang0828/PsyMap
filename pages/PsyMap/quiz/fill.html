@@ -223,6 +223,7 @@
             </div>
 
             <div class="col-xs-12 col-md-8 pull-right">
+
                 <div class="progress progress-striped">
                     <div id="progR" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="2"
                          aria-valuemin="0"
@@ -230,6 +231,12 @@
                         0%
                     </div>
                 </div>
+
+            {% if not user.is_authenticated %}
+                <div class="alert alert-danger" role="alert">
+                    <b>温馨提示</b> 您尚未登陆，填写问卷后不能提交或查看评估结果，请<a href="accounts/login">登陆</a>后再填写！。
+                </div>
+            {% endif %}
 
                 <div class="quiz" id="divQ0">问卷正在加载中，如果长期没有加载成功，请刷新！</div>
                 {% for qid,q in quiz.questions.iteritems %}

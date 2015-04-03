@@ -5,7 +5,6 @@ from django.http.response import HttpResponse
 
 
 def therapy(request, page):
-    print request.environ
     req = request.META
     ip = req.get('HTTP_X_FORWARDED_FOR', req.get('REMOTE_ADDR', 'Unknown'))
     if ',' in ip:
