@@ -6,7 +6,7 @@ from collections import OrderedDict, namedtuple, defaultdict
 
 from lxml import etree
 
-from echarts import draw
+from draw import draw
 
 __all__ = ['Answer', 'Tag', 'Remark', 'Question', 'Questionnaire', 'QService']
 
@@ -111,7 +111,8 @@ class Questionnaire:
 
     def remark(self, dic_score):
         def convert_score(s, _tag=None):
-            m = {'min': float('-inf'), 'max': float('inf'), 'avg': QService.get_norm(self.quiz_id)[_tag]}
+            dim = QService.get_norm(self.quiz_id)
+            m = {'min': dim[_tag].get('min'), 'max': dim[_tag].get('max'), 'avg': dim[_tag].get('avg')}
             try:
                 return m[str(s).lower()]
             except KeyError:
@@ -121,7 +122,7 @@ class Questionnaire:
         for tag, score in dic_score.iteritems():
             for r in self.remarks[tag]:
                 _min, _max = convert_score(r.min_score, _tag=tag), convert_score(r.max_score, _tag=tag)
-                if _min <= float(score) < _max:
+                if _min <= float(score) <= _max:
                     result[tag] = r
         return result
 
@@ -188,7 +189,9 @@ class QService:
 
     @staticmethod
     def get_chart_data(quiz_id, scores):
-        return draw(quiz_id, scores)
+        norm = QService.get_norm(quiz_id)
+        q = QService.get_questionnaire(quiz_id=quiz_id)
+        return draw(quiz_id, q.caption, scores, norm=norm)
 
 
 def unit_test(quiz_id):

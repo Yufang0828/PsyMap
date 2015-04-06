@@ -2,11 +2,13 @@
 __author__ = 'Peter_Howe<haobibo@gmail.com>'
 
 import json
-from collections import defaultdict
+from collections import defaultdict, namedtuple, OrderedDict
 
 from django.db.models import *
 from django.contrib.gis.db.models import PointField
 from django.contrib.postgres.fields import DateTimeRangeField, HStoreField
+
+from jsonfield import JSONField
 
 from django.db import connection
 from django.utils import timezone
@@ -17,6 +19,8 @@ from PsyMap.util.quiz.questionnaire import QService
 hstore_to_dict = lambda hstr: json.loads('{%s}' % hstr.replace('=>', ':'))
 dict_to_hstore = lambda dic: json.dumps(dic).replace(':', '=>').strip('{ }')
 
+Norm = namedtuple('Norm', 'label, count, avg, min, max, std')
+
 
 class Quiz(Model):
     __slots__ = ['quiz_id', 'screen_name', 'xml_path', 'intro', 'norm']
@@ -24,7 +28,7 @@ class Quiz(Model):
     screen_name = CharField(max_length=128)
     xml_path = CharField(max_length=128)
     intro = TextField(default=None)
-    norm = HStoreField(default=None, null=True)  # 用来存储常模信息
+    norm = JSONField(default=None, null=True)  # 存储常模, load_kwargs={'object_pairs_hook': OrderedDict}
 
     def __unicode__(self):
         return '%s [%s]' % (self.quiz_id, self.screen_name)
@@ -39,8 +43,6 @@ class Quiz(Model):
         if self.norm is None:
             self.update_score()
             self.update_norm()
-        if isinstance(self.norm, basestring):
-            self.norm = hstore_to_dict(self.norm)
         return self.norm
 
     def update_score(self):
@@ -58,17 +60,35 @@ class Quiz(Model):
         fills = UserFillQuiz.objects.raw(
             'SELECT fill_id, score::JSON FROM "PsyMap_userfillquiz" WHERE quiz_id=%s', (self.quiz_id,)
         )
-        counter, scores = defaultdict(int), defaultdict(float)
+        counter, avg = defaultdict(int), defaultdict(float)
+        _min, _max, std = defaultdict(float), defaultdict(float), defaultdict(float)
         for f in fills:
             for dim, score in f.score.iteritems():
-                scores[dim] += float(score)
                 counter[dim] += 1
-        for dim, score in scores.iteritems():
-            scores[dim] /= counter[dim]
-        self.norm = dict(scores)
+                score = float(score)
+                avg[dim] += score
+                std[dim] += score ** 2
+                if score > _max[dim]:
+                    _max[dim] = score
+                if score < _min[dim]:
+                    _min[dim] = score
+
+        self.norm = {}
+        # Norm : 'name, count, avg, min, max, std'
+        quiz = self.get_questionnaire()
+        for dim, average in avg.iteritems():
+            try:
+                tag = quiz.tags.get(dim).label
+            except:
+                tag = self.screen_name
+            n = counter[dim]
+            average /= n
+            std[dim] = (std[dim]/n - average**2)**0.5
+            self.norm[dim] = Norm(tag, n, average, _min[dim], _max[dim], std[dim]).__dict__
+
         cursor = connection.cursor()
-        scores = dict_to_hstore(dict(self.norm)) # convert json string to hstore string
-        cursor.execute('UPDATE "PsyMap_quiz" SET norm=%s::HSTORE WHERE quiz_id=%s', (scores, self.quiz_id))
+        norm = json.dumps(self.norm, ensure_ascii=False, sort_keys=True, indent=4)
+        cursor.execute('UPDATE "PsyMap_quiz" SET norm=%s::JSONB WHERE quiz_id=%s', (norm, self.quiz_id))
 
 
 class QGroup(Model):

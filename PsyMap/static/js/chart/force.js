@@ -1,1 +1,1685 @@
-define("echarts/chart/force",["require","./base","../data/Graph","../layout/Force","zrender/shape/Line","zrender/shape/BezierCurve","zrender/shape/Image","../util/shape/Icon","../config","../util/ecData","zrender/tool/util","zrender/config","zrender/tool/vector","../chart"],function(e){"use strict";function t(e,t,o,h,d){var c=this;r.call(this,e,t,o,h,d),this.__nodePositionMap={},this._graph=new s(!0),this._layout=new l,this._layout.onupdate=function(){c._step()},this._steps=1,this.ondragstart=function(){i.apply(c,arguments)},this.ondragend=function(){a.apply(c,arguments)},this.ondrop=function(){},this.shapeHandler.ondragstart=function(){c.isDragstart=!0},this.onmousemove=function(){n.apply(c,arguments)},this.refresh(h)}function i(e){if(this.isDragstart&&e.target){var t=e.target;t.fixed=!0,this.isDragstart=!1,this.zr.on(V.EVENT.MOUSEMOVE,this.onmousemove)}}function n(){this._layout.temperature=.8,this._step()}function a(e,t){if(this.isDragend&&e.target){var i=e.target;i.fixed=!1,t.dragIn=!0,t.needRefresh=!1,this.isDragend=!1,this.zr.un(V.EVENT.MOUSEMOVE,this.onmousemove)}}function o(e,t,i){var n=y.create();return n[0]=(Math.random()-.5)*i+e,n[1]=(Math.random()-.5)*i+t,n}var r=e("./base"),s=e("../data/Graph"),l=e("../layout/Force"),h=e("zrender/shape/Line"),d=e("zrender/shape/BezierCurve"),c=e("zrender/shape/Image"),p=e("../util/shape/Icon"),m=e("../config");m.force={zlevel:1,z:2,center:["50%","50%"],size:"100%",preventOverlap:!1,coolDown:.99,minRadius:10,maxRadius:20,ratioScaling:!1,large:!1,useWorker:!1,steps:1,scaling:1,gravity:1,symbol:"circle",symbolSize:0,linkSymbol:null,linkSymbolSize:[10,15],draggable:!0,clickable:!0,roam:!1,itemStyle:{normal:{label:{show:!1,position:"inside"},nodeStyle:{brushType:"both",borderColor:"#5182ab",borderWidth:1},linkStyle:{color:"#5182ab",width:1,type:"line"}},emphasis:{label:{show:!1},nodeStyle:{},linkStyle:{opacity:0}}}};var u=e("../util/ecData"),g=e("zrender/tool/util"),V=e("zrender/config"),y=e("zrender/tool/vector");return t.prototype={constructor:t,type:m.CHART_TYPE_FORCE,_init:function(){var e,t=this.component.legend,i=this.series;this.clear();for(var n=0,a=i.length;a>n;n++){var o=i[n];if(o.type===m.CHART_TYPE_FORCE){if(i[n]=this.reformOption(i[n]),e=i[n].name||"",this.selectedMap[e]=t?t.isSelected(e):!0,!this.selectedMap[e])continue;this.buildMark(n),this._initSerie(o,n);break}}this.animationEffect()},_getNodeCategory:function(e,t){return e.categories&&e.categories[t.category||0]},_getNodeQueryTarget:function(e,t,i){i=i||"normal";var n=this._getNodeCategory(e,t)||{};return[t.itemStyle&&t.itemStyle[i],n&&n.itemStyle&&n.itemStyle[i],e.itemStyle[i].nodeStyle]},_getEdgeQueryTarget:function(e,t,i){return i=i||"normal",[t.itemStyle&&t.itemStyle[i],e.itemStyle[i].linkStyle]},_initSerie:function(e,t){this._temperature=1,this._graph=e.data?this._getSerieGraphFromDataMatrix(e):this._getSerieGraphFromNodeLinks(e),this._buildLinkShapes(e,t),this._buildNodeShapes(e,t);var i=e.roam===!0||"move"===e.roam,n=e.roam===!0||"scale"===e.roam;this.zr.modLayer(this.getZlevelBase(),{panable:i,zoomable:n}),(this.query("markPoint.effect.show")||this.query("markLine.effect.show"))&&this.zr.modLayer(m.EFFECT_ZLEVEL,{panable:i,zoomable:n}),this._initLayout(e),this._step()},_getSerieGraphFromDataMatrix:function(e){for(var t=[],i=0,n=[],a=0;a<e.matrix.length;a++)n[a]=e.matrix[a].slice();for(var o=e.data||e.nodes,a=0;a<o.length;a++){var r={},l=o[a];for(var h in l)"name"===h?r.id=l.name:r[h]=l[h];var d=this._getNodeCategory(e,l),c=d?d.name:l.name;if(this.selectedMap[c]=this.isSelected(c),this.selectedMap[c])t.push(r),i++;else{n.splice(i,1);for(var p=0;p<n.length;p++)n[p].splice(i,1)}}var m=s.fromMatrix(t,n,!0);return m.eachNode(function(e,t){e.layout={size:e.data.value,mass:0},e.rawIndex=t}),m.eachEdge(function(e){e.layout={weight:e.data.weight}}),m},_getSerieGraphFromNodeLinks:function(e){for(var t=new s(!0),i=e.data||e.nodes,n=0,a=i.length;a>n;n++){var o=i[n];if(o&&!o.ignore){var r=this._getNodeCategory(e,o),l=r?r.name:o.name;if(this.selectedMap[l]=this.isSelected(l),this.selectedMap[l]){var h=t.addNode(o.name,o);h.rawIndex=n}}}for(var n=0,a=e.links.length;a>n;n++){var d=e.links[n],c=d.source,p=d.target;"number"==typeof c&&(c=i[c],c&&(c=c.name)),"number"==typeof p&&(p=i[p],p&&(p=p.name));var m=t.addEdge(c,p,d);m&&(m.rawIndex=n)}return t.eachNode(function(e){var t=e.data.value;if(null==t){t=0;for(var i=0;i<e.edges.length;i++)t+=e.edges[i].data.weight||0}e.layout={size:t,mass:0}}),t.eachEdge(function(e){e.layout={weight:null==e.data.weight?1:e.data.weight}}),t},_initLayout:function(e){var t=this._graph,i=t.nodes.length,n=this.query(e,"minRadius"),a=this.query(e,"maxRadius");this._steps=e.steps||1,this._layout.center=this.parseCenter(this.zr,e.center),this._layout.width=this.parsePercent(e.size,this.zr.getWidth()),this._layout.height=this.parsePercent(e.size,this.zr.getHeight()),this._layout.large=e.large,this._layout.scaling=e.scaling,this._layout.ratioScaling=e.ratioScaling,this._layout.gravity=e.gravity,this._layout.temperature=1,this._layout.coolDown=e.coolDown,this._layout.preventNodeEdgeOverlap=e.preventOverlap,this._layout.preventNodeOverlap=e.preventOverlap;for(var r=1/0,s=-(1/0),l=0;i>l;l++){var h=t.nodes[l];s=Math.max(h.layout.size,s),r=Math.min(h.layout.size,r)}for(var d=s-r,l=0;i>l;l++){var h=t.nodes[l];d>0?(h.layout.size=(h.layout.size-r)*(a-n)/d+n,h.layout.mass=h.layout.size/a):(h.layout.size=(a-n)/2,h.layout.mass=.5)}for(var l=0;i>l;l++){var h=t.nodes[l];if("undefined"!=typeof this.__nodePositionMap[h.id])h.layout.position=y.create(),y.copy(h.layout.position,this.__nodePositionMap[h.id]);else if("undefined"!=typeof h.data.initial)h.layout.position=y.create(),y.copy(h.layout.position,h.data.initial);else{var c=this._layout.center,p=Math.min(this._layout.width,this._layout.height);h.layout.position=o(c[0],c[1],.8*p)}var m=h.shape.style,u=h.layout.size;m.width=m.width||2*u,m.height=m.height||2*u,m.x=-m.width/2,m.y=-m.height/2,y.copy(h.shape.position,h.layout.position)}i=t.edges.length,s=-(1/0);for(var l=0;i>l;l++){var g=t.edges[l];g.layout.weight>s&&(s=g.layout.weight)}for(var l=0;i>l;l++){var g=t.edges[l];g.layout.weight/=s}this._layout.init(t,e.useWorker)},_buildNodeShapes:function(e,t){var i=this._graph,n=this.query(e,"categories");i.eachNode(function(i){var a=this._getNodeCategory(e,i.data),o=[i.data,a,e],r=this._getNodeQueryTarget(e,i.data),s=this._getNodeQueryTarget(e,i.data,"emphasis"),l=new p({style:{x:0,y:0,color:this.deepQuery(r,"color"),brushType:"both",strokeColor:this.deepQuery(r,"strokeColor")||this.deepQuery(r,"borderColor"),lineWidth:this.deepQuery(r,"lineWidth")||this.deepQuery(r,"borderWidth")},highlightStyle:{color:this.deepQuery(s,"color"),strokeColor:this.deepQuery(s,"strokeColor")||this.deepQuery(s,"borderColor"),lineWidth:this.deepQuery(s,"lineWidth")||this.deepQuery(s,"borderWidth")},clickable:e.clickable,zlevel:this.getZlevelBase(),z:this.getZBase()});l.style.color||(l.style.color=this.getColor(a?a.name:i.id)),l.style.iconType=this.deepQuery(o,"symbol"),l.style.width=l.style.height=2*(this.deepQuery(o,"symbolSize")||0),l.style.iconType.match("image")&&(l.style.image=l.style.iconType.replace(new RegExp("^image:\\/\\/"),""),l=new c({style:l.style,highlightStyle:l.highlightStyle,clickable:l.clickable,zlevel:this.getZlevelBase(),z:this.getZBase()})),this.deepQuery(o,"itemStyle.normal.label.show")&&(l.style.text=null==i.data.label?i.id:i.data.label,l.style.textPosition=this.deepQuery(o,"itemStyle.normal.label.position"),l.style.textColor=this.deepQuery(o,"itemStyle.normal.label.textStyle.color"),l.style.textFont=this.getFont(this.deepQuery(o,"itemStyle.normal.label.textStyle")||{})),this.deepQuery(o,"itemStyle.emphasis.label.show")&&(l.highlightStyle.textPosition=this.deepQuery(o,"itemStyle.emphasis.label.position"),l.highlightStyle.textColor=this.deepQuery(o,"itemStyle.emphasis.label.textStyle.color"),l.highlightStyle.textFont=this.getFont(this.deepQuery(o,"itemStyle.emphasis.label.textStyle")||{})),this.deepQuery(o,"draggable")&&(this.setCalculable(l),l.dragEnableTime=0,l.draggable=!0,l.ondragstart=this.shapeHandler.ondragstart,l.ondragover=null);var h="";if("undefined"!=typeof i.category){var a=n[i.category];h=a&&a.name||""}u.pack(l,e,t,i.data,i.rawIndex,i.data.name||"",i.category),this.shapeList.push(l),this.zr.addShape(l),i.shape=l},this)},_buildLinkShapes:function(e,t){for(var i=this._graph,n=i.edges.length,a=0;n>a;a++){var o=i.edges[a],r=o.data,s=o.node1,l=o.node2,c=i.getEdge(l,s),m=this._getEdgeQueryTarget(e,r),V=this.deepQuery(m,"type");e.linkSymbol&&"none"!==e.linkSymbol&&(V="line");var y="line"===V?h:d,U=new y({style:{xStart:0,yStart:0,xEnd:0,yEnd:0},clickable:this.query(e,"clickable"),highlightStyle:{},zlevel:this.getZlevelBase(),z:this.getZBase()});if(c&&c.shape&&(U.style.offset=4,c.shape.style.offset=4),g.merge(U.style,this.query(e,"itemStyle.normal.linkStyle"),!0),g.merge(U.highlightStyle,this.query(e,"itemStyle.emphasis.linkStyle"),!0),"undefined"!=typeof r.itemStyle&&(r.itemStyle.normal&&g.merge(U.style,r.itemStyle.normal,!0),r.itemStyle.emphasis&&g.merge(U.highlightStyle,r.itemStyle.emphasis,!0)),U.style.lineWidth=U.style.lineWidth||U.style.width,U.style.strokeColor=U.style.strokeColor||U.style.color,U.highlightStyle.lineWidth=U.highlightStyle.lineWidth||U.highlightStyle.width,U.highlightStyle.strokeColor=U.highlightStyle.strokeColor||U.highlightStyle.color,u.pack(U,e,t,o.data,null==o.rawIndex?a:o.rawIndex,o.data.name||s.id+" - "+l.id,s.id,l.id),this.shapeList.push(U),this.zr.addShape(U),o.shape=U,e.linkSymbol&&"none"!==e.linkSymbol){var f=new p({style:{x:-5,y:0,width:e.linkSymbolSize[0],height:e.linkSymbolSize[1],iconType:e.linkSymbol,brushType:"fill",color:U.style.strokeColor},highlightStyle:{brushType:"fill"},position:[0,0],rotation:0});U._symbolShape=f,this.shapeList.push(f),this.zr.addShape(f)}}},_updateLinkShapes:function(){for(var e=y.create(),t=y.create(),i=y.create(),n=y.create(),a=this._graph.edges,o=0,r=a.length;r>o;o++){var s=a[o],l=s.node1.shape,h=s.node2.shape;y.copy(i,l.position),y.copy(n,h.position);var d=s.shape.style;if(y.sub(e,i,n),y.normalize(e,e),d.offset?(t[0]=e[1],t[1]=-e[0],y.scaleAndAdd(i,i,t,d.offset),y.scaleAndAdd(n,n,t,d.offset)):"bezier-curve"===s.shape.type&&(d.cpX1=(i[0]+n[0])/2-(n[1]-i[1])/4,d.cpY1=(i[1]+n[1])/2-(i[0]-n[0])/4),d.xStart=i[0],d.yStart=i[1],d.xEnd=n[0],d.yEnd=n[1],s.shape.modSelf(),s.shape._symbolShape){var c=s.shape._symbolShape;y.copy(c.position,n),y.scaleAndAdd(c.position,c.position,e,h.style.width/2+2);var p=Math.atan2(e[1],e[0]);c.rotation=Math.PI/2-p,c.modSelf()}}},_syncNodePositions:function(){for(var e=this._graph,t=0;t<e.nodes.length;t++){var i=e.nodes[t],n=i.layout.position,a=i.data,o=i.shape,r=o.fixed||a.fixX,s=o.fixed||a.fixY;r===!0?r=1:isNaN(r)&&(r=0),s===!0?s=1:isNaN(s)&&(s=0),o.position[0]+=(n[0]-o.position[0])*(1-r),o.position[1]+=(n[1]-o.position[1])*(1-s),y.copy(n,o.position);var l=a.name;if(l){var h=this.__nodePositionMap[l];h||(h=this.__nodePositionMap[l]=y.create()),y.copy(h,n)}o.modSelf()}},_step:function(){this._syncNodePositions(),this._updateLinkShapes(),this.zr.refreshNextFrame(),this._layout.temperature>.01?this._layout.step(this._steps):this.messageCenter.dispatch(m.EVENT.FORCE_LAYOUT_END,{},{},this.myChart)},refresh:function(e){if(e&&(this.option=e,this.series=this.option.series),this.legend=this.component.legend,this.legend)this.getColor=function(e){return this.legend.getColor(e)},this.isSelected=function(e){return this.legend.isSelected(e)};else{var t={},i=0;this.getColor=function(e){return t[e]?t[e]:(t[e]||(t[e]=this.zr.getColor(i++)),t[e])},this.isSelected=function(){return!0}}this._init()},dispose:function(){this.clear(),this.shapeList=null,this.effectList=null,this._layout.dispose(),this._layout=null,this.__nodePositionMap={}},getPosition:function(){var e=[];return this._graph.eachNode(function(t){t.layout&&e.push({name:t.data.name,position:Array.prototype.slice.call(t.layout.position)})}),e}},g.inherits(t,r),e("../chart").define("force",t),t}),define("echarts/data/Graph",["require","zrender/tool/util"],function(e){var t=e("zrender/tool/util"),i=function(e){this._directed=e||!1,this.nodes=[],this.edges=[],this._nodesMap={},this._edgesMap={}};i.prototype.isDirected=function(){return this._directed},i.prototype.addNode=function(e,t){if(this._nodesMap[e])return this._nodesMap[e];var n=new i.Node(e,t);return this.nodes.push(n),this._nodesMap[e]=n,n},i.prototype.getNodeById=function(e){return this._nodesMap[e]},i.prototype.addEdge=function(e,t,n){if("string"==typeof e&&(e=this._nodesMap[e]),"string"==typeof t&&(t=this._nodesMap[t]),e&&t){var a=e.id+"-"+t.id;if(this._edgesMap[a])return this._edgesMap[a];var o=new i.Edge(e,t,n);return this._directed&&(e.outEdges.push(o),t.inEdges.push(o)),e.edges.push(o),e!==t&&t.edges.push(o),this.edges.push(o),this._edgesMap[a]=o,o}},i.prototype.removeEdge=function(e){var i=e.node1,n=e.node2,a=i.id+"-"+n.id;this._directed&&(i.outEdges.splice(t.indexOf(i.outEdges,e),1),n.inEdges.splice(t.indexOf(n.inEdges,e),1)),i.edges.splice(t.indexOf(i.edges,e),1),i!==n&&n.edges.splice(t.indexOf(n.edges,e),1),delete this._edgesMap[a],this.edges.splice(t.indexOf(this.edges,e),1)},i.prototype.getEdge=function(e,t){return"string"!=typeof e&&(e=e.id),"string"!=typeof t&&(t=t.id),this._directed?this._edgesMap[e+"-"+t]:this._edgesMap[e+"-"+t]||this._edgesMap[t+"-"+e]},i.prototype.removeNode=function(e){if("string"!=typeof e||(e=this._nodesMap[e])){delete this._nodesMap[e.id],this.nodes.splice(t.indexOf(this.nodes,e),1);for(var i=0;i<this.edges.length;){var n=this.edges[i];n.node1===e||n.node2===e?this.removeEdge(n):i++}}},i.prototype.filterNode=function(e,t){for(var i=this.nodes.length,n=0;i>n;)e.call(t,this.nodes[n],n)?n++:(this.removeNode(this.nodes[n]),i--)},i.prototype.filterEdge=function(e,t){for(var i=this.edges.length,n=0;i>n;)e.call(t,this.edges[n],n)?n++:(this.removeEdge(this.edges[n]),i--)},i.prototype.eachNode=function(e,t){for(var i=this.nodes.length,n=0;i>n;n++)this.nodes[n]&&e.call(t,this.nodes[n],n)},i.prototype.eachEdge=function(e,t){for(var i=this.edges.length,n=0;i>n;n++)this.edges[n]&&e.call(t,this.edges[n],n)},i.prototype.clear=function(){this.nodes.length=0,this.edges.length=0,this._nodesMap={},this._edgesMap={}},i.prototype.breadthFirstTraverse=function(e,t,i,n){if("string"==typeof t&&(t=this._nodesMap[t]),t){var a="edges";"out"===i?a="outEdges":"in"===i&&(a="inEdges");for(var o=0;o<this.nodes.length;o++)this.nodes[o].__visited=!1;if(!e.call(n,t,null))for(var r=[t];r.length;)for(var s=r.shift(),l=s[a],o=0;o<l.length;o++){var h=l[o],d=h.node1===s?h.node2:h.node1;if(!d.__visited){if(e.call(d,d,s))return;r.push(d),d.__visited=!0}}}},i.prototype.clone=function(){for(var e=new i(this._directed),t=0;t<this.nodes.length;t++)e.addNode(this.nodes[t].id,this.nodes[t].data);for(var t=0;t<this.edges.length;t++){var n=this.edges[t];e.addEdge(n.node1.id,n.node2.id,n.data)}return e};var n=function(e,t){this.id=e,this.data=t||null,this.inEdges=[],this.outEdges=[],this.edges=[]};n.prototype.degree=function(){return this.edges.length},n.prototype.inDegree=function(){return this.inEdges.length},n.prototype.outDegree=function(){return this.outEdges.length};var a=function(e,t,i){this.node1=e,this.node2=t,this.data=i||null};return i.Node=n,i.Edge=a,i.fromMatrix=function(e,t,n){if(t&&t.length&&t[0].length===t.length&&e.length===t.length){for(var a=t.length,o=new i(n),r=0;a>r;r++){var s=o.addNode(e[r].id,e[r]);s.data.value=0,n&&(s.data.outValue=s.data.inValue=0)}for(var r=0;a>r;r++)for(var l=0;a>l;l++){var h=t[r][l];n&&(o.nodes[r].data.outValue+=h,o.nodes[l].data.inValue+=h),o.nodes[r].data.value+=h,o.nodes[l].data.value+=h}for(var r=0;a>r;r++)for(var l=r;a>l;l++){var h=t[r][l];if(0!==h){var d=o.nodes[r],c=o.nodes[l],p=o.addEdge(d,c,{});if(p.data.weight=h,r!==l&&n&&t[l][r]){var m=o.addEdge(c,d,{});m.data.weight=t[l][r]}}}return o}},i}),define("echarts/layout/Force",["require","./forceLayoutWorker","zrender/tool/vector"],function(e){function t(){if("undefined"!=typeof Worker&&"undefined"!=typeof Blob)try{var e=new Blob([n.getWorkerCode()]);i=window.URL.createObjectURL(e)}catch(t){i=""}return i}var i,n=e("./forceLayoutWorker"),a=e("zrender/tool/vector"),o=window.requestAnimationFrame||window.msRequestAnimationFrame||window.mozRequestAnimationFrame||window.webkitRequestAnimationFrame||function(e){setTimeout(e,16)},r="undefined"==typeof Float32Array?Array:Float32Array,s=function(e){"undefined"==typeof i&&t(),e=e||{},this.width=e.width||500,this.height=e.height||500,this.center=e.center||[this.width/2,this.height/2],this.ratioScaling=e.ratioScaling||!1,this.scaling=e.scaling||1,this.gravity="undefined"!=typeof e.gravity?e.gravity:1,this.large=e.large||!1,this.preventNodeOverlap=e.preventNodeOverlap||!1,this.preventNodeEdgeOverlap=e.preventNodeEdgeOverlap||!1,this.maxSpeedIncrease=e.maxSpeedIncrease||1,this.onupdate=e.onupdate||function(){},this.temperature=e.temperature||1,this.coolDown=e.coolDown||.99,this._layout=null,this._layoutWorker=null;var n=this,a=this._$onupdate;this._$onupdate=function(e){a.call(n,e)}};return s.prototype.updateConfig=function(){var e=this.width,t=this.height,i=Math.min(e,t),n={center:this.center,width:this.ratioScaling?e:i,height:this.ratioScaling?t:i,scaling:this.scaling||1,gravity:this.gravity||1,barnesHutOptimize:this.large,preventNodeOverlap:this.preventNodeOverlap,preventNodeEdgeOverlap:this.preventNodeEdgeOverlap,maxSpeedIncrease:this.maxSpeedIncrease};if(this._layoutWorker)this._layoutWorker.postMessage({cmd:"updateConfig",config:n});else for(var a in n)this._layout[a]=n[a]},s.prototype.init=function(e,t){if(this._layoutWorker&&(this._layoutWorker.terminate(),this._layoutWorker=null),i&&t)try{this._layoutWorker||(this._layoutWorker=new Worker(i),this._layoutWorker.onmessage=this._$onupdate),this._layout=null}catch(a){this._layoutWorker=null,this._layout||(this._layout=new n)}else this._layout||(this._layout=new n);this.temperature=1,this.graph=e;for(var o=e.nodes.length,s=new r(2*o),l=new r(o),h=new r(o),d=0;o>d;d++){var c=e.nodes[d];s[2*d]=c.layout.position[0],s[2*d+1]=c.layout.position[1],l[d]="undefined"==typeof c.layout.mass?1:c.layout.mass,h[d]="undefined"==typeof c.layout.size?1:c.layout.size,c.layout.__index=d}o=e.edges.length;for(var p=new r(2*o),m=new r(o),d=0;o>d;d++){var u=e.edges[d];p[2*d]=u.node1.layout.__index,p[2*d+1]=u.node2.layout.__index,m[d]=u.layout.weight||1}this._layoutWorker?this._layoutWorker.postMessage({cmd:"init",nodesPosition:s,nodesMass:l,nodesSize:h,edges:p,edgesWeight:m}):(this._layout.initNodes(s,l,h),this._layout.initEdges(p,m)),this.updateConfig()},s.prototype.step=function(e){var t=this.graph.nodes;if(this._layoutWorker){for(var i=new r(2*t.length),n=0;n<t.length;n++){var s=t[n];i[2*n]=s.layout.position[0],i[2*n+1]=s.layout.position[1]}this._layoutWorker.postMessage(i.buffer,[i.buffer]),this._layoutWorker.postMessage({cmd:"update",steps:e,temperature:this.temperature,coolDown:this.coolDown});for(var n=0;e>n;n++)this.temperature*=this.coolDown}else{o(this._$onupdate);for(var n=0;n<t.length;n++){var s=t[n];a.copy(this._layout.nodes[n].position,s.layout.position)}for(var n=0;e>n;n++)this._layout.temperature=this.temperature,this._layout.update(),this.temperature*=this.coolDown}},s.prototype._$onupdate=function(e){if(this._layoutWorker){for(var t=new Float32Array(e.data),i=0;i<this.graph.nodes.length;i++){var n=this.graph.nodes[i];n.layout.position[0]=t[2*i],n.layout.position[1]=t[2*i+1]}this.onupdate&&this.onupdate()}else if(this._layout){for(var i=0;i<this.graph.nodes.length;i++){var n=this.graph.nodes[i];a.copy(n.layout.position,this._layout.nodes[i].position)}this.onupdate&&this.onupdate()}},s.prototype.dispose=function(){this._layoutWorker&&this._layoutWorker.terminate(),this._layoutWorker=null,this._layout=null},s}),define("echarts/layout/forceLayoutWorker",["require","zrender/tool/vector"],function e(t){"use strict";function i(){this.subRegions=[],this.nSubRegions=0,this.node=null,this.mass=0,this.centerOfMass=null,this.bbox=new l(4),this.size=0}function n(){this.position=r.create(),this.force=r.create(),this.forcePrev=r.create(),this.speed=r.create(),this.speedPrev=r.create(),this.mass=1,this.inDegree=0,this.outDegree=0}function a(e,t){this.node1=e,this.node2=t,this.weight=1}function o(){this.barnesHutOptimize=!1,this.barnesHutTheta=1.5,this.repulsionByDegree=!1,this.preventNodeOverlap=!1,this.preventNodeEdgeOverlap=!1,this.strongGravity=!0,this.gravity=1,this.scaling=1,this.edgeWeightInfluence=1,this.center=[0,0],this.width=500,this.height=500,this.maxSpeedIncrease=1,this.nodes=[],this.edges=[],this.bbox=new l(4),this._rootRegion=new i,this._rootRegion.centerOfMass=r.create(),this._massArr=null,this._k=0}var r,s="undefined"==typeof window&&"undefined"==typeof t;r=s?{create:function(e,t){var i=new Float32Array(2);return i[0]=e||0,i[1]=t||0,i},dist:function(e,t){var i=t[0]-e[0],n=t[1]-e[1];return Math.sqrt(i*i+n*n)},len:function(e){var t=e[0],i=e[1];return Math.sqrt(t*t+i*i)},scaleAndAdd:function(e,t,i,n){return e[0]=t[0]+i[0]*n,e[1]=t[1]+i[1]*n,e},scale:function(e,t,i){return e[0]=t[0]*i,e[1]=t[1]*i,e},add:function(e,t,i){return e[0]=t[0]+i[0],e[1]=t[1]+i[1],e},sub:function(e,t,i){return e[0]=t[0]-i[0],e[1]=t[1]-i[1],e},dot:function(e,t){return e[0]*t[0]+e[1]*t[1]},normalize:function(e,t){var i=t[0],n=t[1],a=i*i+n*n;return a>0&&(a=1/Math.sqrt(a),e[0]=t[0]*a,e[1]=t[1]*a),e},negate:function(e,t){return e[0]=-t[0],e[1]=-t[1],e},copy:function(e,t){return e[0]=t[0],e[1]=t[1],e},set:function(e,t,i){return e[0]=t,e[1]=i,e}}:t("zrender/tool/vector");var l="undefined"==typeof Float32Array?Array:Float32Array;if(i.prototype.beforeUpdate=function(){for(var e=0;e<this.nSubRegions;e++)this.subRegions[e].beforeUpdate();this.mass=0,this.centerOfMass&&(this.centerOfMass[0]=0,this.centerOfMass[1]=0),this.nSubRegions=0,this.node=null},i.prototype.afterUpdate=function(){this.subRegions.length=this.nSubRegions;for(var e=0;e<this.nSubRegions;e++)this.subRegions[e].afterUpdate()},i.prototype.addNode=function(e){if(0===this.nSubRegions){if(null==this.node)return void(this.node=e);this._addNodeToSubRegion(this.node),this.node=null}this._addNodeToSubRegion(e),this._updateCenterOfMass(e)},i.prototype.findSubRegion=function(e,t){for(var i=0;i<this.nSubRegions;i++){var n=this.subRegions[i];if(n.contain(e,t))return n}},i.prototype.contain=function(e,t){return this.bbox[0]<=e&&this.bbox[2]>=e&&this.bbox[1]<=t&&this.bbox[3]>=t},i.prototype.setBBox=function(e,t,i,n){this.bbox[0]=e,this.bbox[1]=t,this.bbox[2]=i,this.bbox[3]=n,this.size=(i-e+n-t)/2},i.prototype._newSubRegion=function(){var e=this.subRegions[this.nSubRegions];return e||(e=new i,this.subRegions[this.nSubRegions]=e),this.nSubRegions++,e},i.prototype._addNodeToSubRegion=function(e){var t=this.findSubRegion(e.position[0],e.position[1]),i=this.bbox;if(!t){var n=(i[0]+i[2])/2,a=(i[1]+i[3])/2,o=(i[2]-i[0])/2,r=(i[3]-i[1])/2,s=e.position[0]>=n?1:0,l=e.position[1]>=a?1:0,t=this._newSubRegion();t.setBBox(s*o+i[0],l*r+i[1],(s+1)*o+i[0],(l+1)*r+i[1])}t.addNode(e)},i.prototype._updateCenterOfMass=function(e){null==this.centerOfMass&&(this.centerOfMass=r.create());var t=this.centerOfMass[0]*this.mass,i=this.centerOfMass[1]*this.mass;t+=e.position[0]*e.mass,i+=e.position[1]*e.mass,this.mass+=e.mass,this.centerOfMass[0]=t/this.mass,this.centerOfMass[1]=i/this.mass},o.prototype.nodeToNodeRepulsionFactor=function(e,t,i){return i*i*e/t},o.prototype.edgeToNodeRepulsionFactor=function(e,t,i){return i*e/t},o.prototype.attractionFactor=function(e,t,i){return e*t/i},o.prototype.initNodes=function(e,t,i){this.temperature=1;var a=e.length/2;this.nodes.length=0;for(var o="undefined"!=typeof i,r=0;a>r;r++){var s=new n;s.position[0]=e[2*r],s.position[1]=e[2*r+1],s.mass=t[r],o&&(s.size=i[r]),this.nodes.push(s)}this._massArr=t,o&&(this._sizeArr=i)},o.prototype.initEdges=function(e,t){var i=e.length/2;this.edges.length=0;for(var n="undefined"!=typeof t,o=0;i>o;o++){var r=e[2*o],s=e[2*o+1],l=this.nodes[r],h=this.nodes[s];if(l&&h){l.outDegree++,h.inDegree++;var d=new a(l,h);n&&(d.weight=t[o]),this.edges.push(d)}}},o.prototype.update=function(){var e=this.nodes.length;if(this.updateBBox(),this._k=.4*this.scaling*Math.sqrt(this.width*this.height/e),this.barnesHutOptimize){this._rootRegion.setBBox(this.bbox[0],this.bbox[1],this.bbox[2],this.bbox[3]),this._rootRegion.beforeUpdate();for(var t=0;e>t;t++)this._rootRegion.addNode(this.nodes[t]);this._rootRegion.afterUpdate()}else{var i=0,n=this._rootRegion.centerOfMass;r.set(n,0,0);for(var t=0;e>t;t++){var a=this.nodes[t];i+=a.mass,r.scaleAndAdd(n,n,a.position,a.mass)}i>0&&r.scale(n,n,1/i)}this.updateForce(),this.updatePosition()},o.prototype.updateForce=function(){for(var e=this.nodes.length,t=0;e>t;t++){var i=this.nodes[t];r.copy(i.forcePrev,i.force),r.copy(i.speedPrev,i.speed),r.set(i.force,0,0)}this.updateNodeNodeForce(),this.gravity>0&&this.updateGravityForce(),this.updateEdgeForce(),this.preventNodeEdgeOverlap&&this.updateNodeEdgeForce()},o.prototype.updatePosition=function(){for(var e=this.nodes.length,t=r.create(),i=0;e>i;i++){var n=this.nodes[i],a=n.speed;r.scale(n.force,n.force,1/30);var o=r.len(n.force)+.1,s=Math.min(o,500)/o;r.scale(n.force,n.force,s),r.add(a,a,n.force),r.scale(a,a,this.temperature),r.sub(t,a,n.speedPrev);var l=r.len(t);if(l>0){r.scale(t,t,1/l);var h=r.len(n.speedPrev);h>0&&(l=Math.min(l/h,this.maxSpeedIncrease)*h,r.scaleAndAdd(a,n.speedPrev,t,l))}var d=r.len(a),s=Math.min(d,100)/(d+.1);r.scale(a,a,s),r.add(n.position,n.position,a)}},o.prototype.updateNodeNodeForce=function(){for(var e=this.nodes.length,t=0;e>t;t++){var i=this.nodes[t];if(this.barnesHutOptimize)this.applyRegionToNodeRepulsion(this._rootRegion,i);else for(var n=t+1;e>n;n++){var a=this.nodes[n];this.applyNodeToNodeRepulsion(i,a,!1)}}},o.prototype.updateGravityForce=function(){for(var e=0;e<this.nodes.length;e++)this.applyNodeGravity(this.nodes[e])},o.prototype.updateEdgeForce=function(){for(var e=0;e<this.edges.length;e++)this.applyEdgeAttraction(this.edges[e])},o.prototype.updateNodeEdgeForce=function(){for(var e=0;e<this.nodes.length;e++)for(var t=0;t<this.edges.length;t++)this.applyEdgeToNodeRepulsion(this.edges[t],this.nodes[e])},o.prototype.applyRegionToNodeRepulsion=function(){var e=r.create();return function(t,i){if(t.node)this.applyNodeToNodeRepulsion(t.node,i,!0);else{if(0===t.mass&&0===i.mass)return;r.sub(e,i.position,t.centerOfMass);var n=e[0]*e[0]+e[1]*e[1];if(n>this.barnesHutTheta*t.size*t.size){var a=this._k*this._k*(i.mass+t.mass)/(n+1);r.scaleAndAdd(i.force,i.force,e,2*a)}else for(var o=0;o<t.nSubRegions;o++)this.applyRegionToNodeRepulsion(t.subRegions[o],i)}}}(),o.prototype.applyNodeToNodeRepulsion=function(){var e=r.create();return function(t,i,n){if(t!==i&&(0!==t.mass||0!==i.mass)){r.sub(e,t.position,i.position);var a=e[0]*e[0]+e[1]*e[1];if(0!==a){var o,s=t.mass+i.mass,l=Math.sqrt(a);r.scale(e,e,1/l),this.preventNodeOverlap?(l=l-t.size-i.size,l>0?o=this.nodeToNodeRepulsionFactor(s,l,this._k):0>=l&&(o=this._k*this._k*10*s)):o=this.nodeToNodeRepulsionFactor(s,l,this._k),n||r.scaleAndAdd(t.force,t.force,e,2*o),r.scaleAndAdd(i.force,i.force,e,2*-o)}}}}(),o.prototype.applyEdgeAttraction=function(){var e=r.create();return function(t){var i=t.node1,n=t.node2;r.sub(e,i.position,n.position);var a,o=r.len(e);a=0===this.edgeWeightInfluence?1:1==this.edgeWeightInfluence?t.weight:Math.pow(t.weight,this.edgeWeightInfluence);var s;if(!(this.preventOverlap&&(o=o-i.size-n.size,0>=o))){var s=this.attractionFactor(a,o,this._k);r.scaleAndAdd(i.force,i.force,e,-s),r.scaleAndAdd(n.force,n.force,e,s)}}}(),o.prototype.applyNodeGravity=function(){var e=r.create();return function(t){r.sub(e,this.center,t.position),this.width>this.height?e[1]*=this.width/this.height:e[0]*=this.height/this.width;var i=r.len(e)/100;this.strongGravity?r.scaleAndAdd(t.force,t.force,e,i*this.gravity*t.mass):r.scaleAndAdd(t.force,t.force,e,this.gravity*t.mass/(i+1))}}(),o.prototype.applyEdgeToNodeRepulsion=function(){var e=r.create(),t=r.create(),i=r.create();return function(n,a){var o=n.node1,s=n.node2;if(o!==a&&s!==a){r.sub(e,s.position,o.position),r.sub(t,a.position,o.position);var l=r.len(e);r.scale(e,e,1/l);var h=r.dot(e,t);if(!(0>h||h>l)){r.scaleAndAdd(i,o.position,e,h);var d=r.dist(i,a.position)-a.size,c=this.edgeToNodeRepulsionFactor(a.mass,Math.max(d,.1),100);r.sub(e,a.position,i),r.normalize(e,e),r.scaleAndAdd(a.force,a.force,e,c),r.scaleAndAdd(o.force,o.force,e,-c),r.scaleAndAdd(s.force,s.force,e,-c)}}}}(),o.prototype.updateBBox=function(){for(var e=1/0,t=1/0,i=-(1/0),n=-(1/0),a=0;a<this.nodes.length;a++){var o=this.nodes[a].position;e=Math.min(e,o[0]),t=Math.min(t,o[1]),i=Math.max(i,o[0]),n=Math.max(n,o[1])}this.bbox[0]=e,this.bbox[1]=t,this.bbox[2]=i,this.bbox[3]=n},o.getWorkerCode=function(){var t=e.toString();return t.slice(t.indexOf("{")+1,t.lastIndexOf("return"))},s){var h=null;self.onmessage=function(e){if(e.data instanceof ArrayBuffer){if(!h)return;for(var t=new Float32Array(e.data),i=t.length/2,n=0;i>n;n++){var a=h.nodes[n];a.position[0]=t[2*n],a.position[1]=t[2*n+1]}}else switch(e.data.cmd){case"init":h||(h=new o),h.initNodes(e.data.nodesPosition,e.data.nodesMass,e.data.nodesSize),h.initEdges(e.data.edges,e.data.edgesWeight);break;case"updateConfig":if(h)for(var r in e.data.config)h[r]=e.data.config[r];break;case"update":var s=e.data.steps;if(h){var i=h.nodes.length,t=new Float32Array(2*i);h.temperature=e.data.temperature;for(var n=0;s>n;n++)h.update(),h.temperature*=e.data.coolDown;for(var n=0;i>n;n++){var a=h.nodes[n];t[2*n]=a.position[0],t[2*n+1]=a.position[1]}self.postMessage(t.buffer,[t.buffer])}else{var l=new Float32Array;self.postMessage(l.buffer,[l.buffer])}}}}return o});
+define('echarts/chart/force', [
+    'require',
+    './base',
+    '../data/Graph',
+    '../layout/Force',
+    'zrender/shape/Line',
+    'zrender/shape/BezierCurve',
+    'zrender/shape/Image',
+    '../util/shape/Icon',
+    '../config',
+    '../util/ecData',
+    'zrender/tool/util',
+    'zrender/config',
+    'zrender/tool/vector',
+    '../chart'
+], function (require) {
+    'use strict';
+    var ChartBase = require('./base');
+    var Graph = require('../data/Graph');
+    var ForceLayout = require('../layout/Force');
+    var LineShape = require('zrender/shape/Line');
+    var BezierCurveShape = require('zrender/shape/BezierCurve');
+    var ImageShape = require('zrender/shape/Image');
+    var IconShape = require('../util/shape/Icon');
+    var ecConfig = require('../config');
+    ecConfig.force = {
+        zlevel: 1,
+        z: 2,
+        center: [
+            '50%',
+            '50%'
+        ],
+        size: '100%',
+        preventOverlap: false,
+        coolDown: 0.99,
+        minRadius: 10,
+        maxRadius: 20,
+        ratioScaling: false,
+        large: false,
+        useWorker: false,
+        steps: 1,
+        scaling: 1,
+        gravity: 1,
+        symbol: 'circle',
+        symbolSize: 0,
+        linkSymbol: null,
+        linkSymbolSize: [
+            10,
+            15
+        ],
+        draggable: true,
+        clickable: true,
+        roam: false,
+        itemStyle: {
+            normal: {
+                label: {
+                    show: false,
+                    position: 'inside'
+                },
+                nodeStyle: {
+                    brushType: 'both',
+                    borderColor: '#5182ab',
+                    borderWidth: 1
+                },
+                linkStyle: {
+                    color: '#5182ab',
+                    width: 1,
+                    type: 'line'
+                }
+            },
+            emphasis: {
+                label: { show: false },
+                nodeStyle: {},
+                linkStyle: { opacity: 0 }
+            }
+        }
+    };
+    var ecData = require('../util/ecData');
+    var zrUtil = require('zrender/tool/util');
+    var zrConfig = require('zrender/config');
+    var vec2 = require('zrender/tool/vector');
+    function Force(ecTheme, messageCenter, zr, option, myChart) {
+        var self = this;
+        ChartBase.call(this, ecTheme, messageCenter, zr, option, myChart);
+        this.__nodePositionMap = {};
+        this._graph = new Graph(true);
+        this._layout = new ForceLayout();
+        this._layout.onupdate = function () {
+            self._step();
+        };
+        this._steps = 1;
+        this.ondragstart = function () {
+            ondragstart.apply(self, arguments);
+        };
+        this.ondragend = function () {
+            ondragend.apply(self, arguments);
+        };
+        this.ondrop = function () {
+        };
+        this.shapeHandler.ondragstart = function () {
+            self.isDragstart = true;
+        };
+        this.onmousemove = function () {
+            onmousemove.apply(self, arguments);
+        };
+        this.refresh(option);
+    }
+    Force.prototype = {
+        constructor: Force,
+        type: ecConfig.CHART_TYPE_FORCE,
+        _init: function () {
+            var legend = this.component.legend;
+            var series = this.series;
+            var serieName;
+            this.clear();
+            for (var i = 0, l = series.length; i < l; i++) {
+                var serie = series[i];
+                if (serie.type === ecConfig.CHART_TYPE_FORCE) {
+                    series[i] = this.reformOption(series[i]);
+                    serieName = series[i].name || '';
+                    this.selectedMap[serieName] = legend ? legend.isSelected(serieName) : true;
+                    if (!this.selectedMap[serieName]) {
+                        continue;
+                    }
+                    this.buildMark(i);
+                    this._initSerie(serie, i);
+                    break;
+                }
+            }
+            this.animationEffect();
+        },
+        _getNodeCategory: function (serie, node) {
+            return serie.categories && serie.categories[node.category || 0];
+        },
+        _getNodeQueryTarget: function (serie, node, type) {
+            type = type || 'normal';
+            var category = this._getNodeCategory(serie, node) || {};
+            return [
+                node.itemStyle && node.itemStyle[type],
+                category && category.itemStyle && category.itemStyle[type],
+                serie.itemStyle[type].nodeStyle
+            ];
+        },
+        _getEdgeQueryTarget: function (serie, edge, type) {
+            type = type || 'normal';
+            return [
+                edge.itemStyle && edge.itemStyle[type],
+                serie.itemStyle[type].linkStyle
+            ];
+        },
+        _initSerie: function (serie, serieIdx) {
+            this._temperature = 1;
+            if (serie.data) {
+                this._graph = this._getSerieGraphFromDataMatrix(serie);
+            } else {
+                this._graph = this._getSerieGraphFromNodeLinks(serie);
+            }
+            this._buildLinkShapes(serie, serieIdx);
+            this._buildNodeShapes(serie, serieIdx);
+            var panable = serie.roam === true || serie.roam === 'move';
+            var zoomable = serie.roam === true || serie.roam === 'scale';
+            this.zr.modLayer(this.getZlevelBase(), {
+                panable: panable,
+                zoomable: zoomable
+            });
+            if (this.query('markPoint.effect.show') || this.query('markLine.effect.show')) {
+                this.zr.modLayer(ecConfig.EFFECT_ZLEVEL, {
+                    panable: panable,
+                    zoomable: zoomable
+                });
+            }
+            this._initLayout(serie);
+            this._step();
+        },
+        _getSerieGraphFromDataMatrix: function (serie) {
+            var nodesData = [];
+            var count = 0;
+            var matrix = [];
+            for (var i = 0; i < serie.matrix.length; i++) {
+                matrix[i] = serie.matrix[i].slice();
+            }
+            var data = serie.data || serie.nodes;
+            for (var i = 0; i < data.length; i++) {
+                var node = {};
+                var group = data[i];
+                for (var key in group) {
+                    if (key === 'name') {
+                        node['id'] = group['name'];
+                    } else {
+                        node[key] = group[key];
+                    }
+                }
+                var category = this._getNodeCategory(serie, group);
+                var name = category ? category.name : group.name;
+                this.selectedMap[name] = this.isSelected(name);
+                if (this.selectedMap[name]) {
+                    nodesData.push(node);
+                    count++;
+                } else {
+                    matrix.splice(count, 1);
+                    for (var j = 0; j < matrix.length; j++) {
+                        matrix[j].splice(count, 1);
+                    }
+                }
+            }
+            var graph = Graph.fromMatrix(nodesData, matrix, true);
+            graph.eachNode(function (n, idx) {
+                n.layout = {
+                    size: n.data.value,
+                    mass: 0
+                };
+                n.rawIndex = idx;
+            });
+            graph.eachEdge(function (e) {
+                e.layout = { weight: e.data.weight };
+            });
+            return graph;
+        },
+        _getSerieGraphFromNodeLinks: function (serie) {
+            var graph = new Graph(true);
+            var nodes = serie.data || serie.nodes;
+            for (var i = 0, len = nodes.length; i < len; i++) {
+                var n = nodes[i];
+                if (!n || n.ignore) {
+                    continue;
+                }
+                var category = this._getNodeCategory(serie, n);
+                var name = category ? category.name : n.name;
+                this.selectedMap[name] = this.isSelected(name);
+                if (this.selectedMap[name]) {
+                    var node = graph.addNode(n.name, n);
+                    node.rawIndex = i;
+                }
+            }
+            for (var i = 0, len = serie.links.length; i < len; i++) {
+                var e = serie.links[i];
+                var n1 = e.source;
+                var n2 = e.target;
+                if (typeof n1 === 'number') {
+                    n1 = nodes[n1];
+                    if (n1) {
+                        n1 = n1.name;
+                    }
+                }
+                if (typeof n2 === 'number') {
+                    n2 = nodes[n2];
+                    if (n2) {
+                        n2 = n2.name;
+                    }
+                }
+                var edge = graph.addEdge(n1, n2, e);
+                if (edge) {
+                    edge.rawIndex = i;
+                }
+            }
+            graph.eachNode(function (n) {
+                var value = n.data.value;
+                if (value == null) {
+                    value = 0;
+                    for (var i = 0; i < n.edges.length; i++) {
+                        value += n.edges[i].data.weight || 0;
+                    }
+                }
+                n.layout = {
+                    size: value,
+                    mass: 0
+                };
+            });
+            graph.eachEdge(function (e) {
+                e.layout = { weight: e.data.weight == null ? 1 : e.data.weight };
+            });
+            return graph;
+        },
+        _initLayout: function (serie) {
+            var graph = this._graph;
+            var len = graph.nodes.length;
+            var minRadius = this.query(serie, 'minRadius');
+            var maxRadius = this.query(serie, 'maxRadius');
+            this._steps = serie.steps || 1;
+            this._layout.center = this.parseCenter(this.zr, serie.center);
+            this._layout.width = this.parsePercent(serie.size, this.zr.getWidth());
+            this._layout.height = this.parsePercent(serie.size, this.zr.getHeight());
+            this._layout.large = serie.large;
+            this._layout.scaling = serie.scaling;
+            this._layout.ratioScaling = serie.ratioScaling;
+            this._layout.gravity = serie.gravity;
+            this._layout.temperature = 1;
+            this._layout.coolDown = serie.coolDown;
+            this._layout.preventNodeEdgeOverlap = serie.preventOverlap;
+            this._layout.preventNodeOverlap = serie.preventOverlap;
+            var min = Infinity;
+            var max = -Infinity;
+            for (var i = 0; i < len; i++) {
+                var gNode = graph.nodes[i];
+                max = Math.max(gNode.layout.size, max);
+                min = Math.min(gNode.layout.size, min);
+            }
+            var divider = max - min;
+            for (var i = 0; i < len; i++) {
+                var gNode = graph.nodes[i];
+                if (divider > 0) {
+                    gNode.layout.size = (gNode.layout.size - min) * (maxRadius - minRadius) / divider + minRadius;
+                    gNode.layout.mass = gNode.layout.size / maxRadius;
+                } else {
+                    gNode.layout.size = (maxRadius - minRadius) / 2;
+                    gNode.layout.mass = 0.5;
+                }
+            }
+            for (var i = 0; i < len; i++) {
+                var gNode = graph.nodes[i];
+                if (typeof this.__nodePositionMap[gNode.id] !== 'undefined') {
+                    gNode.layout.position = vec2.create();
+                    vec2.copy(gNode.layout.position, this.__nodePositionMap[gNode.id]);
+                } else if (typeof gNode.data.initial !== 'undefined') {
+                    gNode.layout.position = vec2.create();
+                    vec2.copy(gNode.layout.position, gNode.data.initial);
+                } else {
+                    var center = this._layout.center;
+                    var size = Math.min(this._layout.width, this._layout.height);
+                    gNode.layout.position = _randomInSquare(center[0], center[1], size * 0.8);
+                }
+                var style = gNode.shape.style;
+                var radius = gNode.layout.size;
+                style.width = style.width || radius * 2;
+                style.height = style.height || radius * 2;
+                style.x = -style.width / 2;
+                style.y = -style.height / 2;
+                vec2.copy(gNode.shape.position, gNode.layout.position);
+            }
+            len = graph.edges.length;
+            max = -Infinity;
+            for (var i = 0; i < len; i++) {
+                var e = graph.edges[i];
+                if (e.layout.weight > max) {
+                    max = e.layout.weight;
+                }
+            }
+            for (var i = 0; i < len; i++) {
+                var e = graph.edges[i];
+                e.layout.weight /= max;
+            }
+            this._layout.init(graph, serie.useWorker);
+        },
+        _buildNodeShapes: function (serie, serieIdx) {
+            var graph = this._graph;
+            var categories = this.query(serie, 'categories');
+            graph.eachNode(function (node) {
+                var category = this._getNodeCategory(serie, node.data);
+                var queryTarget = [
+                    node.data,
+                    category,
+                    serie
+                ];
+                var styleQueryTarget = this._getNodeQueryTarget(serie, node.data);
+                var emphasisStyleQueryTarget = this._getNodeQueryTarget(serie, node.data, 'emphasis');
+                var shape = new IconShape({
+                    style: {
+                        x: 0,
+                        y: 0,
+                        color: this.deepQuery(styleQueryTarget, 'color'),
+                        brushType: 'both',
+                        strokeColor: this.deepQuery(styleQueryTarget, 'strokeColor') || this.deepQuery(styleQueryTarget, 'borderColor'),
+                        lineWidth: this.deepQuery(styleQueryTarget, 'lineWidth') || this.deepQuery(styleQueryTarget, 'borderWidth')
+                    },
+                    highlightStyle: {
+                        color: this.deepQuery(emphasisStyleQueryTarget, 'color'),
+                        strokeColor: this.deepQuery(emphasisStyleQueryTarget, 'strokeColor') || this.deepQuery(emphasisStyleQueryTarget, 'borderColor'),
+                        lineWidth: this.deepQuery(emphasisStyleQueryTarget, 'lineWidth') || this.deepQuery(emphasisStyleQueryTarget, 'borderWidth')
+                    },
+                    clickable: serie.clickable,
+                    zlevel: this.getZlevelBase(),
+                    z: this.getZBase()
+                });
+                if (!shape.style.color) {
+                    shape.style.color = category ? this.getColor(category.name) : this.getColor(node.id);
+                }
+                shape.style.iconType = this.deepQuery(queryTarget, 'symbol');
+                shape.style.width = shape.style.height = (this.deepQuery(queryTarget, 'symbolSize') || 0) * 2;
+                if (shape.style.iconType.match('image')) {
+                    shape.style.image = shape.style.iconType.replace(new RegExp('^image:\\/\\/'), '');
+                    shape = new ImageShape({
+                        style: shape.style,
+                        highlightStyle: shape.highlightStyle,
+                        clickable: shape.clickable,
+                        zlevel: this.getZlevelBase(),
+                        z: this.getZBase()
+                    });
+                }
+                if (this.deepQuery(queryTarget, 'itemStyle.normal.label.show')) {
+                    shape.style.text = node.data.label == null ? node.id : node.data.label;
+                    shape.style.textPosition = this.deepQuery(queryTarget, 'itemStyle.normal.label.position');
+                    shape.style.textColor = this.deepQuery(queryTarget, 'itemStyle.normal.label.textStyle.color');
+                    shape.style.textFont = this.getFont(this.deepQuery(queryTarget, 'itemStyle.normal.label.textStyle') || {});
+                }
+                if (this.deepQuery(queryTarget, 'itemStyle.emphasis.label.show')) {
+                    shape.highlightStyle.textPosition = this.deepQuery(queryTarget, 'itemStyle.emphasis.label.position');
+                    shape.highlightStyle.textColor = this.deepQuery(queryTarget, 'itemStyle.emphasis.label.textStyle.color');
+                    shape.highlightStyle.textFont = this.getFont(this.deepQuery(queryTarget, 'itemStyle.emphasis.label.textStyle') || {});
+                }
+                if (this.deepQuery(queryTarget, 'draggable')) {
+                    this.setCalculable(shape);
+                    shape.dragEnableTime = 0;
+                    shape.draggable = true;
+                    shape.ondragstart = this.shapeHandler.ondragstart;
+                    shape.ondragover = null;
+                }
+                var categoryName = '';
+                if (typeof node.category !== 'undefined') {
+                    var category = categories[node.category];
+                    categoryName = category && category.name || '';
+                }
+                ecData.pack(shape, serie, serieIdx, node.data, node.rawIndex, node.data.name || '', node.category);
+                this.shapeList.push(shape);
+                this.zr.addShape(shape);
+                node.shape = shape;
+            }, this);
+        },
+        _buildLinkShapes: function (serie, serieIdx) {
+            var graph = this._graph;
+            var len = graph.edges.length;
+            for (var i = 0; i < len; i++) {
+                var gEdge = graph.edges[i];
+                var link = gEdge.data;
+                var source = gEdge.node1;
+                var target = gEdge.node2;
+                var otherEdge = graph.getEdge(target, source);
+                var queryTarget = this._getEdgeQueryTarget(serie, link);
+                var linkType = this.deepQuery(queryTarget, 'type');
+                if (serie.linkSymbol && serie.linkSymbol !== 'none') {
+                    linkType = 'line';
+                }
+                var LinkShapeCtor = linkType === 'line' ? LineShape : BezierCurveShape;
+                var linkShape = new LinkShapeCtor({
+                    style: {
+                        xStart: 0,
+                        yStart: 0,
+                        xEnd: 0,
+                        yEnd: 0
+                    },
+                    clickable: this.query(serie, 'clickable'),
+                    highlightStyle: {},
+                    zlevel: this.getZlevelBase(),
+                    z: this.getZBase()
+                });
+                if (otherEdge && otherEdge.shape) {
+                    linkShape.style.offset = 4;
+                    otherEdge.shape.style.offset = 4;
+                }
+                zrUtil.merge(linkShape.style, this.query(serie, 'itemStyle.normal.linkStyle'), true);
+                zrUtil.merge(linkShape.highlightStyle, this.query(serie, 'itemStyle.emphasis.linkStyle'), true);
+                if (typeof link.itemStyle !== 'undefined') {
+                    if (link.itemStyle.normal) {
+                        zrUtil.merge(linkShape.style, link.itemStyle.normal, true);
+                    }
+                    if (link.itemStyle.emphasis) {
+                        zrUtil.merge(linkShape.highlightStyle, link.itemStyle.emphasis, true);
+                    }
+                }
+                linkShape.style.lineWidth = linkShape.style.lineWidth || linkShape.style.width;
+                linkShape.style.strokeColor = linkShape.style.strokeColor || linkShape.style.color;
+                linkShape.highlightStyle.lineWidth = linkShape.highlightStyle.lineWidth || linkShape.highlightStyle.width;
+                linkShape.highlightStyle.strokeColor = linkShape.highlightStyle.strokeColor || linkShape.highlightStyle.color;
+                ecData.pack(linkShape, serie, serieIdx, gEdge.data, gEdge.rawIndex == null ? i : gEdge.rawIndex, gEdge.data.name || source.id + ' - ' + target.id, source.id, target.id);
+                this.shapeList.push(linkShape);
+                this.zr.addShape(linkShape);
+                gEdge.shape = linkShape;
+                if (serie.linkSymbol && serie.linkSymbol !== 'none') {
+                    var symbolShape = new IconShape({
+                        style: {
+                            x: -5,
+                            y: 0,
+                            width: serie.linkSymbolSize[0],
+                            height: serie.linkSymbolSize[1],
+                            iconType: serie.linkSymbol,
+                            brushType: 'fill',
+                            color: linkShape.style.strokeColor
+                        },
+                        highlightStyle: { brushType: 'fill' },
+                        position: [
+                            0,
+                            0
+                        ],
+                        rotation: 0
+                    });
+                    linkShape._symbolShape = symbolShape;
+                    this.shapeList.push(symbolShape);
+                    this.zr.addShape(symbolShape);
+                }
+            }
+        },
+        _updateLinkShapes: function () {
+            var v = vec2.create();
+            var n = vec2.create();
+            var p1 = vec2.create();
+            var p2 = vec2.create();
+            var edges = this._graph.edges;
+            for (var i = 0, len = edges.length; i < len; i++) {
+                var edge = edges[i];
+                var sourceShape = edge.node1.shape;
+                var targetShape = edge.node2.shape;
+                vec2.copy(p1, sourceShape.position);
+                vec2.copy(p2, targetShape.position);
+                var edgeShapeStyle = edge.shape.style;
+                vec2.sub(v, p1, p2);
+                vec2.normalize(v, v);
+                if (edgeShapeStyle.offset) {
+                    n[0] = v[1];
+                    n[1] = -v[0];
+                    vec2.scaleAndAdd(p1, p1, n, edgeShapeStyle.offset);
+                    vec2.scaleAndAdd(p2, p2, n, edgeShapeStyle.offset);
+                } else if (edge.shape.type === 'bezier-curve') {
+                    edgeShapeStyle.cpX1 = (p1[0] + p2[0]) / 2 - (p2[1] - p1[1]) / 4;
+                    edgeShapeStyle.cpY1 = (p1[1] + p2[1]) / 2 - (p1[0] - p2[0]) / 4;
+                }
+                edgeShapeStyle.xStart = p1[0];
+                edgeShapeStyle.yStart = p1[1];
+                edgeShapeStyle.xEnd = p2[0];
+                edgeShapeStyle.yEnd = p2[1];
+                edge.shape.modSelf();
+                if (edge.shape._symbolShape) {
+                    var symbolShape = edge.shape._symbolShape;
+                    vec2.copy(symbolShape.position, p2);
+                    vec2.scaleAndAdd(symbolShape.position, symbolShape.position, v, targetShape.style.width / 2 + 2);
+                    var angle = Math.atan2(v[1], v[0]);
+                    symbolShape.rotation = Math.PI / 2 - angle;
+                    symbolShape.modSelf();
+                }
+            }
+        },
+        _syncNodePositions: function () {
+            var graph = this._graph;
+            for (var i = 0; i < graph.nodes.length; i++) {
+                var gNode = graph.nodes[i];
+                var position = gNode.layout.position;
+                var node = gNode.data;
+                var shape = gNode.shape;
+                var fixX = shape.fixed || node.fixX;
+                var fixY = shape.fixed || node.fixY;
+                if (fixX === true) {
+                    fixX = 1;
+                } else if (isNaN(fixX)) {
+                    fixX = 0;
+                }
+                if (fixY === true) {
+                    fixY = 1;
+                } else if (isNaN(fixY)) {
+                    fixY = 0;
+                }
+                shape.position[0] += (position[0] - shape.position[0]) * (1 - fixX);
+                shape.position[1] += (position[1] - shape.position[1]) * (1 - fixY);
+                vec2.copy(position, shape.position);
+                var nodeName = node.name;
+                if (nodeName) {
+                    var gPos = this.__nodePositionMap[nodeName];
+                    if (!gPos) {
+                        gPos = this.__nodePositionMap[nodeName] = vec2.create();
+                    }
+                    vec2.copy(gPos, position);
+                }
+                shape.modSelf();
+            }
+        },
+        _step: function (e) {
+            this._syncNodePositions();
+            this._updateLinkShapes();
+            this.zr.refreshNextFrame();
+            if (this._layout.temperature > 0.01) {
+                this._layout.step(this._steps);
+            } else {
+                this.messageCenter.dispatch(ecConfig.EVENT.FORCE_LAYOUT_END, {}, {}, this.myChart);
+            }
+        },
+        refresh: function (newOption) {
+            if (newOption) {
+                this.option = newOption;
+                this.series = this.option.series;
+            }
+            this.legend = this.component.legend;
+            if (this.legend) {
+                this.getColor = function (param) {
+                    return this.legend.getColor(param);
+                };
+                this.isSelected = function (param) {
+                    return this.legend.isSelected(param);
+                };
+            } else {
+                var colorMap = {};
+                var count = 0;
+                this.getColor = function (key) {
+                    if (colorMap[key]) {
+                        return colorMap[key];
+                    }
+                    if (!colorMap[key]) {
+                        colorMap[key] = this.zr.getColor(count++);
+                    }
+                    return colorMap[key];
+                };
+                this.isSelected = function () {
+                    return true;
+                };
+            }
+            this._init();
+        },
+        dispose: function () {
+            this.clear();
+            this.shapeList = null;
+            this.effectList = null;
+            this._layout.dispose();
+            this._layout = null;
+            this.__nodePositionMap = {};
+        },
+        getPosition: function () {
+            var position = [];
+            this._graph.eachNode(function (n) {
+                if (n.layout) {
+                    position.push({
+                        name: n.data.name,
+                        position: Array.prototype.slice.call(n.layout.position)
+                    });
+                }
+            });
+            return position;
+        }
+    };
+    function ondragstart(param) {
+        if (!this.isDragstart || !param.target) {
+            return;
+        }
+        var shape = param.target;
+        shape.fixed = true;
+        this.isDragstart = false;
+        this.zr.on(zrConfig.EVENT.MOUSEMOVE, this.onmousemove);
+    }
+    function onmousemove() {
+        this._layout.temperature = 0.8;
+        this._step();
+    }
+    function ondragend(param, status) {
+        if (!this.isDragend || !param.target) {
+            return;
+        }
+        var shape = param.target;
+        shape.fixed = false;
+        status.dragIn = true;
+        status.needRefresh = false;
+        this.isDragend = false;
+        this.zr.un(zrConfig.EVENT.MOUSEMOVE, this.onmousemove);
+    }
+    function _randomInSquare(x, y, size) {
+        var v = vec2.create();
+        v[0] = (Math.random() - 0.5) * size + x;
+        v[1] = (Math.random() - 0.5) * size + y;
+        return v;
+    }
+    zrUtil.inherits(Force, ChartBase);
+    require('../chart').define('force', Force);
+    return Force;
+});define('echarts/data/Graph', [
+    'require',
+    'zrender/tool/util'
+], function (require) {
+    var util = require('zrender/tool/util');
+    'use strict';
+    var Graph = function (directed) {
+        this._directed = directed || false;
+        this.nodes = [];
+        this.edges = [];
+        this._nodesMap = {};
+        this._edgesMap = {};
+    };
+    Graph.prototype.isDirected = function () {
+        return this._directed;
+    };
+    Graph.prototype.addNode = function (id, data) {
+        if (this._nodesMap[id]) {
+            return this._nodesMap[id];
+        }
+        var node = new Graph.Node(id, data);
+        this.nodes.push(node);
+        this._nodesMap[id] = node;
+        return node;
+    };
+    Graph.prototype.getNodeById = function (id) {
+        return this._nodesMap[id];
+    };
+    Graph.prototype.addEdge = function (n1, n2, data) {
+        if (typeof n1 == 'string') {
+            n1 = this._nodesMap[n1];
+        }
+        if (typeof n2 == 'string') {
+            n2 = this._nodesMap[n2];
+        }
+        if (!n1 || !n2) {
+            return;
+        }
+        var key = n1.id + '-' + n2.id;
+        if (this._edgesMap[key]) {
+            return this._edgesMap[key];
+        }
+        var edge = new Graph.Edge(n1, n2, data);
+        if (this._directed) {
+            n1.outEdges.push(edge);
+            n2.inEdges.push(edge);
+        }
+        n1.edges.push(edge);
+        if (n1 !== n2) {
+            n2.edges.push(edge);
+        }
+        this.edges.push(edge);
+        this._edgesMap[key] = edge;
+        return edge;
+    };
+    Graph.prototype.removeEdge = function (edge) {
+        var n1 = edge.node1;
+        var n2 = edge.node2;
+        var key = n1.id + '-' + n2.id;
+        if (this._directed) {
+            n1.outEdges.splice(util.indexOf(n1.outEdges, edge), 1);
+            n2.inEdges.splice(util.indexOf(n2.inEdges, edge), 1);
+        }
+        n1.edges.splice(util.indexOf(n1.edges, edge), 1);
+        if (n1 !== n2) {
+            n2.edges.splice(util.indexOf(n2.edges, edge), 1);
+        }
+        delete this._edgesMap[key];
+        this.edges.splice(util.indexOf(this.edges, edge), 1);
+    };
+    Graph.prototype.getEdge = function (n1, n2) {
+        if (typeof n1 !== 'string') {
+            n1 = n1.id;
+        }
+        if (typeof n2 !== 'string') {
+            n2 = n2.id;
+        }
+        if (this._directed) {
+            return this._edgesMap[n1 + '-' + n2];
+        } else {
+            return this._edgesMap[n1 + '-' + n2] || this._edgesMap[n2 + '-' + n1];
+        }
+    };
+    Graph.prototype.removeNode = function (node) {
+        if (typeof node === 'string') {
+            node = this._nodesMap[node];
+            if (!node) {
+                return;
+            }
+        }
+        delete this._nodesMap[node.id];
+        this.nodes.splice(util.indexOf(this.nodes, node), 1);
+        for (var i = 0; i < this.edges.length;) {
+            var edge = this.edges[i];
+            if (edge.node1 === node || edge.node2 === node) {
+                this.removeEdge(edge);
+            } else {
+                i++;
+            }
+        }
+    };
+    Graph.prototype.filterNode = function (cb, context) {
+        var len = this.nodes.length;
+        for (var i = 0; i < len;) {
+            if (cb.call(context, this.nodes[i], i)) {
+                i++;
+            } else {
+                this.removeNode(this.nodes[i]);
+                len--;
+            }
+        }
+    };
+    Graph.prototype.filterEdge = function (cb, context) {
+        var len = this.edges.length;
+        for (var i = 0; i < len;) {
+            if (cb.call(context, this.edges[i], i)) {
+                i++;
+            } else {
+                this.removeEdge(this.edges[i]);
+                len--;
+            }
+        }
+    };
+    Graph.prototype.eachNode = function (cb, context) {
+        var len = this.nodes.length;
+        for (var i = 0; i < len; i++) {
+            if (this.nodes[i]) {
+                cb.call(context, this.nodes[i], i);
+            }
+        }
+    };
+    Graph.prototype.eachEdge = function (cb, context) {
+        var len = this.edges.length;
+        for (var i = 0; i < len; i++) {
+            if (this.edges[i]) {
+                cb.call(context, this.edges[i], i);
+            }
+        }
+    };
+    Graph.prototype.clear = function () {
+        this.nodes.length = 0;
+        this.edges.length = 0;
+        this._nodesMap = {};
+        this._edgesMap = {};
+    };
+    Graph.prototype.breadthFirstTraverse = function (cb, startNode, direction, context) {
+        if (typeof startNode === 'string') {
+            startNode = this._nodesMap[startNode];
+        }
+        if (!startNode) {
+            return;
+        }
+        var edgeType = 'edges';
+        if (direction === 'out') {
+            edgeType = 'outEdges';
+        } else if (direction === 'in') {
+            edgeType = 'inEdges';
+        }
+        for (var i = 0; i < this.nodes.length; i++) {
+            this.nodes[i].__visited = false;
+        }
+        if (cb.call(context, startNode, null)) {
+            return;
+        }
+        var queue = [startNode];
+        while (queue.length) {
+            var currentNode = queue.shift();
+            var edges = currentNode[edgeType];
+            for (var i = 0; i < edges.length; i++) {
+                var e = edges[i];
+                var otherNode = e.node1 === currentNode ? e.node2 : e.node1;
+                if (!otherNode.__visited) {
+                    if (cb.call(otherNode, otherNode, currentNode)) {
+                        return;
+                    }
+                    queue.push(otherNode);
+                    otherNode.__visited = true;
+                }
+            }
+        }
+    };
+    Graph.prototype.clone = function () {
+        var graph = new Graph(this._directed);
+        for (var i = 0; i < this.nodes.length; i++) {
+            graph.addNode(this.nodes[i].id, this.nodes[i].data);
+        }
+        for (var i = 0; i < this.edges.length; i++) {
+            var e = this.edges[i];
+            graph.addEdge(e.node1.id, e.node2.id, e.data);
+        }
+        return graph;
+    };
+    var Node = function (id, data) {
+        this.id = id;
+        this.data = data || null;
+        this.inEdges = [];
+        this.outEdges = [];
+        this.edges = [];
+    };
+    Node.prototype.degree = function () {
+        return this.edges.length;
+    };
+    Node.prototype.inDegree = function () {
+        return this.inEdges.length;
+    };
+    Node.prototype.outDegree = function () {
+        return this.outEdges.length;
+    };
+    var Edge = function (node1, node2, data) {
+        this.node1 = node1;
+        this.node2 = node2;
+        this.data = data || null;
+    };
+    Graph.Node = Node;
+    Graph.Edge = Edge;
+    Graph.fromMatrix = function (nodesData, matrix, directed) {
+        if (!matrix || !matrix.length || matrix[0].length !== matrix.length || nodesData.length !== matrix.length) {
+            return;
+        }
+        var size = matrix.length;
+        var graph = new Graph(directed);
+        for (var i = 0; i < size; i++) {
+            var node = graph.addNode(nodesData[i].id, nodesData[i]);
+            node.data.value = 0;
+            if (directed) {
+                node.data.outValue = node.data.inValue = 0;
+            }
+        }
+        for (var i = 0; i < size; i++) {
+            for (var j = 0; j < size; j++) {
+                var item = matrix[i][j];
+                if (directed) {
+                    graph.nodes[i].data.outValue += item;
+                    graph.nodes[j].data.inValue += item;
+                }
+                graph.nodes[i].data.value += item;
+                graph.nodes[j].data.value += item;
+            }
+        }
+        for (var i = 0; i < size; i++) {
+            for (var j = i; j < size; j++) {
+                var item = matrix[i][j];
+                if (item === 0) {
+                    continue;
+                }
+                var n1 = graph.nodes[i];
+                var n2 = graph.nodes[j];
+                var edge = graph.addEdge(n1, n2, {});
+                edge.data.weight = item;
+                if (i !== j) {
+                    if (directed && matrix[j][i]) {
+                        var inEdge = graph.addEdge(n2, n1, {});
+                        inEdge.data.weight = matrix[j][i];
+                    }
+                }
+            }
+        }
+        return graph;
+    };
+    return Graph;
+});define('echarts/layout/Force', [
+    'require',
+    './forceLayoutWorker',
+    'zrender/tool/vector'
+], function (require) {
+    var ForceLayoutWorker = require('./forceLayoutWorker');
+    var vec2 = require('zrender/tool/vector');
+    var requestAnimationFrame = window.requestAnimationFrame || window.msRequestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || function (func) {
+        setTimeout(func, 16);
+    };
+    var ArrayCtor = typeof Float32Array == 'undefined' ? Array : Float32Array;
+    var workerUrl;
+    function createWorkerUrl() {
+        if (typeof Worker !== 'undefined' && typeof Blob !== 'undefined') {
+            try {
+                var blob = new Blob([ForceLayoutWorker.getWorkerCode()]);
+                workerUrl = window.URL.createObjectURL(blob);
+            } catch (e) {
+                workerUrl = '';
+            }
+        }
+        return workerUrl;
+    }
+    var ForceLayout = function (opts) {
+        if (typeof workerUrl === 'undefined') {
+            createWorkerUrl();
+        }
+        opts = opts || {};
+        this.width = opts.width || 500;
+        this.height = opts.height || 500;
+        this.center = opts.center || [
+            this.width / 2,
+            this.height / 2
+        ];
+        this.ratioScaling = opts.ratioScaling || false;
+        this.scaling = opts.scaling || 1;
+        this.gravity = typeof opts.gravity !== 'undefined' ? opts.gravity : 1;
+        this.large = opts.large || false;
+        this.preventNodeOverlap = opts.preventNodeOverlap || false;
+        this.preventNodeEdgeOverlap = opts.preventNodeEdgeOverlap || false;
+        this.maxSpeedIncrease = opts.maxSpeedIncrease || 1;
+        this.onupdate = opts.onupdate || function () {
+        };
+        this.temperature = opts.temperature || 1;
+        this.coolDown = opts.coolDown || 0.99;
+        this._layout = null;
+        this._layoutWorker = null;
+        var self = this;
+        var _$onupdate = this._$onupdate;
+        this._$onupdate = function (e) {
+            _$onupdate.call(self, e);
+        };
+    };
+    ForceLayout.prototype.updateConfig = function () {
+        var width = this.width;
+        var height = this.height;
+        var size = Math.min(width, height);
+        var config = {
+            center: this.center,
+            width: this.ratioScaling ? width : size,
+            height: this.ratioScaling ? height : size,
+            scaling: this.scaling || 1,
+            gravity: this.gravity || 1,
+            barnesHutOptimize: this.large,
+            preventNodeOverlap: this.preventNodeOverlap,
+            preventNodeEdgeOverlap: this.preventNodeEdgeOverlap,
+            maxSpeedIncrease: this.maxSpeedIncrease
+        };
+        if (this._layoutWorker) {
+            this._layoutWorker.postMessage({
+                cmd: 'updateConfig',
+                config: config
+            });
+        } else {
+            for (var name in config) {
+                this._layout[name] = config[name];
+            }
+        }
+    };
+    ForceLayout.prototype.init = function (graph, useWorker) {
+        if (this._layoutWorker) {
+            this._layoutWorker.terminate();
+            this._layoutWorker = null;
+        }
+        if (workerUrl && useWorker) {
+            try {
+                if (!this._layoutWorker) {
+                    this._layoutWorker = new Worker(workerUrl);
+                    this._layoutWorker.onmessage = this._$onupdate;
+                }
+                this._layout = null;
+            } catch (e) {
+                this._layoutWorker = null;
+                if (!this._layout) {
+                    this._layout = new ForceLayoutWorker();
+                }
+            }
+        } else {
+            if (!this._layout) {
+                this._layout = new ForceLayoutWorker();
+            }
+        }
+        this.temperature = 1;
+        this.graph = graph;
+        var len = graph.nodes.length;
+        var positionArr = new ArrayCtor(len * 2);
+        var massArr = new ArrayCtor(len);
+        var sizeArr = new ArrayCtor(len);
+        for (var i = 0; i < len; i++) {
+            var n = graph.nodes[i];
+            positionArr[i * 2] = n.layout.position[0];
+            positionArr[i * 2 + 1] = n.layout.position[1];
+            massArr[i] = typeof n.layout.mass === 'undefined' ? 1 : n.layout.mass;
+            sizeArr[i] = typeof n.layout.size === 'undefined' ? 1 : n.layout.size;
+            n.layout.__index = i;
+        }
+        len = graph.edges.length;
+        var edgeArr = new ArrayCtor(len * 2);
+        var edgeWeightArr = new ArrayCtor(len);
+        for (var i = 0; i < len; i++) {
+            var edge = graph.edges[i];
+            edgeArr[i * 2] = edge.node1.layout.__index;
+            edgeArr[i * 2 + 1] = edge.node2.layout.__index;
+            edgeWeightArr[i] = edge.layout.weight || 1;
+        }
+        if (this._layoutWorker) {
+            this._layoutWorker.postMessage({
+                cmd: 'init',
+                nodesPosition: positionArr,
+                nodesMass: massArr,
+                nodesSize: sizeArr,
+                edges: edgeArr,
+                edgesWeight: edgeWeightArr
+            });
+        } else {
+            this._layout.initNodes(positionArr, massArr, sizeArr);
+            this._layout.initEdges(edgeArr, edgeWeightArr);
+        }
+        this.updateConfig();
+    };
+    ForceLayout.prototype.step = function (steps) {
+        var nodes = this.graph.nodes;
+        if (this._layoutWorker) {
+            var positionArr = new ArrayCtor(nodes.length * 2);
+            for (var i = 0; i < nodes.length; i++) {
+                var n = nodes[i];
+                positionArr[i * 2] = n.layout.position[0];
+                positionArr[i * 2 + 1] = n.layout.position[1];
+            }
+            this._layoutWorker.postMessage(positionArr.buffer, [positionArr.buffer]);
+            this._layoutWorker.postMessage({
+                cmd: 'update',
+                steps: steps,
+                temperature: this.temperature,
+                coolDown: this.coolDown
+            });
+            for (var i = 0; i < steps; i++) {
+                this.temperature *= this.coolDown;
+            }
+        } else {
+            requestAnimationFrame(this._$onupdate);
+            for (var i = 0; i < nodes.length; i++) {
+                var n = nodes[i];
+                vec2.copy(this._layout.nodes[i].position, n.layout.position);
+            }
+            for (var i = 0; i < steps; i++) {
+                this._layout.temperature = this.temperature;
+                this._layout.update();
+                this.temperature *= this.coolDown;
+            }
+        }
+    };
+    ForceLayout.prototype._$onupdate = function (e) {
+        if (this._layoutWorker) {
+            var positionArr = new Float32Array(e.data);
+            for (var i = 0; i < this.graph.nodes.length; i++) {
+                var n = this.graph.nodes[i];
+                n.layout.position[0] = positionArr[i * 2];
+                n.layout.position[1] = positionArr[i * 2 + 1];
+            }
+            this.onupdate && this.onupdate();
+        } else if (this._layout) {
+            for (var i = 0; i < this.graph.nodes.length; i++) {
+                var n = this.graph.nodes[i];
+                vec2.copy(n.layout.position, this._layout.nodes[i].position);
+            }
+            this.onupdate && this.onupdate();
+        }
+    };
+    ForceLayout.prototype.dispose = function () {
+        if (this._layoutWorker) {
+            this._layoutWorker.terminate();
+        }
+        this._layoutWorker = null;
+        this._layout = null;
+    };
+    return ForceLayout;
+});define('echarts/layout/forceLayoutWorker', [
+    'require',
+    'zrender/tool/vector'
+], function __echartsForceLayoutWorker(require) {
+    'use strict';
+    var vec2;
+    var inWorker = typeof window === 'undefined' && typeof require === 'undefined';
+    if (inWorker) {
+        vec2 = {
+            create: function (x, y) {
+                var out = new Float32Array(2);
+                out[0] = x || 0;
+                out[1] = y || 0;
+                return out;
+            },
+            dist: function (a, b) {
+                var x = b[0] - a[0];
+                var y = b[1] - a[1];
+                return Math.sqrt(x * x + y * y);
+            },
+            len: function (a) {
+                var x = a[0];
+                var y = a[1];
+                return Math.sqrt(x * x + y * y);
+            },
+            scaleAndAdd: function (out, a, b, scale) {
+                out[0] = a[0] + b[0] * scale;
+                out[1] = a[1] + b[1] * scale;
+                return out;
+            },
+            scale: function (out, a, b) {
+                out[0] = a[0] * b;
+                out[1] = a[1] * b;
+                return out;
+            },
+            add: function (out, a, b) {
+                out[0] = a[0] + b[0];
+                out[1] = a[1] + b[1];
+                return out;
+            },
+            sub: function (out, a, b) {
+                out[0] = a[0] - b[0];
+                out[1] = a[1] - b[1];
+                return out;
+            },
+            dot: function (v1, v2) {
+                return v1[0] * v2[0] + v1[1] * v2[1];
+            },
+            normalize: function (out, a) {
+                var x = a[0];
+                var y = a[1];
+                var len = x * x + y * y;
+                if (len > 0) {
+                    len = 1 / Math.sqrt(len);
+                    out[0] = a[0] * len;
+                    out[1] = a[1] * len;
+                }
+                return out;
+            },
+            negate: function (out, a) {
+                out[0] = -a[0];
+                out[1] = -a[1];
+                return out;
+            },
+            copy: function (out, a) {
+                out[0] = a[0];
+                out[1] = a[1];
+                return out;
+            },
+            set: function (out, x, y) {
+                out[0] = x;
+                out[1] = y;
+                return out;
+            }
+        };
+    } else {
+        vec2 = require('zrender/tool/vector');
+    }
+    var ArrayCtor = typeof Float32Array == 'undefined' ? Array : Float32Array;
+    function Region() {
+        this.subRegions = [];
+        this.nSubRegions = 0;
+        this.node = null;
+        this.mass = 0;
+        this.centerOfMass = null;
+        this.bbox = new ArrayCtor(4);
+        this.size = 0;
+    }
+    Region.prototype.beforeUpdate = function () {
+        for (var i = 0; i < this.nSubRegions; i++) {
+            this.subRegions[i].beforeUpdate();
+        }
+        this.mass = 0;
+        if (this.centerOfMass) {
+            this.centerOfMass[0] = 0;
+            this.centerOfMass[1] = 0;
+        }
+        this.nSubRegions = 0;
+        this.node = null;
+    };
+    Region.prototype.afterUpdate = function () {
+        this.subRegions.length = this.nSubRegions;
+        for (var i = 0; i < this.nSubRegions; i++) {
+            this.subRegions[i].afterUpdate();
+        }
+    };
+    Region.prototype.addNode = function (node) {
+        if (this.nSubRegions === 0) {
+            if (this.node == null) {
+                this.node = node;
+                return;
+            } else {
+                this._addNodeToSubRegion(this.node);
+                this.node = null;
+            }
+        }
+        this._addNodeToSubRegion(node);
+        this._updateCenterOfMass(node);
+    };
+    Region.prototype.findSubRegion = function (x, y) {
+        for (var i = 0; i < this.nSubRegions; i++) {
+            var region = this.subRegions[i];
+            if (region.contain(x, y)) {
+                return region;
+            }
+        }
+    };
+    Region.prototype.contain = function (x, y) {
+        return this.bbox[0] <= x && this.bbox[2] >= x && this.bbox[1] <= y && this.bbox[3] >= y;
+    };
+    Region.prototype.setBBox = function (minX, minY, maxX, maxY) {
+        this.bbox[0] = minX;
+        this.bbox[1] = minY;
+        this.bbox[2] = maxX;
+        this.bbox[3] = maxY;
+        this.size = (maxX - minX + maxY - minY) / 2;
+    };
+    Region.prototype._newSubRegion = function () {
+        var subRegion = this.subRegions[this.nSubRegions];
+        if (!subRegion) {
+            subRegion = new Region();
+            this.subRegions[this.nSubRegions] = subRegion;
+        }
+        this.nSubRegions++;
+        return subRegion;
+    };
+    Region.prototype._addNodeToSubRegion = function (node) {
+        var subRegion = this.findSubRegion(node.position[0], node.position[1]);
+        var bbox = this.bbox;
+        if (!subRegion) {
+            var cx = (bbox[0] + bbox[2]) / 2;
+            var cy = (bbox[1] + bbox[3]) / 2;
+            var w = (bbox[2] - bbox[0]) / 2;
+            var h = (bbox[3] - bbox[1]) / 2;
+            var xi = node.position[0] >= cx ? 1 : 0;
+            var yi = node.position[1] >= cy ? 1 : 0;
+            var subRegion = this._newSubRegion();
+            subRegion.setBBox(xi * w + bbox[0], yi * h + bbox[1], (xi + 1) * w + bbox[0], (yi + 1) * h + bbox[1]);
+        }
+        subRegion.addNode(node);
+    };
+    Region.prototype._updateCenterOfMass = function (node) {
+        if (this.centerOfMass == null) {
+            this.centerOfMass = vec2.create();
+        }
+        var x = this.centerOfMass[0] * this.mass;
+        var y = this.centerOfMass[1] * this.mass;
+        x += node.position[0] * node.mass;
+        y += node.position[1] * node.mass;
+        this.mass += node.mass;
+        this.centerOfMass[0] = x / this.mass;
+        this.centerOfMass[1] = y / this.mass;
+    };
+    function GraphNode() {
+        this.position = vec2.create();
+        this.force = vec2.create();
+        this.forcePrev = vec2.create();
+        this.speed = vec2.create();
+        this.speedPrev = vec2.create();
+        this.mass = 1;
+        this.inDegree = 0;
+        this.outDegree = 0;
+    }
+    function GraphEdge(node1, node2) {
+        this.node1 = node1;
+        this.node2 = node2;
+        this.weight = 1;
+    }
+    function ForceLayout() {
+        this.barnesHutOptimize = false;
+        this.barnesHutTheta = 1.5;
+        this.repulsionByDegree = false;
+        this.preventNodeOverlap = false;
+        this.preventNodeEdgeOverlap = false;
+        this.strongGravity = true;
+        this.gravity = 1;
+        this.scaling = 1;
+        this.edgeWeightInfluence = 1;
+        this.center = [
+            0,
+            0
+        ];
+        this.width = 500;
+        this.height = 500;
+        this.maxSpeedIncrease = 1;
+        this.nodes = [];
+        this.edges = [];
+        this.bbox = new ArrayCtor(4);
+        this._rootRegion = new Region();
+        this._rootRegion.centerOfMass = vec2.create();
+        this._massArr = null;
+        this._k = 0;
+    }
+    ForceLayout.prototype.nodeToNodeRepulsionFactor = function (mass, d, k) {
+        return k * k * mass / d;
+    };
+    ForceLayout.prototype.edgeToNodeRepulsionFactor = function (mass, d, k) {
+        return k * mass / d;
+    };
+    ForceLayout.prototype.attractionFactor = function (w, d, k) {
+        return w * d / k;
+    };
+    ForceLayout.prototype.initNodes = function (positionArr, massArr, sizeArr) {
+        this.temperature = 1;
+        var nNodes = positionArr.length / 2;
+        this.nodes.length = 0;
+        var haveSize = typeof sizeArr !== 'undefined';
+        for (var i = 0; i < nNodes; i++) {
+            var node = new GraphNode();
+            node.position[0] = positionArr[i * 2];
+            node.position[1] = positionArr[i * 2 + 1];
+            node.mass = massArr[i];
+            if (haveSize) {
+                node.size = sizeArr[i];
+            }
+            this.nodes.push(node);
+        }
+        this._massArr = massArr;
+        if (haveSize) {
+            this._sizeArr = sizeArr;
+        }
+    };
+    ForceLayout.prototype.initEdges = function (edgeArr, edgeWeightArr) {
+        var nEdges = edgeArr.length / 2;
+        this.edges.length = 0;
+        var edgeHaveWeight = typeof edgeWeightArr !== 'undefined';
+        for (var i = 0; i < nEdges; i++) {
+            var sIdx = edgeArr[i * 2];
+            var tIdx = edgeArr[i * 2 + 1];
+            var sNode = this.nodes[sIdx];
+            var tNode = this.nodes[tIdx];
+            if (!sNode || !tNode) {
+                continue;
+            }
+            sNode.outDegree++;
+            tNode.inDegree++;
+            var edge = new GraphEdge(sNode, tNode);
+            if (edgeHaveWeight) {
+                edge.weight = edgeWeightArr[i];
+            }
+            this.edges.push(edge);
+        }
+    };
+    ForceLayout.prototype.update = function () {
+        var nNodes = this.nodes.length;
+        this.updateBBox();
+        this._k = 0.4 * this.scaling * Math.sqrt(this.width * this.height / nNodes);
+        if (this.barnesHutOptimize) {
+            this._rootRegion.setBBox(this.bbox[0], this.bbox[1], this.bbox[2], this.bbox[3]);
+            this._rootRegion.beforeUpdate();
+            for (var i = 0; i < nNodes; i++) {
+                this._rootRegion.addNode(this.nodes[i]);
+            }
+            this._rootRegion.afterUpdate();
+        } else {
+            var mass = 0;
+            var centerOfMass = this._rootRegion.centerOfMass;
+            vec2.set(centerOfMass, 0, 0);
+            for (var i = 0; i < nNodes; i++) {
+                var node = this.nodes[i];
+                mass += node.mass;
+                vec2.scaleAndAdd(centerOfMass, centerOfMass, node.position, node.mass);
+            }
+            if (mass > 0) {
+                vec2.scale(centerOfMass, centerOfMass, 1 / mass);
+            }
+        }
+        this.updateForce();
+        this.updatePosition();
+    };
+    ForceLayout.prototype.updateForce = function () {
+        var nNodes = this.nodes.length;
+        for (var i = 0; i < nNodes; i++) {
+            var node = this.nodes[i];
+            vec2.copy(node.forcePrev, node.force);
+            vec2.copy(node.speedPrev, node.speed);
+            vec2.set(node.force, 0, 0);
+        }
+        this.updateNodeNodeForce();
+        if (this.gravity > 0) {
+            this.updateGravityForce();
+        }
+        this.updateEdgeForce();
+        if (this.preventNodeEdgeOverlap) {
+            this.updateNodeEdgeForce();
+        }
+    };
+    ForceLayout.prototype.updatePosition = function () {
+        var nNodes = this.nodes.length;
+        var v = vec2.create();
+        for (var i = 0; i < nNodes; i++) {
+            var node = this.nodes[i];
+            var speed = node.speed;
+            vec2.scale(node.force, node.force, 1 / 30);
+            var df = vec2.len(node.force) + 0.1;
+            var scale = Math.min(df, 500) / df;
+            vec2.scale(node.force, node.force, scale);
+            vec2.add(speed, speed, node.force);
+            vec2.scale(speed, speed, this.temperature);
+            vec2.sub(v, speed, node.speedPrev);
+            var swing = vec2.len(v);
+            if (swing > 0) {
+                vec2.scale(v, v, 1 / swing);
+                var base = vec2.len(node.speedPrev);
+                if (base > 0) {
+                    swing = Math.min(swing / base, this.maxSpeedIncrease) * base;
+                    vec2.scaleAndAdd(speed, node.speedPrev, v, swing);
+                }
+            }
+            var ds = vec2.len(speed);
+            var scale = Math.min(ds, 100) / (ds + 0.1);
+            vec2.scale(speed, speed, scale);
+            vec2.add(node.position, node.position, speed);
+        }
+    };
+    ForceLayout.prototype.updateNodeNodeForce = function () {
+        var nNodes = this.nodes.length;
+        for (var i = 0; i < nNodes; i++) {
+            var na = this.nodes[i];
+            if (this.barnesHutOptimize) {
+                this.applyRegionToNodeRepulsion(this._rootRegion, na);
+            } else {
+                for (var j = i + 1; j < nNodes; j++) {
+                    var nb = this.nodes[j];
+                    this.applyNodeToNodeRepulsion(na, nb, false);
+                }
+            }
+        }
+    };
+    ForceLayout.prototype.updateGravityForce = function () {
+        for (var i = 0; i < this.nodes.length; i++) {
+            this.applyNodeGravity(this.nodes[i]);
+        }
+    };
+    ForceLayout.prototype.updateEdgeForce = function () {
+        for (var i = 0; i < this.edges.length; i++) {
+            this.applyEdgeAttraction(this.edges[i]);
+        }
+    };
+    ForceLayout.prototype.updateNodeEdgeForce = function () {
+        for (var i = 0; i < this.nodes.length; i++) {
+            for (var j = 0; j < this.edges.length; j++) {
+                this.applyEdgeToNodeRepulsion(this.edges[j], this.nodes[i]);
+            }
+        }
+    };
+    ForceLayout.prototype.applyRegionToNodeRepulsion = function () {
+        var v = vec2.create();
+        return function applyRegionToNodeRepulsion(region, node) {
+            if (region.node) {
+                this.applyNodeToNodeRepulsion(region.node, node, true);
+            } else {
+                if (region.mass === 0 && node.mass === 0) {
+                    return;
+                }
+                vec2.sub(v, node.position, region.centerOfMass);
+                var d2 = v[0] * v[0] + v[1] * v[1];
+                if (d2 > this.barnesHutTheta * region.size * region.size) {
+                    var factor = this._k * this._k * (node.mass + region.mass) / (d2 + 1);
+                    vec2.scaleAndAdd(node.force, node.force, v, factor * 2);
+                } else {
+                    for (var i = 0; i < region.nSubRegions; i++) {
+                        this.applyRegionToNodeRepulsion(region.subRegions[i], node);
+                    }
+                }
+            }
+        };
+    }();
+    ForceLayout.prototype.applyNodeToNodeRepulsion = function () {
+        var v = vec2.create();
+        return function applyNodeToNodeRepulsion(na, nb, oneWay) {
+            if (na === nb) {
+                return;
+            }
+            if (na.mass === 0 && nb.mass === 0) {
+                return;
+            }
+            vec2.sub(v, na.position, nb.position);
+            var d2 = v[0] * v[0] + v[1] * v[1];
+            if (d2 === 0) {
+                return;
+            }
+            var factor;
+            var mass = na.mass + nb.mass;
+            var d = Math.sqrt(d2);
+            vec2.scale(v, v, 1 / d);
+            if (this.preventNodeOverlap) {
+                d = d - na.size - nb.size;
+                if (d > 0) {
+                    factor = this.nodeToNodeRepulsionFactor(mass, d, this._k);
+                } else if (d <= 0) {
+                    factor = this._k * this._k * 10 * mass;
+                }
+            } else {
+                factor = this.nodeToNodeRepulsionFactor(mass, d, this._k);
+            }
+            if (!oneWay) {
+                vec2.scaleAndAdd(na.force, na.force, v, factor * 2);
+            }
+            vec2.scaleAndAdd(nb.force, nb.force, v, -factor * 2);
+        };
+    }();
+    ForceLayout.prototype.applyEdgeAttraction = function () {
+        var v = vec2.create();
+        return function applyEdgeAttraction(edge) {
+            var na = edge.node1;
+            var nb = edge.node2;
+            vec2.sub(v, na.position, nb.position);
+            var d = vec2.len(v);
+            var w;
+            if (this.edgeWeightInfluence === 0) {
+                w = 1;
+            } else if (this.edgeWeightInfluence == 1) {
+                w = edge.weight;
+            } else {
+                w = Math.pow(edge.weight, this.edgeWeightInfluence);
+            }
+            var factor;
+            if (this.preventOverlap) {
+                d = d - na.size - nb.size;
+                if (d <= 0) {
+                    return;
+                }
+            }
+            var factor = this.attractionFactor(w, d, this._k);
+            vec2.scaleAndAdd(na.force, na.force, v, -factor);
+            vec2.scaleAndAdd(nb.force, nb.force, v, factor);
+        };
+    }();
+    ForceLayout.prototype.applyNodeGravity = function () {
+        var v = vec2.create();
+        return function (node) {
+            vec2.sub(v, this.center, node.position);
+            if (this.width > this.height) {
+                v[1] *= this.width / this.height;
+            } else {
+                v[0] *= this.height / this.width;
+            }
+            var d = vec2.len(v) / 100;
+            if (this.strongGravity) {
+                vec2.scaleAndAdd(node.force, node.force, v, d * this.gravity * node.mass);
+            } else {
+                vec2.scaleAndAdd(node.force, node.force, v, this.gravity * node.mass / (d + 1));
+            }
+        };
+    }();
+    ForceLayout.prototype.applyEdgeToNodeRepulsion = function () {
+        var v12 = vec2.create();
+        var v13 = vec2.create();
+        var p = vec2.create();
+        return function (e, n3) {
+            var n1 = e.node1;
+            var n2 = e.node2;
+            if (n1 === n3 || n2 === n3) {
+                return;
+            }
+            vec2.sub(v12, n2.position, n1.position);
+            vec2.sub(v13, n3.position, n1.position);
+            var len12 = vec2.len(v12);
+            vec2.scale(v12, v12, 1 / len12);
+            var len = vec2.dot(v12, v13);
+            if (len < 0 || len > len12) {
+                return;
+            }
+            vec2.scaleAndAdd(p, n1.position, v12, len);
+            var dist = vec2.dist(p, n3.position) - n3.size;
+            var factor = this.edgeToNodeRepulsionFactor(n3.mass, Math.max(dist, 0.1), 100);
+            vec2.sub(v12, n3.position, p);
+            vec2.normalize(v12, v12);
+            vec2.scaleAndAdd(n3.force, n3.force, v12, factor);
+            vec2.scaleAndAdd(n1.force, n1.force, v12, -factor);
+            vec2.scaleAndAdd(n2.force, n2.force, v12, -factor);
+        };
+    }();
+    ForceLayout.prototype.updateBBox = function () {
+        var minX = Infinity;
+        var minY = Infinity;
+        var maxX = -Infinity;
+        var maxY = -Infinity;
+        for (var i = 0; i < this.nodes.length; i++) {
+            var pos = this.nodes[i].position;
+            minX = Math.min(minX, pos[0]);
+            minY = Math.min(minY, pos[1]);
+            maxX = Math.max(maxX, pos[0]);
+            maxY = Math.max(maxY, pos[1]);
+        }
+        this.bbox[0] = minX;
+        this.bbox[1] = minY;
+        this.bbox[2] = maxX;
+        this.bbox[3] = maxY;
+    };
+    ForceLayout.getWorkerCode = function () {
+        var str = __echartsForceLayoutWorker.toString();
+        return str.slice(str.indexOf('{') + 1, str.lastIndexOf('return'));
+    };
+    if (inWorker) {
+        var forceLayout = null;
+        self.onmessage = function (e) {
+            if (e.data instanceof ArrayBuffer) {
+                if (!forceLayout)
+                    return;
+                var positionArr = new Float32Array(e.data);
+                var nNodes = positionArr.length / 2;
+                for (var i = 0; i < nNodes; i++) {
+                    var node = forceLayout.nodes[i];
+                    node.position[0] = positionArr[i * 2];
+                    node.position[1] = positionArr[i * 2 + 1];
+                }
+                return;
+            }
+            switch (e.data.cmd) {
+            case 'init':
+                if (!forceLayout) {
+                    forceLayout = new ForceLayout();
+                }
+                forceLayout.initNodes(e.data.nodesPosition, e.data.nodesMass, e.data.nodesSize);
+                forceLayout.initEdges(e.data.edges, e.data.edgesWeight);
+                break;
+            case 'updateConfig':
+                if (forceLayout) {
+                    for (var name in e.data.config) {
+                        forceLayout[name] = e.data.config[name];
+                    }
+                }
+                break;
+            case 'update':
+                var steps = e.data.steps;
+                if (forceLayout) {
+                    var nNodes = forceLayout.nodes.length;
+                    var positionArr = new Float32Array(nNodes * 2);
+                    forceLayout.temperature = e.data.temperature;
+                    for (var i = 0; i < steps; i++) {
+                        forceLayout.update();
+                        forceLayout.temperature *= e.data.coolDown;
+                    }
+                    for (var i = 0; i < nNodes; i++) {
+                        var node = forceLayout.nodes[i];
+                        positionArr[i * 2] = node.position[0];
+                        positionArr[i * 2 + 1] = node.position[1];
+                    }
+                    self.postMessage(positionArr.buffer, [positionArr.buffer]);
+                } else {
+                    var emptyArr = new Float32Array();
+                    self.postMessage(emptyArr.buffer, [emptyArr.buffer]);
+                }
+                break;
+            }
+        };
+    }
+    return ForceLayout;
+});

@@ -1,1 +1,817 @@
-define("echarts/chart/line",["require","./base","zrender/shape/Polyline","../util/shape/Icon","../util/shape/HalfSmoothPolygon","../component/axis","../component/grid","../component/dataZoom","../config","../util/ecData","zrender/tool/util","zrender/tool/color","../chart"],function(e){function t(e,t,i,a,o){n.call(this,e,t,i,a,o),this.refresh(a)}function i(e,t,i){var n=t.x,a=t.y,r=t.width,s=t.height,l=s/2;t.symbol.match("empty")&&(e.fillStyle="#fff"),t.brushType="both";var h=t.symbol.replace("empty","").toLowerCase();h.match("star")?(l=h.replace("star","")-0||5,a-=1,h="star"):("rectangle"===h||"arrow"===h)&&(n+=(r-s)/2,r=s);var d="";if(h.match("image")&&(d=h.replace(new RegExp("^image:\\/\\/"),""),h="image",n+=Math.round((r-s)/2)-1,r=s+=2),h=o.prototype.iconLibrary[h]){var m=t.x,c=t.y;e.moveTo(m,c+l),e.lineTo(m+5,c+l),e.moveTo(m+t.width-5,c+l),e.lineTo(m+t.width,c+l);var p=this;h(e,{x:n+4,y:a+4,width:r-8,height:s-8,n:l,image:d},function(){p.modSelf(),i()})}else e.moveTo(n,a+l),e.lineTo(n+r,a+l)}var n=e("./base"),a=e("zrender/shape/Polyline"),o=e("../util/shape/Icon"),r=e("../util/shape/HalfSmoothPolygon");e("../component/axis"),e("../component/grid"),e("../component/dataZoom");var s=e("../config");s.line={zlevel:0,z:2,clickable:!0,legendHoverLink:!0,xAxisIndex:0,yAxisIndex:0,dataFilter:"nearest",itemStyle:{normal:{label:{show:!1},lineStyle:{width:2,type:"solid",shadowColor:"rgba(0,0,0,0)",shadowBlur:0,shadowOffsetX:0,shadowOffsetY:0}},emphasis:{label:{show:!1}}},symbolSize:2,showAllSymbol:!1};var l=e("../util/ecData"),h=e("zrender/tool/util"),d=e("zrender/tool/color");return t.prototype={type:s.CHART_TYPE_LINE,_buildShape:function(){this.finalPLMap={},this._buildPosition()},_buildHorizontal:function(e,t,i,n){for(var a,o,r,s,l,h,d,m,c,p=this.series,u=i[0][0],V=p[u],U=this.component.xAxis.getAxis(V.xAxisIndex||0),g={},y=0,f=t;f>y&&null!=U.getNameByIndex(y);y++){o=U.getCoordByIndex(y);for(var b=0,_=i.length;_>b;b++){a=this.component.yAxis.getAxis(p[i[b][0]].yAxisIndex||0),l=s=d=h=a.getCoord(0);for(var x=0,k=i[b].length;k>x;x++)u=i[b][x],V=p[u],m=V.data[y],c=this.getDataFromOption(m,"-"),g[u]=g[u]||[],n[u]=n[u]||{min:Number.POSITIVE_INFINITY,max:Number.NEGATIVE_INFINITY,sum:0,counter:0,average:0},"-"!==c?(c>=0?(s-=x>0?a.getCoordSize(c):l-a.getCoord(c),r=s):0>c&&(h+=x>0?a.getCoordSize(c):a.getCoord(c)-d,r=h),g[u].push([o,r,y,U.getNameByIndex(y),o,l]),n[u].min>c&&(n[u].min=c,n[u].minY=r,n[u].minX=o),n[u].max<c&&(n[u].max=c,n[u].maxY=r,n[u].maxX=o),n[u].sum+=c,n[u].counter++):g[u].length>0&&(this.finalPLMap[u]=this.finalPLMap[u]||[],this.finalPLMap[u].push(g[u]),g[u]=[])}s=this.component.grid.getY();for(var L,b=0,_=i.length;_>b;b++)for(var x=0,k=i[b].length;k>x;x++)u=i[b][x],V=p[u],m=V.data[y],c=this.getDataFromOption(m,"-"),"-"==c&&this.deepQuery([m,V,this.option],"calculable")&&(L=this.deepQuery([m,V],"symbolSize"),s+=2*L+5,r=s,this.shapeList.push(this._getCalculableItem(u,y,U.getNameByIndex(y),o,r,"horizontal")))}for(var v in g)g[v].length>0&&(this.finalPLMap[v]=this.finalPLMap[v]||[],this.finalPLMap[v].push(g[v]),g[v]=[]);this._calculMarkMapXY(n,i,"y"),this._buildBorkenLine(e,this.finalPLMap,U,"horizontal")},_buildVertical:function(e,t,i,n){for(var a,o,r,s,l,h,d,m,c,p=this.series,u=i[0][0],V=p[u],U=this.component.yAxis.getAxis(V.yAxisIndex||0),g={},y=0,f=t;f>y&&null!=U.getNameByIndex(y);y++){r=U.getCoordByIndex(y);for(var b=0,_=i.length;_>b;b++){a=this.component.xAxis.getAxis(p[i[b][0]].xAxisIndex||0),l=s=d=h=a.getCoord(0);for(var x=0,k=i[b].length;k>x;x++)u=i[b][x],V=p[u],m=V.data[y],c=this.getDataFromOption(m,"-"),g[u]=g[u]||[],n[u]=n[u]||{min:Number.POSITIVE_INFINITY,max:Number.NEGATIVE_INFINITY,sum:0,counter:0,average:0},"-"!==c?(c>=0?(s+=x>0?a.getCoordSize(c):a.getCoord(c)-l,o=s):0>c&&(h-=x>0?a.getCoordSize(c):d-a.getCoord(c),o=h),g[u].push([o,r,y,U.getNameByIndex(y),l,r]),n[u].min>c&&(n[u].min=c,n[u].minX=o,n[u].minY=r),n[u].max<c&&(n[u].max=c,n[u].maxX=o,n[u].maxY=r),n[u].sum+=c,n[u].counter++):g[u].length>0&&(this.finalPLMap[u]=this.finalPLMap[u]||[],this.finalPLMap[u].push(g[u]),g[u]=[])}s=this.component.grid.getXend();for(var L,b=0,_=i.length;_>b;b++)for(var x=0,k=i[b].length;k>x;x++)u=i[b][x],V=p[u],m=V.data[y],c=this.getDataFromOption(m,"-"),"-"==c&&this.deepQuery([m,V,this.option],"calculable")&&(L=this.deepQuery([m,V],"symbolSize"),s-=2*L+5,o=s,this.shapeList.push(this._getCalculableItem(u,y,U.getNameByIndex(y),o,r,"vertical")))}for(var v in g)g[v].length>0&&(this.finalPLMap[v]=this.finalPLMap[v]||[],this.finalPLMap[v].push(g[v]),g[v]=[]);this._calculMarkMapXY(n,i,"x"),this._buildBorkenLine(e,this.finalPLMap,U,"vertical")},_buildOther:function(e,t,i,n){for(var a,o=this.series,r={},s=0,l=i.length;l>s;s++)for(var h=0,d=i[s].length;d>h;h++){var m=i[s][h],c=o[m];a=this.component.xAxis.getAxis(c.xAxisIndex||0);var p=this.component.yAxis.getAxis(c.yAxisIndex||0),u=p.getCoord(0);r[m]=r[m]||[],n[m]=n[m]||{min0:Number.POSITIVE_INFINITY,min1:Number.POSITIVE_INFINITY,max0:Number.NEGATIVE_INFINITY,max1:Number.NEGATIVE_INFINITY,sum0:0,sum1:0,counter0:0,counter1:0,average0:0,average1:0};for(var V=0,U=c.data.length;U>V;V++){var g=c.data[V],y=this.getDataFromOption(g,"-");if(y instanceof Array){var f=a.getCoord(y[0]),b=p.getCoord(y[1]);r[m].push([f,b,V,y[0],f,u]),n[m].min0>y[0]&&(n[m].min0=y[0],n[m].minY0=b,n[m].minX0=f),n[m].max0<y[0]&&(n[m].max0=y[0],n[m].maxY0=b,n[m].maxX0=f),n[m].sum0+=y[0],n[m].counter0++,n[m].min1>y[1]&&(n[m].min1=y[1],n[m].minY1=b,n[m].minX1=f),n[m].max1<y[1]&&(n[m].max1=y[1],n[m].maxY1=b,n[m].maxX1=f),n[m].sum1+=y[1],n[m].counter1++}}}for(var _ in r)r[_].length>0&&(this.finalPLMap[_]=this.finalPLMap[_]||[],this.finalPLMap[_].push(r[_]),r[_]=[]);this._calculMarkMapXY(n,i,"xy"),this._buildBorkenLine(e,this.finalPLMap,a,"other")},_buildBorkenLine:function(e,t,i,n){for(var o,s="other"==n?"horizontal":n,m=this.series,c=e.length-1;c>=0;c--){var p=e[c],u=m[p],V=t[p];if(u.type===this.type&&null!=V)for(var U=this._getBbox(p,s),g=this._sIndex2ColorMap[p],y=this.query(u,"itemStyle.normal.lineStyle.width"),f=this.query(u,"itemStyle.normal.lineStyle.type"),b=this.query(u,"itemStyle.normal.lineStyle.color"),_=this.getItemStyleColor(this.query(u,"itemStyle.normal.color"),p,-1),x=null!=this.query(u,"itemStyle.normal.areaStyle"),k=this.query(u,"itemStyle.normal.areaStyle.color"),L=0,v=V.length;v>L;L++){var W=V[L],w="other"!=n&&this._isLarge(s,W);if(w)W=this._getLargePointList(s,W,u.dataFilter);else for(var X=0,I=W.length;I>X;X++)o=u.data[W[X][2]],(this.deepQuery([o,u,this.option],"calculable")||this.deepQuery([o,u],"showAllSymbol")||"categoryAxis"===i.type&&i.isMainAxis(W[X][2])&&"none"!=this.deepQuery([o,u],"symbol"))&&this.shapeList.push(this._getSymbol(p,W[X][2],W[X][3],W[X][0],W[X][1],s));var K=new a({zlevel:this.getZlevelBase(),z:this.getZBase(),style:{miterLimit:y,pointList:W,strokeColor:b||_||g,lineWidth:y,lineType:f,smooth:this._getSmooth(u.smooth),smoothConstraint:U,shadowColor:this.query(u,"itemStyle.normal.lineStyle.shadowColor"),shadowBlur:this.query(u,"itemStyle.normal.lineStyle.shadowBlur"),shadowOffsetX:this.query(u,"itemStyle.normal.lineStyle.shadowOffsetX"),shadowOffsetY:this.query(u,"itemStyle.normal.lineStyle.shadowOffsetY")},hoverable:!1,_main:!0,_seriesIndex:p,_orient:s});if(l.pack(K,m[p],p,0,L,m[p].name),this.shapeList.push(K),x){var S=new r({zlevel:this.getZlevelBase(),z:this.getZBase(),style:{miterLimit:y,pointList:h.clone(W).concat([[W[W.length-1][4],W[W.length-1][5]],[W[0][4],W[0][5]]]),brushType:"fill",smooth:this._getSmooth(u.smooth),smoothConstraint:U,color:k?k:d.alpha(g,.5)},highlightStyle:{brushType:"fill"},hoverable:!1,_main:!0,_seriesIndex:p,_orient:s});l.pack(S,m[p],p,0,L,m[p].name),this.shapeList.push(S)}}}},_getBbox:function(e,t){var i=this.component.grid.getBbox(),n=this.xMarkMap[e];return null!=n.minX0?[[Math.min(n.minX0,n.maxX0,n.minX1,n.maxX1),Math.min(n.minY0,n.maxY0,n.minY1,n.maxY1)],[Math.max(n.minX0,n.maxX0,n.minX1,n.maxX1),Math.max(n.minY0,n.maxY0,n.minY1,n.maxY1)]]:("horizontal"===t?(i[0][1]=Math.min(n.minY,n.maxY),i[1][1]=Math.max(n.minY,n.maxY)):(i[0][0]=Math.min(n.minX,n.maxX),i[1][0]=Math.max(n.minX,n.maxX)),i)},_isLarge:function(e,t){return t.length<2?!1:"horizontal"===e?Math.abs(t[0][0]-t[1][0])<.5:Math.abs(t[0][1]-t[1][1])<.5},_getLargePointList:function(e,t,i){var n;n="horizontal"===e?this.component.grid.getWidth():this.component.grid.getHeight();var a=t.length,o=[];if("function"!=typeof i)switch(i){case"min":i=function(e){return Math.max.apply(null,e)};break;case"max":i=function(e){return Math.min.apply(null,e)};break;case"average":i=function(e){for(var t=0,i=0;i<e.length;i++)t+=e[i];return t/e.length};break;default:i=function(e){return e[0]}}for(var r=[],s=0;n>s;s++){var l=Math.floor(a/n*s),h=Math.min(Math.floor(a/n*(s+1)),a);if(!(l>=h)){for(var d=l;h>d;d++)r[d-l]="horizontal"===e?t[d][1]:t[d][0];r.length=h-l;for(var m=i(r),c=-1,p=1/0,d=l;h>d;d++){var u="horizontal"===e?t[d][1]:t[d][0],V=Math.abs(u-m);p>V&&(c=d,p=V)}var U=t[c].slice();"horizontal"===e?U[1]=m:U[0]=m,o.push(U)}}return o},_getSmooth:function(e){return e?.3:0},_getCalculableItem:function(e,t,i,n,a,o){var r=this.series,l=r[e].calculableHolderColor||this.ecTheme.calculableHolderColor||s.calculableHolderColor,h=this._getSymbol(e,t,i,n,a,o);return h.style.color=l,h.style.strokeColor=l,h.rotation=[0,0],h.hoverable=!1,h.draggable=!1,h.style.text=void 0,h},_getSymbol:function(e,t,i,n,a,o){var r=this.series,s=r[e],l=s.data[t],h=this.getSymbolShape(s,e,l,t,i,n,a,this._sIndex2ShapeMap[e],this._sIndex2ColorMap[e],"#fff","vertical"===o?"horizontal":"vertical");return h.zlevel=this.getZlevelBase(),h.z=this.getZBase()+1,this.deepQuery([l,s,this.option],"calculable")&&(this.setCalculable(h),h.draggable=!0),h},getMarkCoord:function(e,t){var i=this.series[e],n=this.xMarkMap[e],a=this.component.xAxis.getAxis(i.xAxisIndex),o=this.component.yAxis.getAxis(i.yAxisIndex);if(t.type&&("max"===t.type||"min"===t.type||"average"===t.type)){var r=null!=t.valueIndex?t.valueIndex:null!=n.maxX0?"1":"";return[n[t.type+"X"+r],n[t.type+"Y"+r],n[t.type+"Line"+r],n[t.type+r]]}return["string"!=typeof t.xAxis&&a.getCoordByIndex?a.getCoordByIndex(t.xAxis||0):a.getCoord(t.xAxis||0),"string"!=typeof t.yAxis&&o.getCoordByIndex?o.getCoordByIndex(t.yAxis||0):o.getCoord(t.yAxis||0)]},refresh:function(e){e&&(this.option=e,this.series=e.series),this.backupShapeList(),this._buildShape()},ontooltipHover:function(e,t){for(var i,n,a=e.seriesIndex,o=e.dataIndex,r=a.length;r--;)if(i=this.finalPLMap[a[r]])for(var s=0,l=i.length;l>s;s++){n=i[s];for(var h=0,d=n.length;d>h;h++)o===n[h][2]&&t.push(this._getSymbol(a[r],n[h][2],n[h][3],n[h][0],n[h][1],"horizontal"))}},addDataAnimation:function(e,t){function i(){V--,0===V&&t&&t()}function n(e){e.style.controlPointList=null}for(var a=this.series,o={},r=0,s=e.length;s>r;r++)o[e[r][0]]=e[r];for(var l,h,d,m,c,p,u,V=0,r=this.shapeList.length-1;r>=0;r--)if(c=this.shapeList[r]._seriesIndex,o[c]&&!o[c][3]){if(this.shapeList[r]._main&&this.shapeList[r].style.pointList.length>1){if(p=this.shapeList[r].style.pointList,h=Math.abs(p[0][0]-p[1][0]),m=Math.abs(p[0][1]-p[1][1]),u="horizontal"===this.shapeList[r]._orient,o[c][2]){if("half-smooth-polygon"===this.shapeList[r].type){var U=p.length;this.shapeList[r].style.pointList[U-3]=p[U-2],this.shapeList[r].style.pointList[U-3][u?0:1]=p[U-4][u?0:1],this.shapeList[r].style.pointList[U-2]=p[U-1]}this.shapeList[r].style.pointList.pop(),u?(l=h,d=0):(l=0,d=-m)}else{if(this.shapeList[r].style.pointList.shift(),"half-smooth-polygon"===this.shapeList[r].type){var g=this.shapeList[r].style.pointList.pop();u?g[0]=p[0][0]:g[1]=p[0][1],this.shapeList[r].style.pointList.push(g)}u?(l=-h,d=0):(l=0,d=m)}this.shapeList[r].style.controlPointList=null,this.zr.modShape(this.shapeList[r])}else{if(o[c][2]&&this.shapeList[r]._dataIndex===a[c].data.length-1){this.zr.delShape(this.shapeList[r].id);continue}if(!o[c][2]&&0===this.shapeList[r]._dataIndex){this.zr.delShape(this.shapeList[r].id);continue}}this.shapeList[r].position=[0,0],V++,this.zr.animate(this.shapeList[r].id,"").when(this.query(this.option,"animationDurationUpdate"),{position:[l,d]}).during(n).done(i).start()}V||i()}},o.prototype.iconLibrary.legendLineIcon=i,h.inherits(t,n),e("../chart").define("line",t),t}),define("echarts/util/shape/HalfSmoothPolygon",["require","zrender/shape/Base","zrender/shape/util/smoothBezier","zrender/tool/util","zrender/shape/Polygon"],function(e){function t(e){i.call(this,e)}var i=e("zrender/shape/Base"),n=e("zrender/shape/util/smoothBezier"),a=e("zrender/tool/util");return t.prototype={type:"half-smooth-polygon",buildPath:function(t,i){var a=i.pointList;if(!(a.length<2))if(i.smooth){var o=n(a.slice(0,-2),i.smooth,!1,i.smoothConstraint);t.moveTo(a[0][0],a[0][1]);for(var r,s,l,h=a.length,d=0;h-3>d;d++)r=o[2*d],s=o[2*d+1],l=a[d+1],t.bezierCurveTo(r[0],r[1],s[0],s[1],l[0],l[1]);t.lineTo(a[h-2][0],a[h-2][1]),t.lineTo(a[h-1][0],a[h-1][1]),t.lineTo(a[0][0],a[0][1])}else e("zrender/shape/Polygon").prototype.buildPath(t,i)}},a.inherits(t,i),t});
+define('echarts/chart/line', [
+    'require',
+    './base',
+    'zrender/shape/Polyline',
+    '../util/shape/Icon',
+    '../util/shape/HalfSmoothPolygon',
+    '../component/axis',
+    '../component/grid',
+    '../component/dataZoom',
+    '../config',
+    '../util/ecData',
+    'zrender/tool/util',
+    'zrender/tool/color',
+    '../chart'
+], function (require) {
+    var ChartBase = require('./base');
+    var PolylineShape = require('zrender/shape/Polyline');
+    var IconShape = require('../util/shape/Icon');
+    var HalfSmoothPolygonShape = require('../util/shape/HalfSmoothPolygon');
+    require('../component/axis');
+    require('../component/grid');
+    require('../component/dataZoom');
+    var ecConfig = require('../config');
+    ecConfig.line = {
+        zlevel: 0,
+        z: 2,
+        clickable: true,
+        legendHoverLink: true,
+        xAxisIndex: 0,
+        yAxisIndex: 0,
+        dataFilter: 'nearest',
+        itemStyle: {
+            normal: {
+                label: { show: false },
+                lineStyle: {
+                    width: 2,
+                    type: 'solid',
+                    shadowColor: 'rgba(0,0,0,0)',
+                    shadowBlur: 0,
+                    shadowOffsetX: 0,
+                    shadowOffsetY: 0
+                }
+            },
+            emphasis: { label: { show: false } }
+        },
+        symbolSize: 2,
+        showAllSymbol: false
+    };
+    var ecData = require('../util/ecData');
+    var zrUtil = require('zrender/tool/util');
+    var zrColor = require('zrender/tool/color');
+    function Line(ecTheme, messageCenter, zr, option, myChart) {
+        ChartBase.call(this, ecTheme, messageCenter, zr, option, myChart);
+        this.refresh(option);
+    }
+    Line.prototype = {
+        type: ecConfig.CHART_TYPE_LINE,
+        _buildShape: function () {
+            this.finalPLMap = {};
+            this._buildPosition();
+        },
+        _buildHorizontal: function (seriesArray, maxDataLength, locationMap, xMarkMap) {
+            var series = this.series;
+            var seriesIndex = locationMap[0][0];
+            var serie = series[seriesIndex];
+            var categoryAxis = this.component.xAxis.getAxis(serie.xAxisIndex || 0);
+            var valueAxis;
+            var x;
+            var y;
+            var lastYP;
+            var baseYP;
+            var lastYN;
+            var baseYN;
+            var curPLMap = {};
+            var data;
+            var value;
+            for (var i = 0, l = maxDataLength; i < l; i++) {
+                if (categoryAxis.getNameByIndex(i) == null) {
+                    break;
+                }
+                x = categoryAxis.getCoordByIndex(i);
+                for (var j = 0, k = locationMap.length; j < k; j++) {
+                    valueAxis = this.component.yAxis.getAxis(series[locationMap[j][0]].yAxisIndex || 0);
+                    baseYP = lastYP = baseYN = lastYN = valueAxis.getCoord(0);
+                    for (var m = 0, n = locationMap[j].length; m < n; m++) {
+                        seriesIndex = locationMap[j][m];
+                        serie = series[seriesIndex];
+                        data = serie.data[i];
+                        value = this.getDataFromOption(data, '-');
+                        curPLMap[seriesIndex] = curPLMap[seriesIndex] || [];
+                        xMarkMap[seriesIndex] = xMarkMap[seriesIndex] || {
+                            min: Number.POSITIVE_INFINITY,
+                            max: Number.NEGATIVE_INFINITY,
+                            sum: 0,
+                            counter: 0,
+                            average: 0
+                        };
+                        if (value === '-') {
+                            if (curPLMap[seriesIndex].length > 0) {
+                                this.finalPLMap[seriesIndex] = this.finalPLMap[seriesIndex] || [];
+                                this.finalPLMap[seriesIndex].push(curPLMap[seriesIndex]);
+                                curPLMap[seriesIndex] = [];
+                            }
+                            continue;
+                        }
+                        if (value >= 0) {
+                            lastYP -= m > 0 ? valueAxis.getCoordSize(value) : baseYP - valueAxis.getCoord(value);
+                            y = lastYP;
+                        } else if (value < 0) {
+                            lastYN += m > 0 ? valueAxis.getCoordSize(value) : valueAxis.getCoord(value) - baseYN;
+                            y = lastYN;
+                        }
+                        curPLMap[seriesIndex].push([
+                            x,
+                            y,
+                            i,
+                            categoryAxis.getNameByIndex(i),
+                            x,
+                            baseYP
+                        ]);
+                        if (xMarkMap[seriesIndex].min > value) {
+                            xMarkMap[seriesIndex].min = value;
+                            xMarkMap[seriesIndex].minY = y;
+                            xMarkMap[seriesIndex].minX = x;
+                        }
+                        if (xMarkMap[seriesIndex].max < value) {
+                            xMarkMap[seriesIndex].max = value;
+                            xMarkMap[seriesIndex].maxY = y;
+                            xMarkMap[seriesIndex].maxX = x;
+                        }
+                        xMarkMap[seriesIndex].sum += value;
+                        xMarkMap[seriesIndex].counter++;
+                    }
+                }
+                lastYP = this.component.grid.getY();
+                var symbolSize;
+                for (var j = 0, k = locationMap.length; j < k; j++) {
+                    for (var m = 0, n = locationMap[j].length; m < n; m++) {
+                        seriesIndex = locationMap[j][m];
+                        serie = series[seriesIndex];
+                        data = serie.data[i];
+                        value = this.getDataFromOption(data, '-');
+                        if (value != '-') {
+                            continue;
+                        }
+                        if (this.deepQuery([
+                                data,
+                                serie,
+                                this.option
+                            ], 'calculable')) {
+                            symbolSize = this.deepQuery([
+                                data,
+                                serie
+                            ], 'symbolSize');
+                            lastYP += symbolSize * 2 + 5;
+                            y = lastYP;
+                            this.shapeList.push(this._getCalculableItem(seriesIndex, i, categoryAxis.getNameByIndex(i), x, y, 'horizontal'));
+                        }
+                    }
+                }
+            }
+            for (var sId in curPLMap) {
+                if (curPLMap[sId].length > 0) {
+                    this.finalPLMap[sId] = this.finalPLMap[sId] || [];
+                    this.finalPLMap[sId].push(curPLMap[sId]);
+                    curPLMap[sId] = [];
+                }
+            }
+            this._calculMarkMapXY(xMarkMap, locationMap, 'y');
+            this._buildBorkenLine(seriesArray, this.finalPLMap, categoryAxis, 'horizontal');
+        },
+        _buildVertical: function (seriesArray, maxDataLength, locationMap, xMarkMap) {
+            var series = this.series;
+            var seriesIndex = locationMap[0][0];
+            var serie = series[seriesIndex];
+            var categoryAxis = this.component.yAxis.getAxis(serie.yAxisIndex || 0);
+            var valueAxis;
+            var x;
+            var y;
+            var lastXP;
+            var baseXP;
+            var lastXN;
+            var baseXN;
+            var curPLMap = {};
+            var data;
+            var value;
+            for (var i = 0, l = maxDataLength; i < l; i++) {
+                if (categoryAxis.getNameByIndex(i) == null) {
+                    break;
+                }
+                y = categoryAxis.getCoordByIndex(i);
+                for (var j = 0, k = locationMap.length; j < k; j++) {
+                    valueAxis = this.component.xAxis.getAxis(series[locationMap[j][0]].xAxisIndex || 0);
+                    baseXP = lastXP = baseXN = lastXN = valueAxis.getCoord(0);
+                    for (var m = 0, n = locationMap[j].length; m < n; m++) {
+                        seriesIndex = locationMap[j][m];
+                        serie = series[seriesIndex];
+                        data = serie.data[i];
+                        value = this.getDataFromOption(data, '-');
+                        curPLMap[seriesIndex] = curPLMap[seriesIndex] || [];
+                        xMarkMap[seriesIndex] = xMarkMap[seriesIndex] || {
+                            min: Number.POSITIVE_INFINITY,
+                            max: Number.NEGATIVE_INFINITY,
+                            sum: 0,
+                            counter: 0,
+                            average: 0
+                        };
+                        if (value === '-') {
+                            if (curPLMap[seriesIndex].length > 0) {
+                                this.finalPLMap[seriesIndex] = this.finalPLMap[seriesIndex] || [];
+                                this.finalPLMap[seriesIndex].push(curPLMap[seriesIndex]);
+                                curPLMap[seriesIndex] = [];
+                            }
+                            continue;
+                        }
+                        if (value >= 0) {
+                            lastXP += m > 0 ? valueAxis.getCoordSize(value) : valueAxis.getCoord(value) - baseXP;
+                            x = lastXP;
+                        } else if (value < 0) {
+                            lastXN -= m > 0 ? valueAxis.getCoordSize(value) : baseXN - valueAxis.getCoord(value);
+                            x = lastXN;
+                        }
+                        curPLMap[seriesIndex].push([
+                            x,
+                            y,
+                            i,
+                            categoryAxis.getNameByIndex(i),
+                            baseXP,
+                            y
+                        ]);
+                        if (xMarkMap[seriesIndex].min > value) {
+                            xMarkMap[seriesIndex].min = value;
+                            xMarkMap[seriesIndex].minX = x;
+                            xMarkMap[seriesIndex].minY = y;
+                        }
+                        if (xMarkMap[seriesIndex].max < value) {
+                            xMarkMap[seriesIndex].max = value;
+                            xMarkMap[seriesIndex].maxX = x;
+                            xMarkMap[seriesIndex].maxY = y;
+                        }
+                        xMarkMap[seriesIndex].sum += value;
+                        xMarkMap[seriesIndex].counter++;
+                    }
+                }
+                lastXP = this.component.grid.getXend();
+                var symbolSize;
+                for (var j = 0, k = locationMap.length; j < k; j++) {
+                    for (var m = 0, n = locationMap[j].length; m < n; m++) {
+                        seriesIndex = locationMap[j][m];
+                        serie = series[seriesIndex];
+                        data = serie.data[i];
+                        value = this.getDataFromOption(data, '-');
+                        if (value != '-') {
+                            continue;
+                        }
+                        if (this.deepQuery([
+                                data,
+                                serie,
+                                this.option
+                            ], 'calculable')) {
+                            symbolSize = this.deepQuery([
+                                data,
+                                serie
+                            ], 'symbolSize');
+                            lastXP -= symbolSize * 2 + 5;
+                            x = lastXP;
+                            this.shapeList.push(this._getCalculableItem(seriesIndex, i, categoryAxis.getNameByIndex(i), x, y, 'vertical'));
+                        }
+                    }
+                }
+            }
+            for (var sId in curPLMap) {
+                if (curPLMap[sId].length > 0) {
+                    this.finalPLMap[sId] = this.finalPLMap[sId] || [];
+                    this.finalPLMap[sId].push(curPLMap[sId]);
+                    curPLMap[sId] = [];
+                }
+            }
+            this._calculMarkMapXY(xMarkMap, locationMap, 'x');
+            this._buildBorkenLine(seriesArray, this.finalPLMap, categoryAxis, 'vertical');
+        },
+        _buildOther: function (seriesArray, maxDataLength, locationMap, xMarkMap) {
+            var series = this.series;
+            var curPLMap = {};
+            var xAxis;
+            for (var j = 0, k = locationMap.length; j < k; j++) {
+                for (var m = 0, n = locationMap[j].length; m < n; m++) {
+                    var seriesIndex = locationMap[j][m];
+                    var serie = series[seriesIndex];
+                    xAxis = this.component.xAxis.getAxis(serie.xAxisIndex || 0);
+                    var yAxis = this.component.yAxis.getAxis(serie.yAxisIndex || 0);
+                    var baseY = yAxis.getCoord(0);
+                    curPLMap[seriesIndex] = curPLMap[seriesIndex] || [];
+                    xMarkMap[seriesIndex] = xMarkMap[seriesIndex] || {
+                        min0: Number.POSITIVE_INFINITY,
+                        min1: Number.POSITIVE_INFINITY,
+                        max0: Number.NEGATIVE_INFINITY,
+                        max1: Number.NEGATIVE_INFINITY,
+                        sum0: 0,
+                        sum1: 0,
+                        counter0: 0,
+                        counter1: 0,
+                        average0: 0,
+                        average1: 0
+                    };
+                    for (var i = 0, l = serie.data.length; i < l; i++) {
+                        var data = serie.data[i];
+                        var value = this.getDataFromOption(data, '-');
+                        if (!(value instanceof Array)) {
+                            continue;
+                        }
+                        var x = xAxis.getCoord(value[0]);
+                        var y = yAxis.getCoord(value[1]);
+                        curPLMap[seriesIndex].push([
+                            x,
+                            y,
+                            i,
+                            value[0],
+                            x,
+                            baseY
+                        ]);
+                        if (xMarkMap[seriesIndex].min0 > value[0]) {
+                            xMarkMap[seriesIndex].min0 = value[0];
+                            xMarkMap[seriesIndex].minY0 = y;
+                            xMarkMap[seriesIndex].minX0 = x;
+                        }
+                        if (xMarkMap[seriesIndex].max0 < value[0]) {
+                            xMarkMap[seriesIndex].max0 = value[0];
+                            xMarkMap[seriesIndex].maxY0 = y;
+                            xMarkMap[seriesIndex].maxX0 = x;
+                        }
+                        xMarkMap[seriesIndex].sum0 += value[0];
+                        xMarkMap[seriesIndex].counter0++;
+                        if (xMarkMap[seriesIndex].min1 > value[1]) {
+                            xMarkMap[seriesIndex].min1 = value[1];
+                            xMarkMap[seriesIndex].minY1 = y;
+                            xMarkMap[seriesIndex].minX1 = x;
+                        }
+                        if (xMarkMap[seriesIndex].max1 < value[1]) {
+                            xMarkMap[seriesIndex].max1 = value[1];
+                            xMarkMap[seriesIndex].maxY1 = y;
+                            xMarkMap[seriesIndex].maxX1 = x;
+                        }
+                        xMarkMap[seriesIndex].sum1 += value[1];
+                        xMarkMap[seriesIndex].counter1++;
+                    }
+                }
+            }
+            for (var sId in curPLMap) {
+                if (curPLMap[sId].length > 0) {
+                    this.finalPLMap[sId] = this.finalPLMap[sId] || [];
+                    this.finalPLMap[sId].push(curPLMap[sId]);
+                    curPLMap[sId] = [];
+                }
+            }
+            this._calculMarkMapXY(xMarkMap, locationMap, 'xy');
+            this._buildBorkenLine(seriesArray, this.finalPLMap, xAxis, 'other');
+        },
+        _buildBorkenLine: function (seriesArray, pointList, categoryAxis, curOrient) {
+            var orient = curOrient == 'other' ? 'horizontal' : curOrient;
+            var series = this.series;
+            var data;
+            for (var sIdx = seriesArray.length - 1; sIdx >= 0; sIdx--) {
+                var seriesIndex = seriesArray[sIdx];
+                var serie = series[seriesIndex];
+                var seriesPL = pointList[seriesIndex];
+                if (serie.type === this.type && seriesPL != null) {
+                    var bbox = this._getBbox(seriesIndex, orient);
+                    var defaultColor = this._sIndex2ColorMap[seriesIndex];
+                    var lineWidth = this.query(serie, 'itemStyle.normal.lineStyle.width');
+                    var lineType = this.query(serie, 'itemStyle.normal.lineStyle.type');
+                    var lineColor = this.query(serie, 'itemStyle.normal.lineStyle.color');
+                    var normalColor = this.getItemStyleColor(this.query(serie, 'itemStyle.normal.color'), seriesIndex, -1);
+                    var isFill = this.query(serie, 'itemStyle.normal.areaStyle') != null;
+                    var fillNormalColor = this.query(serie, 'itemStyle.normal.areaStyle.color');
+                    for (var i = 0, l = seriesPL.length; i < l; i++) {
+                        var singlePL = seriesPL[i];
+                        var isLarge = curOrient != 'other' && this._isLarge(orient, singlePL);
+                        if (!isLarge) {
+                            for (var j = 0, k = singlePL.length; j < k; j++) {
+                                data = serie.data[singlePL[j][2]];
+                                if (this.deepQuery([
+                                        data,
+                                        serie,
+                                        this.option
+                                    ], 'calculable') || this.deepQuery([
+                                        data,
+                                        serie
+                                    ], 'showAllSymbol') || categoryAxis.type === 'categoryAxis' && categoryAxis.isMainAxis(singlePL[j][2]) && this.deepQuery([
+                                        data,
+                                        serie
+                                    ], 'symbol') != 'none') {
+                                    this.shapeList.push(this._getSymbol(seriesIndex, singlePL[j][2], singlePL[j][3], singlePL[j][0], singlePL[j][1], orient));
+                                }
+                            }
+                        } else {
+                            singlePL = this._getLargePointList(orient, singlePL, serie.dataFilter);
+                        }
+                        var polylineShape = new PolylineShape({
+                            zlevel: this.getZlevelBase(),
+                            z: this.getZBase(),
+                            style: {
+                                miterLimit: lineWidth,
+                                pointList: singlePL,
+                                strokeColor: lineColor || normalColor || defaultColor,
+                                lineWidth: lineWidth,
+                                lineType: lineType,
+                                smooth: this._getSmooth(serie.smooth),
+                                smoothConstraint: bbox,
+                                shadowColor: this.query(serie, 'itemStyle.normal.lineStyle.shadowColor'),
+                                shadowBlur: this.query(serie, 'itemStyle.normal.lineStyle.shadowBlur'),
+                                shadowOffsetX: this.query(serie, 'itemStyle.normal.lineStyle.shadowOffsetX'),
+                                shadowOffsetY: this.query(serie, 'itemStyle.normal.lineStyle.shadowOffsetY')
+                            },
+                            hoverable: false,
+                            _main: true,
+                            _seriesIndex: seriesIndex,
+                            _orient: orient
+                        });
+                        ecData.pack(polylineShape, series[seriesIndex], seriesIndex, 0, i, series[seriesIndex].name);
+                        this.shapeList.push(polylineShape);
+                        if (isFill) {
+                            var halfSmoothPolygonShape = new HalfSmoothPolygonShape({
+                                zlevel: this.getZlevelBase(),
+                                z: this.getZBase(),
+                                style: {
+                                    miterLimit: lineWidth,
+                                    pointList: zrUtil.clone(singlePL).concat([
+                                        [
+                                            singlePL[singlePL.length - 1][4],
+                                            singlePL[singlePL.length - 1][5]
+                                        ],
+                                        [
+                                            singlePL[0][4],
+                                            singlePL[0][5]
+                                        ]
+                                    ]),
+                                    brushType: 'fill',
+                                    smooth: this._getSmooth(serie.smooth),
+                                    smoothConstraint: bbox,
+                                    color: fillNormalColor ? fillNormalColor : zrColor.alpha(defaultColor, 0.5)
+                                },
+                                highlightStyle: { brushType: 'fill' },
+                                hoverable: false,
+                                _main: true,
+                                _seriesIndex: seriesIndex,
+                                _orient: orient
+                            });
+                            ecData.pack(halfSmoothPolygonShape, series[seriesIndex], seriesIndex, 0, i, series[seriesIndex].name);
+                            this.shapeList.push(halfSmoothPolygonShape);
+                        }
+                    }
+                }
+            }
+        },
+        _getBbox: function (seriesIndex, orient) {
+            var bbox = this.component.grid.getBbox();
+            var xMarkMap = this.xMarkMap[seriesIndex];
+            if (xMarkMap.minX0 != null) {
+                return [
+                    [
+                        Math.min(xMarkMap.minX0, xMarkMap.maxX0, xMarkMap.minX1, xMarkMap.maxX1),
+                        Math.min(xMarkMap.minY0, xMarkMap.maxY0, xMarkMap.minY1, xMarkMap.maxY1)
+                    ],
+                    [
+                        Math.max(xMarkMap.minX0, xMarkMap.maxX0, xMarkMap.minX1, xMarkMap.maxX1),
+                        Math.max(xMarkMap.minY0, xMarkMap.maxY0, xMarkMap.minY1, xMarkMap.maxY1)
+                    ]
+                ];
+            } else if (orient === 'horizontal') {
+                bbox[0][1] = Math.min(xMarkMap.minY, xMarkMap.maxY);
+                bbox[1][1] = Math.max(xMarkMap.minY, xMarkMap.maxY);
+            } else {
+                bbox[0][0] = Math.min(xMarkMap.minX, xMarkMap.maxX);
+                bbox[1][0] = Math.max(xMarkMap.minX, xMarkMap.maxX);
+            }
+            return bbox;
+        },
+        _isLarge: function (orient, singlePL) {
+            if (singlePL.length < 2) {
+                return false;
+            } else {
+                return orient === 'horizontal' ? Math.abs(singlePL[0][0] - singlePL[1][0]) < 0.5 : Math.abs(singlePL[0][1] - singlePL[1][1]) < 0.5;
+            }
+        },
+        _getLargePointList: function (orient, singlePL, filter) {
+            var total;
+            if (orient === 'horizontal') {
+                total = this.component.grid.getWidth();
+            } else {
+                total = this.component.grid.getHeight();
+            }
+            var len = singlePL.length;
+            var newList = [];
+            if (typeof filter != 'function') {
+                switch (filter) {
+                case 'min':
+                    filter = function (arr) {
+                        return Math.max.apply(null, arr);
+                    };
+                    break;
+                case 'max':
+                    filter = function (arr) {
+                        return Math.min.apply(null, arr);
+                    };
+                    break;
+                case 'average':
+                    filter = function (arr) {
+                        var total = 0;
+                        for (var i = 0; i < arr.length; i++) {
+                            total += arr[i];
+                        }
+                        return total / arr.length;
+                    };
+                    break;
+                default:
+                    filter = function (arr) {
+                        return arr[0];
+                    };
+                }
+            }
+            var windowData = [];
+            for (var i = 0; i < total; i++) {
+                var idx0 = Math.floor(len / total * i);
+                var idx1 = Math.min(Math.floor(len / total * (i + 1)), len);
+                if (idx1 <= idx0) {
+                    continue;
+                }
+                for (var j = idx0; j < idx1; j++) {
+                    windowData[j - idx0] = orient === 'horizontal' ? singlePL[j][1] : singlePL[j][0];
+                }
+                windowData.length = idx1 - idx0;
+                var filteredVal = filter(windowData);
+                var nearestIdx = -1;
+                var minDist = Infinity;
+                for (var j = idx0; j < idx1; j++) {
+                    var val = orient === 'horizontal' ? singlePL[j][1] : singlePL[j][0];
+                    var dist = Math.abs(val - filteredVal);
+                    if (dist < minDist) {
+                        nearestIdx = j;
+                        minDist = dist;
+                    }
+                }
+                var newItem = singlePL[nearestIdx].slice();
+                if (orient === 'horizontal') {
+                    newItem[1] = filteredVal;
+                } else {
+                    newItem[0] = filteredVal;
+                }
+                newList.push(newItem);
+            }
+            return newList;
+        },
+        _getSmooth: function (isSmooth) {
+            if (isSmooth) {
+                return 0.3;
+            } else {
+                return 0;
+            }
+        },
+        _getCalculableItem: function (seriesIndex, dataIndex, name, x, y, orient) {
+            var series = this.series;
+            var color = series[seriesIndex].calculableHolderColor || this.ecTheme.calculableHolderColor || ecConfig.calculableHolderColor;
+            var itemShape = this._getSymbol(seriesIndex, dataIndex, name, x, y, orient);
+            itemShape.style.color = color;
+            itemShape.style.strokeColor = color;
+            itemShape.rotation = [
+                0,
+                0
+            ];
+            itemShape.hoverable = false;
+            itemShape.draggable = false;
+            itemShape.style.text = undefined;
+            return itemShape;
+        },
+        _getSymbol: function (seriesIndex, dataIndex, name, x, y, orient) {
+            var series = this.series;
+            var serie = series[seriesIndex];
+            var data = serie.data[dataIndex];
+            var itemShape = this.getSymbolShape(serie, seriesIndex, data, dataIndex, name, x, y, this._sIndex2ShapeMap[seriesIndex], this._sIndex2ColorMap[seriesIndex], '#fff', orient === 'vertical' ? 'horizontal' : 'vertical');
+            itemShape.zlevel = this.getZlevelBase();
+            itemShape.z = this.getZBase() + 1;
+            if (this.deepQuery([
+                    data,
+                    serie,
+                    this.option
+                ], 'calculable')) {
+                this.setCalculable(itemShape);
+                itemShape.draggable = true;
+            }
+            return itemShape;
+        },
+        getMarkCoord: function (seriesIndex, mpData) {
+            var serie = this.series[seriesIndex];
+            var xMarkMap = this.xMarkMap[seriesIndex];
+            var xAxis = this.component.xAxis.getAxis(serie.xAxisIndex);
+            var yAxis = this.component.yAxis.getAxis(serie.yAxisIndex);
+            if (mpData.type && (mpData.type === 'max' || mpData.type === 'min' || mpData.type === 'average')) {
+                var valueIndex = mpData.valueIndex != null ? mpData.valueIndex : xMarkMap.maxX0 != null ? '1' : '';
+                return [
+                    xMarkMap[mpData.type + 'X' + valueIndex],
+                    xMarkMap[mpData.type + 'Y' + valueIndex],
+                    xMarkMap[mpData.type + 'Line' + valueIndex],
+                    xMarkMap[mpData.type + valueIndex]
+                ];
+            }
+            return [
+                typeof mpData.xAxis != 'string' && xAxis.getCoordByIndex ? xAxis.getCoordByIndex(mpData.xAxis || 0) : xAxis.getCoord(mpData.xAxis || 0),
+                typeof mpData.yAxis != 'string' && yAxis.getCoordByIndex ? yAxis.getCoordByIndex(mpData.yAxis || 0) : yAxis.getCoord(mpData.yAxis || 0)
+            ];
+        },
+        refresh: function (newOption) {
+            if (newOption) {
+                this.option = newOption;
+                this.series = newOption.series;
+            }
+            this.backupShapeList();
+            this._buildShape();
+        },
+        ontooltipHover: function (param, tipShape) {
+            var seriesIndex = param.seriesIndex;
+            var dataIndex = param.dataIndex;
+            var seriesPL;
+            var singlePL;
+            var len = seriesIndex.length;
+            while (len--) {
+                seriesPL = this.finalPLMap[seriesIndex[len]];
+                if (seriesPL) {
+                    for (var i = 0, l = seriesPL.length; i < l; i++) {
+                        singlePL = seriesPL[i];
+                        for (var j = 0, k = singlePL.length; j < k; j++) {
+                            if (dataIndex === singlePL[j][2]) {
+                                tipShape.push(this._getSymbol(seriesIndex[len], singlePL[j][2], singlePL[j][3], singlePL[j][0], singlePL[j][1], 'horizontal'));
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        addDataAnimation: function (params, done) {
+            var series = this.series;
+            var aniMap = {};
+            for (var i = 0, l = params.length; i < l; i++) {
+                aniMap[params[i][0]] = params[i];
+            }
+            var x;
+            var dx;
+            var y;
+            var dy;
+            var seriesIndex;
+            var pointList;
+            var isHorizontal;
+            var aniCount = 0;
+            function animationDone() {
+                aniCount--;
+                if (aniCount === 0) {
+                    done && done();
+                }
+            }
+            function animationDuring(target) {
+                target.style.controlPointList = null;
+            }
+            for (var i = this.shapeList.length - 1; i >= 0; i--) {
+                seriesIndex = this.shapeList[i]._seriesIndex;
+                if (aniMap[seriesIndex] && !aniMap[seriesIndex][3]) {
+                    if (this.shapeList[i]._main && this.shapeList[i].style.pointList.length > 1) {
+                        pointList = this.shapeList[i].style.pointList;
+                        dx = Math.abs(pointList[0][0] - pointList[1][0]);
+                        dy = Math.abs(pointList[0][1] - pointList[1][1]);
+                        isHorizontal = this.shapeList[i]._orient === 'horizontal';
+                        if (aniMap[seriesIndex][2]) {
+                            if (this.shapeList[i].type === 'half-smooth-polygon') {
+                                var len = pointList.length;
+                                this.shapeList[i].style.pointList[len - 3] = pointList[len - 2];
+                                this.shapeList[i].style.pointList[len - 3][isHorizontal ? 0 : 1] = pointList[len - 4][isHorizontal ? 0 : 1];
+                                this.shapeList[i].style.pointList[len - 2] = pointList[len - 1];
+                            }
+                            this.shapeList[i].style.pointList.pop();
+                            isHorizontal ? (x = dx, y = 0) : (x = 0, y = -dy);
+                        } else {
+                            this.shapeList[i].style.pointList.shift();
+                            if (this.shapeList[i].type === 'half-smooth-polygon') {
+                                var targetPoint = this.shapeList[i].style.pointList.pop();
+                                isHorizontal ? targetPoint[0] = pointList[0][0] : targetPoint[1] = pointList[0][1];
+                                this.shapeList[i].style.pointList.push(targetPoint);
+                            }
+                            isHorizontal ? (x = -dx, y = 0) : (x = 0, y = dy);
+                        }
+                        this.shapeList[i].style.controlPointList = null;
+                        this.zr.modShape(this.shapeList[i]);
+                    } else {
+                        if (aniMap[seriesIndex][2] && this.shapeList[i]._dataIndex === series[seriesIndex].data.length - 1) {
+                            this.zr.delShape(this.shapeList[i].id);
+                            continue;
+                        } else if (!aniMap[seriesIndex][2] && this.shapeList[i]._dataIndex === 0) {
+                            this.zr.delShape(this.shapeList[i].id);
+                            continue;
+                        }
+                    }
+                    this.shapeList[i].position = [
+                        0,
+                        0
+                    ];
+                    aniCount++;
+                    this.zr.animate(this.shapeList[i].id, '').when(this.query(this.option, 'animationDurationUpdate'), {
+                        position: [
+                            x,
+                            y
+                        ]
+                    }).during(animationDuring).done(animationDone).start();
+                }
+            }
+            if (!aniCount) {
+                animationDone();
+            }
+        }
+    };
+    function legendLineIcon(ctx, style, refreshNextFrame) {
+        var x = style.x;
+        var y = style.y;
+        var width = style.width;
+        var height = style.height;
+        var dy = height / 2;
+        if (style.symbol.match('empty')) {
+            ctx.fillStyle = '#fff';
+        }
+        style.brushType = 'both';
+        var symbol = style.symbol.replace('empty', '').toLowerCase();
+        if (symbol.match('star')) {
+            dy = symbol.replace('star', '') - 0 || 5;
+            y -= 1;
+            symbol = 'star';
+        } else if (symbol === 'rectangle' || symbol === 'arrow') {
+            x += (width - height) / 2;
+            width = height;
+        }
+        var imageLocation = '';
+        if (symbol.match('image')) {
+            imageLocation = symbol.replace(new RegExp('^image:\\/\\/'), '');
+            symbol = 'image';
+            x += Math.round((width - height) / 2) - 1;
+            width = height = height + 2;
+        }
+        symbol = IconShape.prototype.iconLibrary[symbol];
+        if (symbol) {
+            var x2 = style.x;
+            var y2 = style.y;
+            ctx.moveTo(x2, y2 + dy);
+            ctx.lineTo(x2 + 5, y2 + dy);
+            ctx.moveTo(x2 + style.width - 5, y2 + dy);
+            ctx.lineTo(x2 + style.width, y2 + dy);
+            var self = this;
+            symbol(ctx, {
+                x: x + 4,
+                y: y + 4,
+                width: width - 8,
+                height: height - 8,
+                n: dy,
+                image: imageLocation
+            }, function () {
+                self.modSelf();
+                refreshNextFrame();
+            });
+        } else {
+            ctx.moveTo(x, y + dy);
+            ctx.lineTo(x + width, y + dy);
+        }
+    }
+    IconShape.prototype.iconLibrary['legendLineIcon'] = legendLineIcon;
+    zrUtil.inherits(Line, ChartBase);
+    require('../chart').define('line', Line);
+    return Line;
+});define('echarts/util/shape/HalfSmoothPolygon', [
+    'require',
+    'zrender/shape/Base',
+    'zrender/shape/util/smoothBezier',
+    'zrender/tool/util',
+    'zrender/shape/Polygon'
+], function (require) {
+    var Base = require('zrender/shape/Base');
+    var smoothBezier = require('zrender/shape/util/smoothBezier');
+    var zrUtil = require('zrender/tool/util');
+    function HalfSmoothPolygon(options) {
+        Base.call(this, options);
+    }
+    HalfSmoothPolygon.prototype = {
+        type: 'half-smooth-polygon',
+        buildPath: function (ctx, style) {
+            var pointList = style.pointList;
+            if (pointList.length < 2) {
+                return;
+            }
+            if (style.smooth) {
+                var controlPoints = smoothBezier(pointList.slice(0, -2), style.smooth, false, style.smoothConstraint);
+                ctx.moveTo(pointList[0][0], pointList[0][1]);
+                var cp1;
+                var cp2;
+                var p;
+                var l = pointList.length;
+                for (var i = 0; i < l - 3; i++) {
+                    cp1 = controlPoints[i * 2];
+                    cp2 = controlPoints[i * 2 + 1];
+                    p = pointList[i + 1];
+                    ctx.bezierCurveTo(cp1[0], cp1[1], cp2[0], cp2[1], p[0], p[1]);
+                }
+                ctx.lineTo(pointList[l - 2][0], pointList[l - 2][1]);
+                ctx.lineTo(pointList[l - 1][0], pointList[l - 1][1]);
+                ctx.lineTo(pointList[0][0], pointList[0][1]);
+            } else {
+                require('zrender/shape/Polygon').prototype.buildPath(ctx, style);
+            }
+            return;
+        }
+    };
+    zrUtil.inherits(HalfSmoothPolygon, Base);
+    return HalfSmoothPolygon;
+});

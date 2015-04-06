@@ -1,1 +1,648 @@
-define("echarts/chart/bar",["require","./base","zrender/shape/Rectangle","../component/axis","../component/grid","../component/dataZoom","../config","../util/ecData","zrender/tool/util","zrender/tool/color","../chart"],function(e){function t(e,t,n,a,o){i.call(this,e,t,n,a,o),this.refresh(a)}var i=e("./base"),n=e("zrender/shape/Rectangle");e("../component/axis"),e("../component/grid"),e("../component/dataZoom");var a=e("../config");a.bar={zlevel:0,z:2,clickable:!0,legendHoverLink:!0,xAxisIndex:0,yAxisIndex:0,barMinHeight:0,barGap:"30%",barCategoryGap:"20%",itemStyle:{normal:{barBorderColor:"#fff",barBorderRadius:0,barBorderWidth:0,label:{show:!1}},emphasis:{barBorderColor:"#fff",barBorderRadius:0,barBorderWidth:0,label:{show:!1}}}};var o=e("../util/ecData"),r=e("zrender/tool/util"),s=e("zrender/tool/color");return t.prototype={type:a.CHART_TYPE_BAR,_buildShape:function(){this._buildPosition()},_buildNormal:function(e,t,i,o,r){for(var s,l,h,d,m,c,p,u,V,U,g,y,f=this.series,b=i[0][0],_=f[b],x="horizontal"==r,k=this.component.xAxis,L=this.component.yAxis,v=x?k.getAxis(_.xAxisIndex):L.getAxis(_.yAxisIndex),W=this._mapSize(v,i),w=W.gap,X=W.barGap,I=W.barWidthMap,K=W.barMaxWidthMap,S=W.barWidth,C=W.barMinHeightMap,T=W.interval,E=this.deepQuery([this.ecTheme,a],"island.r"),z=0,A=t;A>z&&null!=v.getNameByIndex(z);z++){x?d=v.getCoordByIndex(z)-w/2:m=v.getCoordByIndex(z)+w/2;for(var M=0,J=i.length;J>M;M++){var F=f[i[M][0]].yAxisIndex||0,O=f[i[M][0]].xAxisIndex||0;s=x?L.getAxis(F):k.getAxis(O),p=c=V=u=s.getCoord(0);for(var P=0,D=i[M].length;D>P;P++)b=i[M][P],_=f[b],g=_.data[z],y=this.getDataFromOption(g,"-"),o[b]=o[b]||{min:Number.POSITIVE_INFINITY,max:Number.NEGATIVE_INFINITY,sum:0,counter:0,average:0},h=Math.min(K[b]||Number.MAX_VALUE,I[b]||S),"-"!==y&&(y>0?(l=P>0?s.getCoordSize(y):x?p-s.getCoord(y):s.getCoord(y)-p,1===D&&C[b]>l&&(l=C[b]),x?(c-=l,m=c):(d=c,c+=l)):0>y?(l=P>0?s.getCoordSize(y):x?s.getCoord(y)-V:V-s.getCoord(y),1===D&&C[b]>l&&(l=C[b]),x?(m=u,u+=l):(u-=l,d=u)):(l=0,x?(c-=l,m=c):(d=c,c+=l)),o[b][z]=x?d+h/2:m-h/2,o[b].min>y&&(o[b].min=y,x?(o[b].minY=m,o[b].minX=o[b][z]):(o[b].minX=d+l,o[b].minY=o[b][z])),o[b].max<y&&(o[b].max=y,x?(o[b].maxY=m,o[b].maxX=o[b][z]):(o[b].maxX=d+l,o[b].maxY=o[b][z])),o[b].sum+=y,o[b].counter++,z%T===0&&(U=this._getBarItem(b,z,v.getNameByIndex(z),d,m-(x?0:h),x?h:l,x?l:h,x?"vertical":"horizontal"),this.shapeList.push(new n(U))));for(var P=0,D=i[M].length;D>P;P++)b=i[M][P],_=f[b],g=_.data[z],y=this.getDataFromOption(g,"-"),h=Math.min(K[b]||Number.MAX_VALUE,I[b]||S),"-"==y&&this.deepQuery([g,_,this.option],"calculable")&&(x?(c-=E,m=c):(d=c,c+=E),U=this._getBarItem(b,z,v.getNameByIndex(z),d,m-(x?0:h),x?h:E,x?E:h,x?"vertical":"horizontal"),U.hoverable=!1,U.draggable=!1,U.style.lineWidth=1,U.style.brushType="stroke",U.style.strokeColor=_.calculableHolderColor||this.ecTheme.calculableHolderColor||a.calculableHolderColor,this.shapeList.push(new n(U)));x?d+=h+X:m-=h+X}}this._calculMarkMapXY(o,i,x?"y":"x")},_buildHorizontal:function(e,t,i,n){return this._buildNormal(e,t,i,n,"horizontal")},_buildVertical:function(e,t,i,n){return this._buildNormal(e,t,i,n,"vertical")},_buildOther:function(e,t,i,a){for(var o=this.series,r=0,s=i.length;s>r;r++)for(var l=0,h=i[r].length;h>l;l++){var d=i[r][l],m=o[d],c=m.xAxisIndex||0,p=this.component.xAxis.getAxis(c),u=p.getCoord(0),V=m.yAxisIndex||0,U=this.component.yAxis.getAxis(V),g=U.getCoord(0);a[d]=a[d]||{min0:Number.POSITIVE_INFINITY,min1:Number.POSITIVE_INFINITY,max0:Number.NEGATIVE_INFINITY,max1:Number.NEGATIVE_INFINITY,sum0:0,sum1:0,counter0:0,counter1:0,average0:0,average1:0};for(var y=0,f=m.data.length;f>y;y++){var b=m.data[y],_=this.getDataFromOption(b,"-");if(_ instanceof Array){var x,k,L=p.getCoord(_[0]),v=U.getCoord(_[1]),W=[b,m],w=this.deepQuery(W,"barWidth")||10,X=this.deepQuery(W,"barHeight");null!=X?(x="horizontal",_[0]>0?(w=L-u,L-=w):w=_[0]<0?u-L:0,k=this._getBarItem(d,y,_[0],L,v-X/2,w,X,x)):(x="vertical",_[1]>0?X=g-v:_[1]<0?(X=v-g,v-=X):X=0,k=this._getBarItem(d,y,_[0],L-w/2,v,w,X,x)),this.shapeList.push(new n(k)),L=p.getCoord(_[0]),v=U.getCoord(_[1]),a[d].min0>_[0]&&(a[d].min0=_[0],a[d].minY0=v,a[d].minX0=L),a[d].max0<_[0]&&(a[d].max0=_[0],a[d].maxY0=v,a[d].maxX0=L),a[d].sum0+=_[0],a[d].counter0++,a[d].min1>_[1]&&(a[d].min1=_[1],a[d].minY1=v,a[d].minX1=L),a[d].max1<_[1]&&(a[d].max1=_[1],a[d].maxY1=v,a[d].maxX1=L),a[d].sum1+=_[1],a[d].counter1++}}}this._calculMarkMapXY(a,i,"xy")},_mapSize:function(e,t,i){var n,a,o=this._findSpecialBarSzie(t,i),r=o.barWidthMap,s=o.barMaxWidthMap,l=o.barMinHeightMap,h=o.sBarWidthCounter,d=o.sBarWidthTotal,m=o.barGap,c=o.barCategoryGap,p=1;if(t.length!=h){if(i)n=e.getGap(),m=0,a=+(n/t.length).toFixed(2),0>=a&&(p=Math.floor(t.length/n),a=1);else if(n="string"==typeof c&&c.match(/%$/)?(e.getGap()*(100-parseFloat(c))/100).toFixed(2)-0:e.getGap()-c,"string"==typeof m&&m.match(/%$/)?(m=parseFloat(m)/100,a=+((n-d)/((t.length-1)*m+t.length-h)).toFixed(2),m=a*m):(m=parseFloat(m),a=+((n-d-m*(t.length-1))/(t.length-h)).toFixed(2)),0>=a)return this._mapSize(e,t,!0)}else if(n=h>1?"string"==typeof c&&c.match(/%$/)?+(e.getGap()*(100-parseFloat(c))/100).toFixed(2):e.getGap()-c:d,a=0,m=h>1?+((n-d)/(h-1)).toFixed(2):0,0>m)return this._mapSize(e,t,!0);return this._recheckBarMaxWidth(t,r,s,l,n,a,m,p)},_findSpecialBarSzie:function(e,t){for(var i,n,a,o,r=this.series,s={},l={},h={},d=0,m=0,c=0,p=e.length;p>c;c++)for(var u={barWidth:!1,barMaxWidth:!1},V=0,U=e[c].length;U>V;V++){var g=e[c][V],y=r[g];if(!t){if(u.barWidth)s[g]=i;else if(i=this.query(y,"barWidth"),null!=i){s[g]=i,m+=i,d++,u.barWidth=!0;for(var f=0,b=V;b>f;f++){var _=e[c][f];s[_]=i}}if(u.barMaxWidth)l[g]=n;else if(n=this.query(y,"barMaxWidth"),null!=n){l[g]=n,u.barMaxWidth=!0;for(var f=0,b=V;b>f;f++){var _=e[c][f];l[_]=n}}}h[g]=this.query(y,"barMinHeight"),a=null!=a?a:this.query(y,"barGap"),o=null!=o?o:this.query(y,"barCategoryGap")}return{barWidthMap:s,barMaxWidthMap:l,barMinHeightMap:h,sBarWidth:i,sBarMaxWidth:n,sBarWidthCounter:d,sBarWidthTotal:m,barGap:a,barCategoryGap:o}},_recheckBarMaxWidth:function(e,t,i,n,a,o,r,s){for(var l=0,h=e.length;h>l;l++){var d=e[l][0];i[d]&&i[d]<o&&(a-=o-i[d])}return{barWidthMap:t,barMaxWidthMap:i,barMinHeightMap:n,gap:a,barWidth:o,barGap:r,interval:s}},_getBarItem:function(e,t,i,n,a,r,l,h){var d,m=this.series,c=m[e],p=c.data[t],u=this._sIndex2ColorMap[e],V=[p,c],U=this.deepMerge(V,"itemStyle.normal"),g=this.deepMerge(V,"itemStyle.emphasis"),y=U.barBorderWidth;d={zlevel:this.getZlevelBase(),z:this.getZBase(),clickable:this.deepQuery(V,"clickable"),style:{x:n,y:a,width:r,height:l,brushType:"both",color:this.getItemStyleColor(this.deepQuery(V,"itemStyle.normal.color")||u,e,t,p),radius:U.barBorderRadius,lineWidth:y,strokeColor:U.barBorderColor},highlightStyle:{color:this.getItemStyleColor(this.deepQuery(V,"itemStyle.emphasis.color"),e,t,p),radius:g.barBorderRadius,lineWidth:g.barBorderWidth,strokeColor:g.barBorderColor},_orient:h};var f=d.style;d.highlightStyle.color=d.highlightStyle.color||("string"==typeof f.color?s.lift(f.color,-.3):f.color),f.x=Math.floor(f.x),f.y=Math.floor(f.y),f.height=Math.ceil(f.height),f.width=Math.ceil(f.width),y>0&&f.height>y&&f.width>y?(f.y+=y/2,f.height-=y,f.x+=y/2,f.width-=y):f.brushType="fill",d.highlightStyle.textColor=d.highlightStyle.color,d=this.addLabel(d,c,p,i,h);for(var b=[f,d.highlightStyle],_=0,x=b.length;x>_;_++){var k=b[_].textPosition;if("insideLeft"===k||"insideRight"===k||"insideTop"===k||"insideBottom"===k){var L=5;switch(k){case"insideLeft":b[_].textX=f.x+L,b[_].textY=f.y+f.height/2,b[_].textAlign="left",b[_].textBaseline="middle";break;case"insideRight":b[_].textX=f.x+f.width-L,b[_].textY=f.y+f.height/2,b[_].textAlign="right",b[_].textBaseline="middle";break;case"insideTop":b[_].textX=f.x+f.width/2,b[_].textY=f.y+L/2,b[_].textAlign="center",b[_].textBaseline="top";break;case"insideBottom":b[_].textX=f.x+f.width/2,b[_].textY=f.y+f.height-L/2,b[_].textAlign="center",b[_].textBaseline="bottom"}b[_].textPosition="specific",b[_].textColor=b[_].textColor||"#fff"}}return this.deepQuery([p,c,this.option],"calculable")&&(this.setCalculable(d),d.draggable=!0),o.pack(d,m[e],e,m[e].data[t],t,i),d},getMarkCoord:function(e,t){var i,n,a=this.series[e],o=this.xMarkMap[e],r=this.component.xAxis.getAxis(a.xAxisIndex),s=this.component.yAxis.getAxis(a.yAxisIndex);if(!t.type||"max"!==t.type&&"min"!==t.type&&"average"!==t.type)if(o.isHorizontal){i="string"==typeof t.xAxis&&r.getIndexByName?r.getIndexByName(t.xAxis):t.xAxis||0;var l=o[i];l=null!=l?l:"string"!=typeof t.xAxis&&r.getCoordByIndex?r.getCoordByIndex(t.xAxis||0):r.getCoord(t.xAxis||0),n=[l,s.getCoord(t.yAxis||0)]}else{i="string"==typeof t.yAxis&&s.getIndexByName?s.getIndexByName(t.yAxis):t.yAxis||0;var h=o[i];h=null!=h?h:"string"!=typeof t.yAxis&&s.getCoordByIndex?s.getCoordByIndex(t.yAxis||0):s.getCoord(t.yAxis||0),n=[r.getCoord(t.xAxis||0),h]}else{var d=null!=t.valueIndex?t.valueIndex:null!=o.maxX0?"1":"";n=[o[t.type+"X"+d],o[t.type+"Y"+d],o[t.type+"Line"+d],o[t.type+d]]}return n},refresh:function(e){e&&(this.option=e,this.series=e.series),this.backupShapeList(),this._buildShape()},addDataAnimation:function(e,t){function i(){V--,0===V&&t&&t()}for(var n=this.series,a={},r=0,s=e.length;s>r;r++)a[e[r][0]]=e[r];for(var l,h,d,m,c,p,u,V=0,r=this.shapeList.length-1;r>=0;r--)if(p=o.get(this.shapeList[r],"seriesIndex"),a[p]&&!a[p][3]&&"rectangle"===this.shapeList[r].type){if(u=o.get(this.shapeList[r],"dataIndex"),c=n[p],a[p][2]&&u===c.data.length-1){this.zr.delShape(this.shapeList[r].id);continue}if(!a[p][2]&&0===u){this.zr.delShape(this.shapeList[r].id);continue}"horizontal"===this.shapeList[r]._orient?(m=this.component.yAxis.getAxis(c.yAxisIndex||0).getGap(),d=a[p][2]?-m:m,l=0):(h=this.component.xAxis.getAxis(c.xAxisIndex||0).getGap(),l=a[p][2]?h:-h,d=0),this.shapeList[r].position=[0,0],V++,this.zr.animate(this.shapeList[r].id,"").when(this.query(this.option,"animationDurationUpdate"),{position:[l,d]}).done(i).start()}V||i()}},r.inherits(t,i),e("../chart").define("bar",t),t});
+define('echarts/chart/bar', [
+    'require',
+    './base',
+    'zrender/shape/Rectangle',
+    '../component/axis',
+    '../component/grid',
+    '../component/dataZoom',
+    '../config',
+    '../util/ecData',
+    'zrender/tool/util',
+    'zrender/tool/color',
+    '../chart'
+], function (require) {
+    var ChartBase = require('./base');
+    var RectangleShape = require('zrender/shape/Rectangle');
+    require('../component/axis');
+    require('../component/grid');
+    require('../component/dataZoom');
+    var ecConfig = require('../config');
+    ecConfig.bar = {
+        zlevel: 0,
+        z: 2,
+        clickable: true,
+        legendHoverLink: true,
+        xAxisIndex: 0,
+        yAxisIndex: 0,
+        barMinHeight: 0,
+        barGap: '30%',
+        barCategoryGap: '20%',
+        itemStyle: {
+            normal: {
+                barBorderColor: '#fff',
+                barBorderRadius: 0,
+                barBorderWidth: 0,
+                label: { show: false }
+            },
+            emphasis: {
+                barBorderColor: '#fff',
+                barBorderRadius: 0,
+                barBorderWidth: 0,
+                label: { show: false }
+            }
+        }
+    };
+    var ecData = require('../util/ecData');
+    var zrUtil = require('zrender/tool/util');
+    var zrColor = require('zrender/tool/color');
+    function Bar(ecTheme, messageCenter, zr, option, myChart) {
+        ChartBase.call(this, ecTheme, messageCenter, zr, option, myChart);
+        this.refresh(option);
+    }
+    Bar.prototype = {
+        type: ecConfig.CHART_TYPE_BAR,
+        _buildShape: function () {
+            this._buildPosition();
+        },
+        _buildNormal: function (seriesArray, maxDataLength, locationMap, xMarkMap, orient) {
+            var series = this.series;
+            var seriesIndex = locationMap[0][0];
+            var serie = series[seriesIndex];
+            var isHorizontal = orient == 'horizontal';
+            var xAxis = this.component.xAxis;
+            var yAxis = this.component.yAxis;
+            var categoryAxis = isHorizontal ? xAxis.getAxis(serie.xAxisIndex) : yAxis.getAxis(serie.yAxisIndex);
+            var valueAxis;
+            var size = this._mapSize(categoryAxis, locationMap);
+            var gap = size.gap;
+            var barGap = size.barGap;
+            var barWidthMap = size.barWidthMap;
+            var barMaxWidthMap = size.barMaxWidthMap;
+            var barWidth = size.barWidth;
+            var barMinHeightMap = size.barMinHeightMap;
+            var barHeight;
+            var curBarWidth;
+            var interval = size.interval;
+            var x;
+            var y;
+            var lastP;
+            var baseP;
+            var lastN;
+            var baseN;
+            var barShape;
+            var data;
+            var value;
+            var islandR = this.deepQuery([
+                this.ecTheme,
+                ecConfig
+            ], 'island.r');
+            for (var i = 0, l = maxDataLength; i < l; i++) {
+                if (categoryAxis.getNameByIndex(i) == null) {
+                    break;
+                }
+                isHorizontal ? x = categoryAxis.getCoordByIndex(i) - gap / 2 : y = categoryAxis.getCoordByIndex(i) + gap / 2;
+                for (var j = 0, k = locationMap.length; j < k; j++) {
+                    var yAxisIndex = series[locationMap[j][0]].yAxisIndex || 0;
+                    var xAxisIndex = series[locationMap[j][0]].xAxisIndex || 0;
+                    valueAxis = isHorizontal ? yAxis.getAxis(yAxisIndex) : xAxis.getAxis(xAxisIndex);
+                    baseP = lastP = baseN = lastN = valueAxis.getCoord(0);
+                    for (var m = 0, n = locationMap[j].length; m < n; m++) {
+                        seriesIndex = locationMap[j][m];
+                        serie = series[seriesIndex];
+                        data = serie.data[i];
+                        value = this.getDataFromOption(data, '-');
+                        xMarkMap[seriesIndex] = xMarkMap[seriesIndex] || {
+                            min: Number.POSITIVE_INFINITY,
+                            max: Number.NEGATIVE_INFINITY,
+                            sum: 0,
+                            counter: 0,
+                            average: 0
+                        };
+                        curBarWidth = Math.min(barMaxWidthMap[seriesIndex] || Number.MAX_VALUE, barWidthMap[seriesIndex] || barWidth);
+                        if (value === '-') {
+                            continue;
+                        }
+                        if (value > 0) {
+                            barHeight = m > 0 ? valueAxis.getCoordSize(value) : isHorizontal ? baseP - valueAxis.getCoord(value) : valueAxis.getCoord(value) - baseP;
+                            if (n === 1 && barMinHeightMap[seriesIndex] > barHeight) {
+                                barHeight = barMinHeightMap[seriesIndex];
+                            }
+                            if (isHorizontal) {
+                                lastP -= barHeight;
+                                y = lastP;
+                            } else {
+                                x = lastP;
+                                lastP += barHeight;
+                            }
+                        } else if (value < 0) {
+                            barHeight = m > 0 ? valueAxis.getCoordSize(value) : isHorizontal ? valueAxis.getCoord(value) - baseN : baseN - valueAxis.getCoord(value);
+                            if (n === 1 && barMinHeightMap[seriesIndex] > barHeight) {
+                                barHeight = barMinHeightMap[seriesIndex];
+                            }
+                            if (isHorizontal) {
+                                y = lastN;
+                                lastN += barHeight;
+                            } else {
+                                lastN -= barHeight;
+                                x = lastN;
+                            }
+                        } else {
+                            barHeight = 0;
+                            if (isHorizontal) {
+                                lastP -= barHeight;
+                                y = lastP;
+                            } else {
+                                x = lastP;
+                                lastP += barHeight;
+                            }
+                        }
+                        xMarkMap[seriesIndex][i] = isHorizontal ? x + curBarWidth / 2 : y - curBarWidth / 2;
+                        if (xMarkMap[seriesIndex].min > value) {
+                            xMarkMap[seriesIndex].min = value;
+                            if (isHorizontal) {
+                                xMarkMap[seriesIndex].minY = y;
+                                xMarkMap[seriesIndex].minX = xMarkMap[seriesIndex][i];
+                            } else {
+                                xMarkMap[seriesIndex].minX = x + barHeight;
+                                xMarkMap[seriesIndex].minY = xMarkMap[seriesIndex][i];
+                            }
+                        }
+                        if (xMarkMap[seriesIndex].max < value) {
+                            xMarkMap[seriesIndex].max = value;
+                            if (isHorizontal) {
+                                xMarkMap[seriesIndex].maxY = y;
+                                xMarkMap[seriesIndex].maxX = xMarkMap[seriesIndex][i];
+                            } else {
+                                xMarkMap[seriesIndex].maxX = x + barHeight;
+                                xMarkMap[seriesIndex].maxY = xMarkMap[seriesIndex][i];
+                            }
+                        }
+                        xMarkMap[seriesIndex].sum += value;
+                        xMarkMap[seriesIndex].counter++;
+                        if (i % interval === 0) {
+                            barShape = this._getBarItem(seriesIndex, i, categoryAxis.getNameByIndex(i), x, y - (isHorizontal ? 0 : curBarWidth), isHorizontal ? curBarWidth : barHeight, isHorizontal ? barHeight : curBarWidth, isHorizontal ? 'vertical' : 'horizontal');
+                            this.shapeList.push(new RectangleShape(barShape));
+                        }
+                    }
+                    for (var m = 0, n = locationMap[j].length; m < n; m++) {
+                        seriesIndex = locationMap[j][m];
+                        serie = series[seriesIndex];
+                        data = serie.data[i];
+                        value = this.getDataFromOption(data, '-');
+                        curBarWidth = Math.min(barMaxWidthMap[seriesIndex] || Number.MAX_VALUE, barWidthMap[seriesIndex] || barWidth);
+                        if (value != '-') {
+                            continue;
+                        }
+                        if (this.deepQuery([
+                                data,
+                                serie,
+                                this.option
+                            ], 'calculable')) {
+                            if (isHorizontal) {
+                                lastP -= islandR;
+                                y = lastP;
+                            } else {
+                                x = lastP;
+                                lastP += islandR;
+                            }
+                            barShape = this._getBarItem(seriesIndex, i, categoryAxis.getNameByIndex(i), x, y - (isHorizontal ? 0 : curBarWidth), isHorizontal ? curBarWidth : islandR, isHorizontal ? islandR : curBarWidth, isHorizontal ? 'vertical' : 'horizontal');
+                            barShape.hoverable = false;
+                            barShape.draggable = false;
+                            barShape.style.lineWidth = 1;
+                            barShape.style.brushType = 'stroke';
+                            barShape.style.strokeColor = serie.calculableHolderColor || this.ecTheme.calculableHolderColor || ecConfig.calculableHolderColor;
+                            this.shapeList.push(new RectangleShape(barShape));
+                        }
+                    }
+                    isHorizontal ? x += curBarWidth + barGap : y -= curBarWidth + barGap;
+                }
+            }
+            this._calculMarkMapXY(xMarkMap, locationMap, isHorizontal ? 'y' : 'x');
+        },
+        _buildHorizontal: function (seriesArray, maxDataLength, locationMap, xMarkMap) {
+            return this._buildNormal(seriesArray, maxDataLength, locationMap, xMarkMap, 'horizontal');
+        },
+        _buildVertical: function (seriesArray, maxDataLength, locationMap, xMarkMap) {
+            return this._buildNormal(seriesArray, maxDataLength, locationMap, xMarkMap, 'vertical');
+        },
+        _buildOther: function (seriesArray, maxDataLength, locationMap, xMarkMap) {
+            var series = this.series;
+            for (var j = 0, k = locationMap.length; j < k; j++) {
+                for (var m = 0, n = locationMap[j].length; m < n; m++) {
+                    var seriesIndex = locationMap[j][m];
+                    var serie = series[seriesIndex];
+                    var xAxisIndex = serie.xAxisIndex || 0;
+                    var xAxis = this.component.xAxis.getAxis(xAxisIndex);
+                    var baseX = xAxis.getCoord(0);
+                    var yAxisIndex = serie.yAxisIndex || 0;
+                    var yAxis = this.component.yAxis.getAxis(yAxisIndex);
+                    var baseY = yAxis.getCoord(0);
+                    xMarkMap[seriesIndex] = xMarkMap[seriesIndex] || {
+                        min0: Number.POSITIVE_INFINITY,
+                        min1: Number.POSITIVE_INFINITY,
+                        max0: Number.NEGATIVE_INFINITY,
+                        max1: Number.NEGATIVE_INFINITY,
+                        sum0: 0,
+                        sum1: 0,
+                        counter0: 0,
+                        counter1: 0,
+                        average0: 0,
+                        average1: 0
+                    };
+                    for (var i = 0, l = serie.data.length; i < l; i++) {
+                        var data = serie.data[i];
+                        var value = this.getDataFromOption(data, '-');
+                        if (!(value instanceof Array)) {
+                            continue;
+                        }
+                        var x = xAxis.getCoord(value[0]);
+                        var y = yAxis.getCoord(value[1]);
+                        var queryTarget = [
+                            data,
+                            serie
+                        ];
+                        var barWidth = this.deepQuery(queryTarget, 'barWidth') || 10;
+                        var barHeight = this.deepQuery(queryTarget, 'barHeight');
+                        var orient;
+                        var barShape;
+                        if (barHeight != null) {
+                            orient = 'horizontal';
+                            if (value[0] > 0) {
+                                barWidth = x - baseX;
+                                x -= barWidth;
+                            } else if (value[0] < 0) {
+                                barWidth = baseX - x;
+                            } else {
+                                barWidth = 0;
+                            }
+                            barShape = this._getBarItem(seriesIndex, i, value[0], x, y - barHeight / 2, barWidth, barHeight, orient);
+                        } else {
+                            orient = 'vertical';
+                            if (value[1] > 0) {
+                                barHeight = baseY - y;
+                            } else if (value[1] < 0) {
+                                barHeight = y - baseY;
+                                y -= barHeight;
+                            } else {
+                                barHeight = 0;
+                            }
+                            barShape = this._getBarItem(seriesIndex, i, value[0], x - barWidth / 2, y, barWidth, barHeight, orient);
+                        }
+                        this.shapeList.push(new RectangleShape(barShape));
+                        x = xAxis.getCoord(value[0]);
+                        y = yAxis.getCoord(value[1]);
+                        if (xMarkMap[seriesIndex].min0 > value[0]) {
+                            xMarkMap[seriesIndex].min0 = value[0];
+                            xMarkMap[seriesIndex].minY0 = y;
+                            xMarkMap[seriesIndex].minX0 = x;
+                        }
+                        if (xMarkMap[seriesIndex].max0 < value[0]) {
+                            xMarkMap[seriesIndex].max0 = value[0];
+                            xMarkMap[seriesIndex].maxY0 = y;
+                            xMarkMap[seriesIndex].maxX0 = x;
+                        }
+                        xMarkMap[seriesIndex].sum0 += value[0];
+                        xMarkMap[seriesIndex].counter0++;
+                        if (xMarkMap[seriesIndex].min1 > value[1]) {
+                            xMarkMap[seriesIndex].min1 = value[1];
+                            xMarkMap[seriesIndex].minY1 = y;
+                            xMarkMap[seriesIndex].minX1 = x;
+                        }
+                        if (xMarkMap[seriesIndex].max1 < value[1]) {
+                            xMarkMap[seriesIndex].max1 = value[1];
+                            xMarkMap[seriesIndex].maxY1 = y;
+                            xMarkMap[seriesIndex].maxX1 = x;
+                        }
+                        xMarkMap[seriesIndex].sum1 += value[1];
+                        xMarkMap[seriesIndex].counter1++;
+                    }
+                }
+            }
+            this._calculMarkMapXY(xMarkMap, locationMap, 'xy');
+        },
+        _mapSize: function (categoryAxis, locationMap, ignoreUserDefined) {
+            var res = this._findSpecialBarSzie(locationMap, ignoreUserDefined);
+            var barWidthMap = res.barWidthMap;
+            var barMaxWidthMap = res.barMaxWidthMap;
+            var barMinHeightMap = res.barMinHeightMap;
+            var sBarWidthCounter = res.sBarWidthCounter;
+            var sBarWidthTotal = res.sBarWidthTotal;
+            var barGap = res.barGap;
+            var barCategoryGap = res.barCategoryGap;
+            var gap;
+            var barWidth;
+            var interval = 1;
+            if (locationMap.length != sBarWidthCounter) {
+                if (!ignoreUserDefined) {
+                    gap = typeof barCategoryGap === 'string' && barCategoryGap.match(/%$/) ? (categoryAxis.getGap() * (100 - parseFloat(barCategoryGap)) / 100).toFixed(2) - 0 : categoryAxis.getGap() - barCategoryGap;
+                    if (typeof barGap === 'string' && barGap.match(/%$/)) {
+                        barGap = parseFloat(barGap) / 100;
+                        barWidth = +((gap - sBarWidthTotal) / ((locationMap.length - 1) * barGap + locationMap.length - sBarWidthCounter)).toFixed(2);
+                        barGap = barWidth * barGap;
+                    } else {
+                        barGap = parseFloat(barGap);
+                        barWidth = +((gap - sBarWidthTotal - barGap * (locationMap.length - 1)) / (locationMap.length - sBarWidthCounter)).toFixed(2);
+                    }
+                    if (barWidth <= 0) {
+                        return this._mapSize(categoryAxis, locationMap, true);
+                    }
+                } else {
+                    gap = categoryAxis.getGap();
+                    barGap = 0;
+                    barWidth = +(gap / locationMap.length).toFixed(2);
+                    if (barWidth <= 0) {
+                        interval = Math.floor(locationMap.length / gap);
+                        barWidth = 1;
+                    }
+                }
+            } else {
+                gap = sBarWidthCounter > 1 ? typeof barCategoryGap === 'string' && barCategoryGap.match(/%$/) ? +(categoryAxis.getGap() * (100 - parseFloat(barCategoryGap)) / 100).toFixed(2) : categoryAxis.getGap() - barCategoryGap : sBarWidthTotal;
+                barWidth = 0;
+                barGap = sBarWidthCounter > 1 ? +((gap - sBarWidthTotal) / (sBarWidthCounter - 1)).toFixed(2) : 0;
+                if (barGap < 0) {
+                    return this._mapSize(categoryAxis, locationMap, true);
+                }
+            }
+            return this._recheckBarMaxWidth(locationMap, barWidthMap, barMaxWidthMap, barMinHeightMap, gap, barWidth, barGap, interval);
+        },
+        _findSpecialBarSzie: function (locationMap, ignoreUserDefined) {
+            var series = this.series;
+            var barWidthMap = {};
+            var barMaxWidthMap = {};
+            var barMinHeightMap = {};
+            var sBarWidth;
+            var sBarMaxWidth;
+            var sBarWidthCounter = 0;
+            var sBarWidthTotal = 0;
+            var barGap;
+            var barCategoryGap;
+            for (var j = 0, k = locationMap.length; j < k; j++) {
+                var hasFound = {
+                    barWidth: false,
+                    barMaxWidth: false
+                };
+                for (var m = 0, n = locationMap[j].length; m < n; m++) {
+                    var seriesIndex = locationMap[j][m];
+                    var queryTarget = series[seriesIndex];
+                    if (!ignoreUserDefined) {
+                        if (!hasFound.barWidth) {
+                            sBarWidth = this.query(queryTarget, 'barWidth');
+                            if (sBarWidth != null) {
+                                barWidthMap[seriesIndex] = sBarWidth;
+                                sBarWidthTotal += sBarWidth;
+                                sBarWidthCounter++;
+                                hasFound.barWidth = true;
+                                for (var ii = 0, ll = m; ii < ll; ii++) {
+                                    var pSeriesIndex = locationMap[j][ii];
+                                    barWidthMap[pSeriesIndex] = sBarWidth;
+                                }
+                            }
+                        } else {
+                            barWidthMap[seriesIndex] = sBarWidth;
+                        }
+                        if (!hasFound.barMaxWidth) {
+                            sBarMaxWidth = this.query(queryTarget, 'barMaxWidth');
+                            if (sBarMaxWidth != null) {
+                                barMaxWidthMap[seriesIndex] = sBarMaxWidth;
+                                hasFound.barMaxWidth = true;
+                                for (var ii = 0, ll = m; ii < ll; ii++) {
+                                    var pSeriesIndex = locationMap[j][ii];
+                                    barMaxWidthMap[pSeriesIndex] = sBarMaxWidth;
+                                }
+                            }
+                        } else {
+                            barMaxWidthMap[seriesIndex] = sBarMaxWidth;
+                        }
+                    }
+                    barMinHeightMap[seriesIndex] = this.query(queryTarget, 'barMinHeight');
+                    barGap = barGap != null ? barGap : this.query(queryTarget, 'barGap');
+                    barCategoryGap = barCategoryGap != null ? barCategoryGap : this.query(queryTarget, 'barCategoryGap');
+                }
+            }
+            return {
+                barWidthMap: barWidthMap,
+                barMaxWidthMap: barMaxWidthMap,
+                barMinHeightMap: barMinHeightMap,
+                sBarWidth: sBarWidth,
+                sBarMaxWidth: sBarMaxWidth,
+                sBarWidthCounter: sBarWidthCounter,
+                sBarWidthTotal: sBarWidthTotal,
+                barGap: barGap,
+                barCategoryGap: barCategoryGap
+            };
+        },
+        _recheckBarMaxWidth: function (locationMap, barWidthMap, barMaxWidthMap, barMinHeightMap, gap, barWidth, barGap, interval) {
+            for (var j = 0, k = locationMap.length; j < k; j++) {
+                var seriesIndex = locationMap[j][0];
+                if (barMaxWidthMap[seriesIndex] && barMaxWidthMap[seriesIndex] < barWidth) {
+                    gap -= barWidth - barMaxWidthMap[seriesIndex];
+                }
+            }
+            return {
+                barWidthMap: barWidthMap,
+                barMaxWidthMap: barMaxWidthMap,
+                barMinHeightMap: barMinHeightMap,
+                gap: gap,
+                barWidth: barWidth,
+                barGap: barGap,
+                interval: interval
+            };
+        },
+        _getBarItem: function (seriesIndex, dataIndex, name, x, y, width, height, orient) {
+            var series = this.series;
+            var barShape;
+            var serie = series[seriesIndex];
+            var data = serie.data[dataIndex];
+            var defaultColor = this._sIndex2ColorMap[seriesIndex];
+            var queryTarget = [
+                data,
+                serie
+            ];
+            var normal = this.deepMerge(queryTarget, 'itemStyle.normal');
+            var emphasis = this.deepMerge(queryTarget, 'itemStyle.emphasis');
+            var normalBorderWidth = normal.barBorderWidth;
+            barShape = {
+                zlevel: this.getZlevelBase(),
+                z: this.getZBase(),
+                clickable: this.deepQuery(queryTarget, 'clickable'),
+                style: {
+                    x: x,
+                    y: y,
+                    width: width,
+                    height: height,
+                    brushType: 'both',
+                    color: this.getItemStyleColor(this.deepQuery(queryTarget, 'itemStyle.normal.color') || defaultColor, seriesIndex, dataIndex, data),
+                    radius: normal.barBorderRadius,
+                    lineWidth: normalBorderWidth,
+                    strokeColor: normal.barBorderColor
+                },
+                highlightStyle: {
+                    color: this.getItemStyleColor(this.deepQuery(queryTarget, 'itemStyle.emphasis.color'), seriesIndex, dataIndex, data),
+                    radius: emphasis.barBorderRadius,
+                    lineWidth: emphasis.barBorderWidth,
+                    strokeColor: emphasis.barBorderColor
+                },
+                _orient: orient
+            };
+            var barShapeStyle = barShape.style;
+            barShape.highlightStyle.color = barShape.highlightStyle.color || (typeof barShapeStyle.color === 'string' ? zrColor.lift(barShapeStyle.color, -0.3) : barShapeStyle.color);
+            barShapeStyle.x = Math.floor(barShapeStyle.x);
+            barShapeStyle.y = Math.floor(barShapeStyle.y);
+            barShapeStyle.height = Math.ceil(barShapeStyle.height);
+            barShapeStyle.width = Math.ceil(barShapeStyle.width);
+            if (normalBorderWidth > 0 && barShapeStyle.height > normalBorderWidth && barShapeStyle.width > normalBorderWidth) {
+                barShapeStyle.y += normalBorderWidth / 2;
+                barShapeStyle.height -= normalBorderWidth;
+                barShapeStyle.x += normalBorderWidth / 2;
+                barShapeStyle.width -= normalBorderWidth;
+            } else {
+                barShapeStyle.brushType = 'fill';
+            }
+            barShape.highlightStyle.textColor = barShape.highlightStyle.color;
+            barShape = this.addLabel(barShape, serie, data, name, orient);
+            var barShapeStyleList = [
+                barShapeStyle,
+                barShape.highlightStyle
+            ];
+            for (var i = 0, l = barShapeStyleList.length; i < l; i++) {
+                var textPosition = barShapeStyleList[i].textPosition;
+                if (textPosition === 'insideLeft' || textPosition === 'insideRight' || textPosition === 'insideTop' || textPosition === 'insideBottom') {
+                    var gap = 5;
+                    switch (textPosition) {
+                    case 'insideLeft':
+                        barShapeStyleList[i].textX = barShapeStyle.x + gap;
+                        barShapeStyleList[i].textY = barShapeStyle.y + barShapeStyle.height / 2;
+                        barShapeStyleList[i].textAlign = 'left';
+                        barShapeStyleList[i].textBaseline = 'middle';
+                        break;
+                    case 'insideRight':
+                        barShapeStyleList[i].textX = barShapeStyle.x + barShapeStyle.width - gap;
+                        barShapeStyleList[i].textY = barShapeStyle.y + barShapeStyle.height / 2;
+                        barShapeStyleList[i].textAlign = 'right';
+                        barShapeStyleList[i].textBaseline = 'middle';
+                        break;
+                    case 'insideTop':
+                        barShapeStyleList[i].textX = barShapeStyle.x + barShapeStyle.width / 2;
+                        barShapeStyleList[i].textY = barShapeStyle.y + gap / 2;
+                        barShapeStyleList[i].textAlign = 'center';
+                        barShapeStyleList[i].textBaseline = 'top';
+                        break;
+                    case 'insideBottom':
+                        barShapeStyleList[i].textX = barShapeStyle.x + barShapeStyle.width / 2;
+                        barShapeStyleList[i].textY = barShapeStyle.y + barShapeStyle.height - gap / 2;
+                        barShapeStyleList[i].textAlign = 'center';
+                        barShapeStyleList[i].textBaseline = 'bottom';
+                        break;
+                    }
+                    barShapeStyleList[i].textPosition = 'specific';
+                    barShapeStyleList[i].textColor = barShapeStyleList[i].textColor || '#fff';
+                }
+            }
+            if (this.deepQuery([
+                    data,
+                    serie,
+                    this.option
+                ], 'calculable')) {
+                this.setCalculable(barShape);
+                barShape.draggable = true;
+            }
+            ecData.pack(barShape, series[seriesIndex], seriesIndex, series[seriesIndex].data[dataIndex], dataIndex, name);
+            return barShape;
+        },
+        getMarkCoord: function (seriesIndex, mpData) {
+            var serie = this.series[seriesIndex];
+            var xMarkMap = this.xMarkMap[seriesIndex];
+            var xAxis = this.component.xAxis.getAxis(serie.xAxisIndex);
+            var yAxis = this.component.yAxis.getAxis(serie.yAxisIndex);
+            var dataIndex;
+            var pos;
+            if (mpData.type && (mpData.type === 'max' || mpData.type === 'min' || mpData.type === 'average')) {
+                var valueIndex = mpData.valueIndex != null ? mpData.valueIndex : xMarkMap.maxX0 != null ? '1' : '';
+                pos = [
+                    xMarkMap[mpData.type + 'X' + valueIndex],
+                    xMarkMap[mpData.type + 'Y' + valueIndex],
+                    xMarkMap[mpData.type + 'Line' + valueIndex],
+                    xMarkMap[mpData.type + valueIndex]
+                ];
+            } else if (xMarkMap.isHorizontal) {
+                dataIndex = typeof mpData.xAxis === 'string' && xAxis.getIndexByName ? xAxis.getIndexByName(mpData.xAxis) : mpData.xAxis || 0;
+                var x = xMarkMap[dataIndex];
+                x = x != null ? x : typeof mpData.xAxis != 'string' && xAxis.getCoordByIndex ? xAxis.getCoordByIndex(mpData.xAxis || 0) : xAxis.getCoord(mpData.xAxis || 0);
+                pos = [
+                    x,
+                    yAxis.getCoord(mpData.yAxis || 0)
+                ];
+            } else {
+                dataIndex = typeof mpData.yAxis === 'string' && yAxis.getIndexByName ? yAxis.getIndexByName(mpData.yAxis) : mpData.yAxis || 0;
+                var y = xMarkMap[dataIndex];
+                y = y != null ? y : typeof mpData.yAxis != 'string' && yAxis.getCoordByIndex ? yAxis.getCoordByIndex(mpData.yAxis || 0) : yAxis.getCoord(mpData.yAxis || 0);
+                pos = [
+                    xAxis.getCoord(mpData.xAxis || 0),
+                    y
+                ];
+            }
+            return pos;
+        },
+        refresh: function (newOption) {
+            if (newOption) {
+                this.option = newOption;
+                this.series = newOption.series;
+            }
+            this.backupShapeList();
+            this._buildShape();
+        },
+        addDataAnimation: function (params, done) {
+            var series = this.series;
+            var aniMap = {};
+            for (var i = 0, l = params.length; i < l; i++) {
+                aniMap[params[i][0]] = params[i];
+            }
+            var x;
+            var dx;
+            var y;
+            var dy;
+            var serie;
+            var seriesIndex;
+            var dataIndex;
+            var aniCount = 0;
+            function animationDone() {
+                aniCount--;
+                if (aniCount === 0) {
+                    done && done();
+                }
+            }
+            for (var i = this.shapeList.length - 1; i >= 0; i--) {
+                seriesIndex = ecData.get(this.shapeList[i], 'seriesIndex');
+                if (aniMap[seriesIndex] && !aniMap[seriesIndex][3]) {
+                    if (this.shapeList[i].type === 'rectangle') {
+                        dataIndex = ecData.get(this.shapeList[i], 'dataIndex');
+                        serie = series[seriesIndex];
+                        if (aniMap[seriesIndex][2] && dataIndex === serie.data.length - 1) {
+                            this.zr.delShape(this.shapeList[i].id);
+                            continue;
+                        } else if (!aniMap[seriesIndex][2] && dataIndex === 0) {
+                            this.zr.delShape(this.shapeList[i].id);
+                            continue;
+                        }
+                        if (this.shapeList[i]._orient === 'horizontal') {
+                            dy = this.component.yAxis.getAxis(serie.yAxisIndex || 0).getGap();
+                            y = aniMap[seriesIndex][2] ? -dy : dy;
+                            x = 0;
+                        } else {
+                            dx = this.component.xAxis.getAxis(serie.xAxisIndex || 0).getGap();
+                            x = aniMap[seriesIndex][2] ? dx : -dx;
+                            y = 0;
+                        }
+                        this.shapeList[i].position = [
+                            0,
+                            0
+                        ];
+                        aniCount++;
+                        this.zr.animate(this.shapeList[i].id, '').when(this.query(this.option, 'animationDurationUpdate'), {
+                            position: [
+                                x,
+                                y
+                            ]
+                        }).done(animationDone).start();
+                    }
+                }
+            }
+            if (!aniCount) {
+                animationDone();
+            }
+        }
+    };
+    zrUtil.inherits(Bar, ChartBase);
+    require('../chart').define('bar', Bar);
+    return Bar;
+});

@@ -110,12 +110,12 @@ def result(request):
 
     f = None
     try:
-        f = UserFillQuiz.objects.raw('SELECT fill_id, score::json FROM "PsyMap_userfillquiz" WHERE fill_id=%s',
-                                     (fid,))[0]
+        sql = 'SELECT fill_id, score::json FROM "PsyMap_userfillquiz" WHERE fill_id=%s'
+        f = UserFillQuiz.objects.raw(sql, (fid,))[0]
     except ValueError:
         pass
 
-    if f is None:  # or f.user_id != uid:   # fill not for this user  #TODO
+    if f is None or (f.user_id != uid and not request.user.is_staff):   # fill not for this user  #TODO
         return render(request, 'PsyMap/quiz/index.html')
 
     quiz = Quiz.objects.get(quiz_id=f.quiz_id).get_questionnaire()
@@ -129,6 +129,6 @@ def result(request):
         'fill': f,
         'remarks': remarks,
         'chart': jsonify(chart.modules),
-        'chart_data': jsonify(chart.data)
+        'chart_data': str(chart.data)
     }
     return render(request, 'PsyMap/quiz/result.html', r)
