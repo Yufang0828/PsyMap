@@ -2,6 +2,7 @@
 __author__ = 'Peter_Howe<haobibo@gmail.com>'
 
 import psycopg2
+
 from quiz.dbutil import get_cur, get_cur_pg
 
 
@@ -10,7 +11,7 @@ curPG = get_cur_pg()
 
 
 def migrate_quiz():
-    curMY.execute('SELECT * FROM quiz')
+    curMY.execute('SELECT * FROM quizlite')
 
     x = lambda i: r[i].encode('UTF-8')
     data = []

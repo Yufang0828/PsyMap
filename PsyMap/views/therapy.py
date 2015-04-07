@@ -2,11 +2,12 @@
 __author__ = 'Peter_Howe<haobibo@gmail.com>'
 
 from django.http.response import HttpResponse
+from util import view_info
 
 
-def therapy(request, page):
-    req = request.META
-    ip = req.get('HTTP_X_FORWARDED_FOR', req.get('REMOTE_ADDR', 'Unknown'))
-    if ',' in ip:
-        ip = ip.split(',')[0].strip(' []')
-    return HttpResponse(ip)
+def index(request, page):
+    msg = ['感谢您访问“心理干预”，该模块正在开发中。'
+           '请您关注我们的微博、微信，功能有更新时我们会通知您~']
+    msg = '\n'.join(msg)
+
+    return view_info(request, msg=msg)

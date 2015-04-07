@@ -1,24 +1,19 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'Peter_Howe<haobibo@gmail.com>'
 
-import re
 
 from django.shortcuts import render
 from django.contrib import auth
 
 from PsyMap.models import UserLink
-from PsyMap.util.api_hub import hub
 
-
-domain = r"http://ccpl.psych.ac.cn/PsyMap/"
-domain_regex = re.compile(r"^http:\/\/ccpl\.psych\.ac\.cn/PsyMap/(.*)")
+from api_hub import hub
+from PsyMap.util import *
 
 
 def login(request):
-    prev = request.META.get('HTTP_REFERER')
-    if re.match(domain_regex, prev):
-        request.session['redirect'] = prev
-
+    prev = web.get_prev_uri(request, local_only=True)
+    request.session['redirect'] = prev
     page = 'PsyMap/accounts/login.html'
     return render(request, page)
 

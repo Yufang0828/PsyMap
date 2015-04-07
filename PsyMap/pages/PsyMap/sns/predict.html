@@ -1,0 +1,80 @@
+﻿{% extends "PsyMap/base_generic.html" %}
+
+{% block title %}心理地图 - 量表测试结果 - {{ quiz.caption }}{% endblock %}
+
+{% block html_head %}
+    <link href="assets/css/page-quiz.css" rel="stylesheet"/>
+    <script src="assets/js/echarts.js"></script>
+    <script>
+        require.config({      paths: { echarts: "assets/js" }     });
+        function draw(modules, data){
+            var m = ['echarts'];
+            modules.forEach(function(i){m.push('echarts/chart/'+i)});
+            require(m,
+                function (ec) {
+                    var myChart = ec.init(document.getElementById('chart-container'));
+
+                    var option = {
+                        tooltip: { show: true },
+                        toolbox: {
+                            show : true,
+                            feature: {
+                                saveAsImage : { show : true, title : '保存结果为图片' }
+                            }
+                        }
+                    };
+                    for (var attrname in data) { option[attrname] = data[attrname]; }
+                    myChart.setOption(option);
+                }
+            );
+            $('#chart-container').show();
+        }
+        {% if chart %}
+        document.addEventListener('DOMContentLoaded', function() {
+            {% autoescape off %}
+            var data = {{ chart_data }};
+            draw({{ chart }}, data);
+            {% endautoescape %}
+        }, false);
+        {% endif %}
+    </script>
+{% endblock %}
+
+{% block content %}
+    <main class="container">
+        <div class="row">
+
+            <div id="intro" class="col-xs-12 col-md-3">
+                <h4><span class="glyphicon glyphicon-certificate"></span>量表测评结果</h4>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h2 class="panel-title" id="panel-title">{{ quiz.caption }}<a class="anchorjs-link" href="#panel-title"><span class="anchorjs-icon"></span></a></h2>
+                    </div>
+                    <div class="panel-body">
+                        {{ quiz.information|linebreaks }}
+                    </div>
+                </div>
+                <span class="glyphicon glyphicon-envelope"></span>　问卷的测评结果依据所您填写的量表与所有填写本量表的用户的填写结果进行对比产生，仅供参考。
+            </div>
+
+            <div class="col-xs-12 col-md-9 pull-right">
+                <div id="chart-container" style="display:none;height:500px"></div>
+
+                {% for tag, r in remarks.iteritems %}
+                    <div class="jumbotron">
+                        <h3><span class="glyphicon glyphicon-pencil"></span>　{{ quiz.tags|get_tag_label:tag }}</h3>
+                        <hr/>
+                        {% autoescape off %}
+                            {{ r.info|paragraphs }}
+                            {{ quiz.tags|get_tag_info:tag|paragraphs }}
+                        {% endautoescape %}
+                        </p>
+                    </div>
+                {% endfor %}
+
+            </div>
+
+        </div>
+    </main>
+
+{% endblock content %}

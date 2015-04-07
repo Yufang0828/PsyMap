@@ -15,6 +15,15 @@ a:visited {
 }
 
 /* ------------------------ Page main content ---------------------- */
+header{
+    width: 100% !important;
+    padding-top: 80px !important;
+}
+
+header p{
+    text-indent: 2em;
+}
+
 main {
     margin-top: 100px;
 	min-height: 550px;
@@ -48,17 +57,22 @@ footer a:hover{
 
 /* ------------------------ Page Header ---------------------- */
 
-.header-bg {
-    margin: 80px 0 -40px 0;
-    padding: 0 0 20px 0 !important;
-    width: 100%;
+.header-float {
+    padding-bottom: 20px !important;
+    margin-bottom: -40px;
     overflow: hidden;
 }
 
-.header-bg .semi-trans {
+.header-float .semi-trans {
     padding: 30px;
     margin: 70px 0 0 0;
     color: #FFF;
+}
+
+.header-fix {
+    padding-left: 5% !important;
+    padding-right: 5% !important;
+    margin-bottom: 150px;
 }
 
 /* ------------------------ Square Button ---------------------- */

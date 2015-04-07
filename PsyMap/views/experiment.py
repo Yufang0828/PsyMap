@@ -2,14 +2,12 @@
 __author__ = 'Peter_Howe<haobibo@gmail.com>'
 
 from django.http.response import HttpResponse
-from PsyMap.util import web
+from util import view_info
 
 
-def experiment(request, page):
-    ip = web.get_ip_from_request(request)
-    return HttpResponse(ip)
+def index(request, page):
+    msg = ['感谢您访问“用户实验”功能，该模块正在开发中。'
+           '请您关注我们的微博、微信，功能有更新时我们会通知您~']
+    msg = '\n'.join(msg)
 
-
-
-
-
+    return view_info(request, msg=msg)

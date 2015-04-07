@@ -1,0 +1,33 @@
+﻿{% extends "PsyMap/base_generic.html" %}
+
+{% block title %}心理地图 - 提示{% endblock %}
+
+{% block html_head %}
+<style>
+    .jumbotron p{ text-indent: 2em; }
+</style>
+{% endblock %}
+
+{% block content %}
+    <main class="container">
+
+        <div class="jumbotron col-xs-10 col-xs-pull-1 col-xs-push-1">
+            <h1 class="text-center">
+                <i class="fa fa-info"></i>　{{ err }}提示
+            </h1>
+            <hr/>
+			<p>{{ msg|linebreaksbr}}</p>
+			<p>如果您有疑问或者建议，欢迎您通过微博或微信向我们反馈（点击导航栏上的“关于”来找到我们的联系方式）。<p>
+
+            {% if redirect %}
+			<p>我们将在10秒钟内自动为您跳转网页，或者您也可以点击<a href="{{ redirect }}">这里</a>返回刚才的页面或主页。</p>
+            <script type="text/javascript">
+				<!-- //
+				window.setTimeout(function(){window.location = "{{ redirect }}";}, 1000 * 9);
+				// -->
+			</script>
+            {% endif %}
+        </div>
+    </main>
+
+{% endblock %}

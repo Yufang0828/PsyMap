@@ -2,19 +2,18 @@
 __author__ = 'Peter_Howe<haobibo@gmail.com>'
 
 import json
-from collections import defaultdict, namedtuple, OrderedDict
+from collections import defaultdict, namedtuple
 
 from django.db.models import *
 from django.contrib.gis.db.models import PointField
 from django.contrib.postgres.fields import DateTimeRangeField, HStoreField
-
 from jsonfield import JSONField
-
 from django.db import connection
 from django.utils import timezone
 from django.contrib.auth.models import User
 
-from PsyMap.util.quiz.questionnaire import QService
+from quizlite.questionnaire import QService
+
 
 hstore_to_dict = lambda hstr: json.loads('{%s}' % hstr.replace('=>', ':'))
 dict_to_hstore = lambda dic: json.dumps(dic).replace(':', '=>').strip('{ }')
@@ -103,7 +102,7 @@ class QGroup(Model):
 
 
 class QGroupQuiz(Model):
-    __slots__ = ['gq_id', 'qgroup', 'quiz', 'alias', 'priority', 'intro']
+    __slots__ = ['gq_id', 'qgroup', 'quizlite', 'alias', 'priority', 'intro']
     gq_id = AutoField(primary_key=True)
     qgroup = ForeignKey(QGroup)
     quiz = ForeignKey(Quiz)
@@ -130,7 +129,7 @@ class Experiment(Model):
 
 
 class UserFillQuiz(Model):
-    __slots__ = ['fill_id', 'user', 'quiz', 'qgroup', 'fill_time', 'cost_seconds', 'ip_addr', 'location', 'answer', 'score', 'memo']
+    __slots__ = ['fill_id', 'user', 'quizlite', 'qgroup', 'fill_time', 'cost_seconds', 'ip_addr', 'location', 'answer', 'score', 'memo']
     fill_id = AutoField(primary_key=True)
     user = ForeignKey(User)
     quiz = ForeignKey(Quiz)

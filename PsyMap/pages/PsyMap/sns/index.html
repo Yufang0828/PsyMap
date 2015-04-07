@@ -1,0 +1,62 @@
+﻿{% extends "PsyMap/base_generic.html" %}
+
+{% block title %}心理地图 - 基于社交网络的人格分析{% endblock %}
+
+{% block html_head %}
+    <link href="assets/css/page-sns.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+    <header class="container header-fix jumbotron">
+        <img id="intro-ico" class="img-thumbnail pull-right col-xs-4" src="assets/img/c-b.png"/>
+
+        <h1>基于网络社会媒体的<br/>心理特征分析</h1>
+        <hr/>
+        <p>“心理地图”目前可以通过您的<strong>新浪微博</strong>进行用户的心理分析，目前支持下面所列的项目。</p>
+
+        <p>我们近期会加入通过人人网、豆瓣网分析预测用户心理的功能，敬请期待！欢迎关注我们的微博：<a target="_blank" href="http://weibo.com/u/2721210291">@心理地图PsyMap</a>，当我们推出新的功能时，会在微博上发布~
+        </p>
+    </header>
+
+    <main class="container">
+        <div class="col-md-6 col-xs-12">
+            <div class="thumbnail">
+                <img src="assets/img/fav-bfi.png" alt="大五人格">
+                <div class="jumbotron">
+                    <h2>大五人格分析</h2>
+                    <hr/>
+                    <p>　　本分析基于“大五性格模型”这一现代心理学研究发现的最高级组织层次的五个人格特质框架，利用用户的微博行为特征和机器学习方法，建立了基于新浪微博的大五人格分析与预测模型。</p>
+                    <p align="right"><a class="btn btn-success" type="button" href="sns/weibo/BFI">查看我的分析结果»</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-xs-12">
+            <div class="thumbnail">
+                <img src="assets/img/fav-scl.png" alt=心理健康">
+                <div class="jumbotron">
+                    <h2>心理健康分析</h2>
+                    <hr/>
+                    <p>　　本分析基于心理学研究成果“SCL-90-R（症状自评量表）”这一临床使用的心理健康测量工具，利用用户的微博行为特征和机器学习方法，建立了基于新浪微博的心理健康分析与预测模型。</p>
+                    <p align="right"><a class="btn btn-success" type="button" href="sns/weibo/SCL">查看我的分析结果»</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-xs-12">
+            <div class="thumbnail">
+                <img src="assets/img/fav-scl.png" alt="幸福感">
+                <div class="jumbotron">
+                    <h2>幸福感分析</h2>
+                    <hr/>
+                    <p>　　本分析基于心理科学当中关于积极心理学的研究成果，利用用户的微博行为特征和机器学习方法，建立了基于新浪微博的心理幸福感分析与预测模型。</p>
+                    <p align="right"><a class="btn btn-success" type="button" href="sns/weibo/SWB">查看我的分析结果»</a></p>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+
+{% endblock %}

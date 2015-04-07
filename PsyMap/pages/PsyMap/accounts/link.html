@@ -1,0 +1,36 @@
+﻿{% extends "PsyMap/base_generic.html" %}
+
+{% block title %}心理地图 - 连接登录{% endblock %}
+
+{% block html_head %}
+    <link href="assets/css/page-accounts.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block content %}
+    <main class="container">
+
+        <div class="jumbotron col-xs-10 col-xs-pull-1 col-xs-push-1">
+            <h2 class="text-center">
+                <i class="fa fa-2x icon iconfont fa-{{ site.alias }} icon-{{ site.alias }}"></i>
+                {{ site.name }}连接登录
+            </h2>
+
+            <hr/>
+            {% if err %}
+                <p>用{{ site.name }}账户连接心理地图<b>出错</b>了……</p>
+                <p>点击<a href="{{ redirect }}">这里</a>返回刚才的页面。</p>
+                <p>请您稍后再试，或者把下面的信息反馈给我们，帮助我们查找错误原因。<p>
+                <textarea rows="10" style="width:100%">{{ err }}</textarea>
+            {% else %}
+                <p>您已经成功用{{ site.name }}账户连接心理地图，我们正在为您跳转页面，请稍等……</p>
+                <p>如果页面没有及时跳转，请您点击<a href="{{ redirect }}">这里</a>进行跳转。</p>
+                <script type="text/javascript">
+                    <!-- //
+                    window.setTimeout(function(){window.location = "{{ redirect }}";}, 1000 * 2);
+                    // -->
+                </script>
+            {% endif %}
+        </div>
+    </main>
+
+{% endblock %}
