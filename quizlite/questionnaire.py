@@ -6,7 +6,7 @@ from collections import OrderedDict, namedtuple, defaultdict
 
 from lxml import etree
 
-from quizlite import draw
+from draw import draw
 
 
 __all__ = ['Answer', 'Tag', 'Remark', 'Question', 'Questionnaire', 'QService']
@@ -143,7 +143,7 @@ class QService:
         return path
 
     @staticmethod
-    def validate_xml(xml_file, dtd_file='./quizlite/Questionnaire.dtd'):
+    def validate_xml(xml_file, dtd_file='./quiz/Questionnaire.dtd'):
         with open(QService.wrap_path(xml_file), 'r') as f_xml:
             root = etree.XML(f_xml.read())
 
@@ -186,7 +186,7 @@ class QService:
         try:
             return QService.norm_cache[quiz_id]
         except KeyError:
-            raise RuntimeError('Norm for quizlite [%s] is not set!' % quiz_id)
+            raise RuntimeError('Norm for quiz [%s] is not set!' % quiz_id)
 
     @staticmethod
     def get_chart_data(quiz_id, scores):

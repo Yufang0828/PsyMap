@@ -14,7 +14,7 @@ SECRET_KEY = '8d2tfo0#5!(w-62(=pblp6p%&24_^s#^nabwf=#*z_zsn3x90$'
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = TEMPLATE_DEBUG = False
+DEBUG = TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = ['*']  # [ 'ccpl.psych.ac.cn', '192.168.', '127.', ]
 
 

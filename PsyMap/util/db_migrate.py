@@ -3,7 +3,7 @@ __author__ = 'Peter_Howe<haobibo@gmail.com>'
 
 import psycopg2
 
-from quiz.dbutil import get_cur, get_cur_pg
+from quizlite.dbutil import get_cur, get_cur_pg
 
 
 curMY = get_cur()

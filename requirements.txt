@@ -1,0 +1,6 @@
+Django>=1.8
+Shapely==1.4.0
+jsonfield
+lxml
+python-dateutil
+wechat-sdk

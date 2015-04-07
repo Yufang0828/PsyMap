@@ -112,7 +112,7 @@ def result(request):
     try:
         sql = 'SELECT fill_id, score::json FROM "PsyMap_userfillquiz" WHERE fill_id=%s'
         f = UserFillQuiz.objects.raw(sql, (fid,))[0]
-    except ValueError:
+    except IndexError:
         pass
 
     if f is None or (f.user_id != uid and not request.user.is_staff):   # fill not for this user  #TODO
