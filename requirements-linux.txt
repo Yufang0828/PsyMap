@@ -1,0 +1,7 @@
+Django>=1.8
+jsonfield
+lxml
+python-dateutil
+psycopg2>=2.6
+wechat-sdk
+Shapely==1.4.3

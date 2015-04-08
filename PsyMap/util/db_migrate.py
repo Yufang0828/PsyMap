@@ -11,7 +11,7 @@ curPG = get_cur_pg()
 
 
 def migrate_quiz():
-    curMY.execute('SELECT * FROM quizlite')
+    curMY.execute('SELECT * FROM quiz')
 
     x = lambda i: r[i].encode('UTF-8')
     data = []

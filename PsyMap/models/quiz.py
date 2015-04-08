@@ -102,7 +102,7 @@ class QGroup(Model):
 
 
 class QGroupQuiz(Model):
-    __slots__ = ['gq_id', 'qgroup', 'quizlite', 'alias', 'priority', 'intro']
+    __slots__ = ['gq_id', 'qgroup', 'quiz', 'alias', 'priority', 'intro']
     gq_id = AutoField(primary_key=True)
     qgroup = ForeignKey(QGroup)
     quiz = ForeignKey(Quiz)
@@ -129,7 +129,7 @@ class Experiment(Model):
 
 
 class UserFillQuiz(Model):
-    __slots__ = ['fill_id', 'user', 'quizlite', 'qgroup', 'fill_time', 'cost_seconds', 'ip_addr', 'location', 'answer', 'score', 'memo']
+    __slots__ = ['fill_id', 'user', 'quiz', 'qgroup', 'fill_time', 'cost_seconds', 'ip_addr', 'location', 'answer', 'score', 'memo']
     fill_id = AutoField(primary_key=True)
     user = ForeignKey(User)
     quiz = ForeignKey(Quiz)
