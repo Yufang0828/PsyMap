@@ -8,15 +8,15 @@
     <meta name="description" content="">
     <meta name="author" content="计算网络心理实验室">
 
-    <base href="http://ccpl.psych.ac.cn/PsyMap/"/>
+    <base href="http://{{ request.META.HTTP_HOST }}/PsyMap/"/>  <!-- {{ request.path }} -->
     <link rel="icon" href="assets/ico/favicon.ico">
 
     <title>{% block title %}心理地图{% endblock %}</title>
 
-    <!--[if lt IE 9]>    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]-->    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <script src="assets/js/html5shiv.min.js"></script>
     <script src="assets/js/respond.min.js"></script>
-    <![endif]-->
+    <!--[endif]-->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/site-common.css" rel="stylesheet">
     {% block html_head %}{% endblock %}

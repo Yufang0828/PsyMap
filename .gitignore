@@ -32,7 +32,10 @@ nosetests.xml
 *.mo
 
 # Mr Developer
+.idea/
+*.iml
+
 .mr.developer.cfg
 .project
 .pydevproject
-.idea
+
