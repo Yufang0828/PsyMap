@@ -94,7 +94,3 @@ STATICFILES_DIRS = (
 )
 
 USE_X_FORWARDED_HOST = True
-
-from shapely.geometry import Point
-from ctypes.util import find_library
-GEOS_LIBRARY_PATH = find_library('geos_c')
