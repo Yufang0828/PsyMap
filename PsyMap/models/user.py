@@ -17,7 +17,7 @@ aliens = {
     'douban': Alien('DOUB', '豆瓣', 'douban'),
     'baidu': Alien('BIDU', '百度', 'baidu'),
     'wechat': Alien('WECHAT', '微信', 'wechat'),
-     'qq': Alien('QQ', 'QQ', 'qq')
+    'qq': Alien('QQ', 'QQ', 'qq')
 }
 
 
@@ -49,7 +49,7 @@ class UserLink(Model):
             k.save(force_update=True)
             u = k.user
         except IndexError:  # this alien user has not been connected to the site
-            name = '%s#%s' % (site.upper(), alien)
+            name = '%s#%s' % (site.upper(), alien)[:30]
             u = User.objects.create(is_superuser=False, is_staff=False, is_active=False, username=name, first_name=name)
             k = UserLink.objects.create(user=u, site=site, alien=alien, token=token, updated=now)
         return u

@@ -12,7 +12,8 @@ cfgs = {
     'weibo':  AppConfig('2083434837', '0f0b491b53f93d73e19fbfc09b823728', 'http://ccpl.psych.ac.cn/PsyMap/accounts/callback/weibo'),
     'renren': AppConfig('842991772a904fcba75ff418c9734b49', '10b8d90ea5d84fcba7afaccbd04c6823', 'http://ccpl.psych.ac.cn/PsyMap/accounts/callback/renren'),
     'douban': AppConfig('0e9563ce7b25e16b2bc02b6b7171a441', '395fc362c0ba54cf', 'http://ccpl.psych.ac.cn/PsyMap/accounts/callback/douban'),
-    'wechat': AppConfig('wx1274846e777083c3', '3d6038327dddd8e7dbec82c82c4353a6', 'http://ccpl.psych.ac.cn/PsyMap/accounts/callback/wechat'),
+    # 'wechat': AppConfig('wx1274846e777083c3', '3d6038327dddd8e7dbec82c82c4353a6', 'http://ccpl.psych.ac.cn/PsyMap/accounts/callback/wechat'), #dev
+    'wechat': AppConfig('wx419b2a8c74a010c0', '6ec543cfadfdc716adaac90f87a49b31', 'http://ccpl.psych.ac.cn/PsyMap/accounts/callback/wechat'), # service account
     'baidu': AppConfig('', '', ''),
     'qq': AppConfig('', '', ''),
 }
@@ -29,6 +30,7 @@ def link(site, code):
     app = App(**cfgs[site].__dict__)
     oauth2 = OAuth2(app)
     token = oauth2.access_token(code=code).__dict__
+    print token
     tk = get_values(token, '^access_token$').values()
     uid = get_values(token, '\w*id').values()
     err = get_values(token, '\.*err\.*')

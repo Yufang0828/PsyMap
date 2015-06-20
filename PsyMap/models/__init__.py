@@ -3,3 +3,4 @@ __author__ = 'Peter_Howe<haobibo@gmail.com>'
 
 from .quiz import *
 from .user import *
+from .emotion import *

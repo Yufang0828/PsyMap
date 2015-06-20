@@ -16,7 +16,7 @@ cfg = {
 }
 
 cfg_pg = {
-    'host':     "127.0.0.1",
+    'host':     "192.168.8.3",
     'user':     "postgres",
     'password': "ccpl_817",
     "database": "PsyMap",

@@ -188,7 +188,9 @@ class OAuth2Base(OAuthBase):
             grant_type = 'password'
         else:
             grant_type = 'client_credentials'
-        kwargs.update(client_id=self.app.key, client_secret=self.app.secret, grant_type=grant_type)
+        kwargs.update(grant_type=grant_type,
+                      client_id=self.app.key, client_secret=self.app.secret,
+                      appid=self.app.key, secret=self.app.secret)  #fix wechat bug
         response = self._session.post(self.TOKEN_URL, data=kwargs)
         return self._parse_token(response)
 

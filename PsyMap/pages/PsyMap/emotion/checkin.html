@@ -1,0 +1,214 @@
+{% extends "PsyMap/base_generic.html" %}
+
+{% block title %}心理地图 - 心情签到{% endblock %}
+
+{% block html_head %}
+    <script>
+        function initialize() {
+            var lat = '{{lat}}';
+            var long = '{{long}}';
+            var mp = new BMap.Map('map');
+            if (lat == 9997.9997 || lat == 9998.9998 || lat == 9999.9999) {
+                alert("获取位置信息失败");
+                mp.centerAndZoom(new BMap.Point(121.491, 31.233), 11);
+            }
+            else {
+
+                mp.centerAndZoom(new BMap.Point(parseFloat(lat), parseFloat(long)), 15);
+                var marker = new BMap.Marker(new BMap.Point(parseFloat(lat), parseFloat(long)));
+                mp.addOverlay(marker);
+                marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+            }
+            mp.enableScrollWheelZoom(true);
+        }
+        function loadScript() {
+            var script = document.createElement("script");
+            script.src = "http://api.map.baidu.com/api?v=1.5&ak=M78TsWFeteIXpoGAS4GzYioq&callback=initialize";//此为v1.5版本的引用方式
+            document.body.appendChild(script);
+        }
+
+        window.onload = loadScript;
+
+    </script>
+
+    <script>
+        $(function () {
+
+            $(".emotion").on('click', function () {
+                var lat = '{{lat}}';
+                if (lat == 9997.9997 || lat == 9998.9998 || lat == 9999.9999) {
+                    alert('无法定位您的当前位置');
+                    return false;
+                }
+                $.ajax({
+                    url: 'emotion/checkin/{{ lat }}/{{ long }}/' + $(this).attr('name') + '/',
+                    type: 'get',
+                    dataType: 'json',
+                    success: function (rs) {
+                        if (rs.msg) {
+                            console.info(rs);
+                            showLocation(rs.location.lat, rs.location.long, rs.location.emotion);
+                            alert("签到成功");
+                        } else {
+                            alert('您今天以签到');
+                        }
+                    }
+                });
+
+            })
+        });
+        function showLocation(lat, long, emotion) {
+            var mp = new BMap.Map('map');
+            mp.centerAndZoom(new BMap.Point(121.491, 31.233), 15);
+            //var bounds = mp.getBounds();//获得地图可视区域
+
+            for (i = 0; i < lat.length; i++) {
+                console.info(lat[i], long[i]);
+                var point = new BMap.Point(parseFloat(lat[i]), parseFloat(long[i]));
+                addMaker(point, mp, emotion[i]);
+            }
+            mp.enableScrollWheelZoom(true);
+            mp.addEventListener("click", showInfo);
+        }
+
+        function addMaker(point, mp, emotion) {
+            var marker = new BMap.Marker(point);
+            mp.addOverlay(marker);
+
+            var label = new BMap.Label(emotion, {offset: new BMap.Size(20, -10)});
+            label.setStyle({
+                border: '0',
+                fontSize: '14px',
+                lineHeight: '10px',
+                height: '15px'
+            });
+            marker.setLabel(label);
+        }
+
+        function showInfo(e) {
+            alert(e.point.lng + "," + e.point.lat);
+        }
+    </script>
+
+    <style>
+        .Ddz {
+            position: relative;
+            z-index: 9999;
+            top: 15%;
+            left: 10px;
+
+            _top: expression(documentElement.scrollTop+(documentElement.clientHeight-this.clientHeight)/2);
+            z-index: 100001;
+            height: 330px;
+            width: 250px;
+
+        }
+
+        /*.Ddz{postion:absolute;width:400px;height: 200px}*/
+        .Ddz .title {
+            height: 31px;
+            border-bottom: 1px solid #ddd;
+            line-height: 31px;
+            text-align: center;
+            font-size: 20px
+        }
+
+        .Ddz .title a {
+            float: right;
+            width: 31px;
+            height: 31px;
+        }
+
+        .Ddz .p1 {
+            padding-left: 20px;
+            height: 30px;
+            line-height: 22px;
+        }
+
+        .Ddz .p1 a {
+            display: inline-block;
+            width: 80px;
+            height: 50px;
+            line-height: 22px;
+            text-align: center;
+            color: #06c;
+        }
+
+        .Ddz .p1 td {
+            width: 50px;
+            height: 50px;
+        }
+
+        .Ddz .p1 img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .Ddz .p1 a:hover {
+            color: #fff;
+        }
+
+        .Ddz .p1 b {
+            margin-right: 5px;
+            color: #f90;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <main class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">心情签到</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3 col-xs-12">
+                        <div class="Ddz">
+                            <p class="title">您今天的心情</p>
+                            <table class="p1">
+                                <tr>
+                                    <td><a class="emotion" href="javascript:void(0)" name="angry"><img
+                                            src="assets/img/emos/angry.gif"
+                                            title="愤怒"></a></td>
+                                    <td><a class="emotion" href="javascript:void(0)" name="boring"><img
+                                            src="assets/img/emos/boring.gif" title="无聊"></a></td>
+                                    <td><a class="emotion" href="javascript:void(0)" name="love"><img
+                                            src="assets/img/emos/love.gif" title="畅快"></a></td>
+                                </tr>
+                                <tr>
+                                    <td width="50px" align="center">愤怒</td>
+                                    <td width="50px" align="center">无聊</td>
+                                    <td width="50px" align="center">畅快</td>
+                                </tr>
+                                <tr>
+                                    <td><a class="emotion" href="javascript:void(0)" name="happy"><img
+                                            src="assets/img/emos/happy.gif" title="高兴"></a></td>
+                                    <td><a class="emotion" href="javascript:void(0)" name="sad"><img
+                                            src="assets/img/emos/sad.gif" title="悲伤"></a></td>
+                                    <td><a class="emotion" href="javascript:void(0)" name="fear"><img
+                                            src="assets/img/emos/fear.gif" title="恐惧"></a></td>
+                                </tr>
+                                <tr>
+                                    <td width="50px" align="center">高兴</td>
+                                    <td width="50px" align="center">悲伤</td>
+                                    <td width="50px" align="center">恐惧</td>
+                                </tr>
+                                <tr>
+                                    <td><a class="emotion" href="javascript:void(0)" name="shy"><img
+                                            src="assets/img/emos/shy.gif" title="害羞"></a></td>
+                                </tr>
+                                <tr>
+                                    <td width="50px" align="center">害羞</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="pull-right col-md-9 col-xs-12">
+                        <div id="map" style="width:100%;height:400px;"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}

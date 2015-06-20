@@ -61,7 +61,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'PsyMap',
-        'HOST': '127.0.0.1',
+        'HOST': '192.168.8.3',
         'PORT': '5432',
         'USER': 'postgres',
         'PASSWORD': 'ccpl_817',
@@ -94,3 +94,7 @@ STATICFILES_DIRS = (
 )
 
 USE_X_FORWARDED_HOST = True
+
+from shapely.geometry import Point
+from ctypes.util import find_library
+GEOS_LIBRARY_PATH = find_library('geos_c')

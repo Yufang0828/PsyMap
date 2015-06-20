@@ -26,6 +26,12 @@ urlpatterns = patterns(
     url(r'^accounts/logout$',                             views.accounts.logout),    # account logout
     url(r'^accounts/callback/(?P<site>\w+)$',             views.accounts.callback),  # account link callback
 
+    url(r'^emotion/index/$',                             views.emotion.index),    # emotion check in
+
+    # TODO: delete these two lines if not needed
+    # url(r'^emotion/success/(?P<lat>\d+\.\d+)/(?P<long>\d+\.\d+)$' ,      views.emotion.success),
+    # url(r'^emotion/emotion/(?P<lat>\d+\.\d+)/(?P<long>\d+\.\d+)/(?P<emotion>\w+)', views.emotion.emotion),
+
     url(r'^sns/index/(?P<page>\w*)$',                     views.sns.index),          # sns index
     url(r'^sns/psych/(?P<site>\w*)/(?P<page>\w*)$',       views.sns.psych),          # sns psych
 

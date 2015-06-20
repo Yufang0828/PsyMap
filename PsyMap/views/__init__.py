@@ -9,4 +9,5 @@ from knowledge import *
 from wechat import *
 from therapy import *
 from home import *
+from emotion import *
 from util import *

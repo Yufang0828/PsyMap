@@ -126,8 +126,8 @@ def migrate_userfillquiz():
 if __name__ == '__main__':
     # migrate_quiz()
     # migrate_qgroup()
-    # migrate_experiment()
+    #migrate_experiment()
     # migrate_qgroupquiz()
-    # migrate_users()
-    # migrate_ulink()
+    migrate_users()
+    migrate_ulink()
     migrate_userfillquiz()
